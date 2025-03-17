@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <title>Boundless Pages</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            .cookie-regular {
+            font-family: "Cookie", cursive;
+            font-weight: 400;
+            font-style: normal;
+}
+
             background: linear-gradient(to bottom, #d4f0e8, #005f6b); /* Sea foam to dark teal gradient */
             display: flex;
             justify-content: center;
@@ -21,11 +29,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
             max-width: 800px;
             text-align: center; /* Center text inside the box */
-        }
-        img {
-            display: block;
-            margin: 20px auto; /* Center images */
-            max-width: 80%; /* Make images responsive */
         }
         ul {
             list-style-type: none; /* Remove default bullet points */
@@ -41,8 +44,16 @@
         a:hover {
             text-decoration: underline; /* Add underline on hover */
         }
-/* comment */
-</style>
+        .image-container {
+            display: flex; /* Enables Flexbox */
+            justify-content: center; /* Aligns images horizontally */
+            gap: 20px; /* Space between images */
+        }
+        .image-container img {
+            max-width: 40%; /* Adjust image size */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
 </head>
 <body>
     <div class="content-box">
@@ -67,6 +78,17 @@
         </ul>
 
         <hr>
+
+        <div class="image-container">
+            <img src="CozyBookCorner.jpeg" alt="Cozy Book Corner">
+            <img src="OnyxStormDedication.jpg" alt="Onyx Storm Dedication">
+        </div>
+
+        <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
+    </div>
+</body>
+</html>
+
 
     <img src="CozyBookCorner.jpeg" alt="Cozy Book Corner">
     <img src="OnyxStormDedication.jpg" alt="Onyx Storm Dedication">
