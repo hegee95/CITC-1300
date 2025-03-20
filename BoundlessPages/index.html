@@ -10,54 +10,79 @@
     <style>
         body {
             margin: 0;
-            .cookie-regular {
-            font-family: "Cookie", cursive;
-            font-weight: 400;
-            font-style: normal;
-}
-
-            background: linear-gradient(to bottom, #d4f0e8, #005f6b); /* Sea foam to dark teal gradient */
+            background: linear-gradient(to bottom, #d4f0e8, #005f6b);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Full viewport height */
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
         }
         .content-box {
-            background-color: white; /* White box for text */
-            border-radius: 15px; /* Rounded corners */
-            padding: 20px; /* Space inside the box */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             max-width: 800px;
-            text-align: center; /* Center text inside the box */
+            text-align: center;
         }
+        .typewriter-box {
+            background-color: #d4f0e8; 
+            padding: 20px; 
+            border-radius: 15px; 
+            display: inline-block; 
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
+        }
+        .typewriter-box h1 {
+            overflow: hidden;
+            border-right: 2px solid #000; 
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 2px;
+            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+            font-family: "Cookie", cursive;
+            line-height: 1.4;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: black }
+        }
+
         ul {
-            list-style-type: none; /* Remove default bullet points */
+            list-style-type: none; 
             padding: 0;
         }
         ul li {
-            margin: 5px 0; /* Space between list items */
+            margin: 5px 0; 
         }
         a {
-            color: #005f6b; /* Dark teal link color */
-            text-decoration: none; /* Remove underline from links */
+            color: #005f6b; 
+            text-decoration: none; 
         }
         a:hover {
-            text-decoration: underline; /* Add underline on hover */
+            text-decoration: underline; 
         }
         .image-container {
-            display: flex; /* Enables Flexbox */
-            justify-content: center; /* Aligns images horizontally */
-            gap: 20px; /* Space between images */
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
         }
         .image-container img {
-            max-width: 40%; /* Adjust image size */
-            height: auto; /* Maintain aspect ratio */
+            max-width: 40%; 
+            height: auto; 
         }
     </style>
 </head>
 <body>
     <div class="content-box">
-        <h1>Boundless Pages: A Journey Through Books</h1>
+        <div class="typewriter-box">
+            <h1>Boundless Pages: A Journey Through Books</h1>
+        </div>
         <h2>Turning Pages, Discovering Worlds</h2>
         <h3>Unlock the Magic of Stories</h3>
 
