@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #006100, #002900);
+    background: linear-gradient(to bottom, #d4f0e8, #005f6b);
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@ body {
     right: 0;
     bottom: 0;
     border: 50px solid transparent;
-    border-image: url(leafy_vine_border.png) 50 round;
+    border-image: url('leafy_vine_border.png') 50 round;
     pointer-events: none;
     z-index: 1;
   }
@@ -91,10 +91,11 @@ body {
   
   .book-links {
     display: none;
-    margin-top: 10px;
+    margin-top: 5px;
     position: absolute;
     top: 100%;
     left: 0;
+    transform: translateY(0);
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -113,4 +114,29 @@ body {
   
   .book-links a:hover {
     text-decoration: underline;
+  }
+  
+  .book-button {
+    margin-left: 20px;
+    width: 60px;
+    height: 80px;
+    background: url(Closedbook.png) no-repeat center center;
+    background-size: cover;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease-in-out,
+      transform 0.3s;
+    position: relative;
+  }
+  
+  .book-button::after {
+    content: "Click Me";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
   }
