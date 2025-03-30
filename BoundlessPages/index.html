@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <title>Boundless Pages</title>
+    <link rel="stylesheet" href="bookbuttonstyles.css">
     <style>
         body {
             margin: 0;
@@ -68,59 +69,16 @@
             max-width: 40%;
             height: auto;
         }
-        .book-button {
-            margin-left: 20px;
-            width: 60px;
-            height: 80px;
-            background: url(Closedbook.png) no-repeat center center;
-            background-size: cover;
-            border-radius: 2px;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease-in-out, transform 0.3s;
-        }
-        .book-button.flipping {
-            background: url(Flippingpages.png) no-repeat center center;
-            background-size: cover;
-        }
-        .book-button.open {
-            background: url(Openbook.png) no-repeat center center;
-            background-size: cover;
-        }
-        .book-links {
-            display: none;
-            margin-top: 10px;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            text-align: center;
-        }
-        .book-links a {
-            display: block;
-            text-decoration: none;
-            color: #005f6b;
-            margin: 5px 0;
-        }
-        .book-links a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <div class="content-box">
         <div class="typewriter-box">
-            <h1>Boundless Pages</h1>     
+            <h1>Boundless Pages</h1>
         </div>
         <div class="book-button" onclick="toggleLinks()"></div>
             <div class="book-links" id="book-links">
-                <a href="newpage1.html">Page 1</a>
+                <a href="Mylibrary.html">Page 1</a>
                 <a href="newpage2.html">Page 2</a>
             </div>
         <h2>Turning Pages, Discovering Worlds</h2>
@@ -145,24 +103,6 @@
         </div>
         <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
     </div>
-    <script>
-        function toggleLinks() {
-            const links = document.getElementById("book-links");
-            const button = document.querySelector(".book-button");
-
-            if (!button.classList.contains("open")) {
-                button.classList.add("flipping");
-
-                setTimeout(() => {
-                    button.classList.remove("flipping");
-                    button.classList.add("open");
-                }, 300);
-            } else {
-                button.classList.remove("open");
-            }
-
-            links.style.display = links.style.display === "block" ? "none" : "block";
-        }
-    </script>
+    <script src="bookbuttonscript.js"></script>
 </body>
 </html>
