@@ -66,6 +66,10 @@
     cursor: pointer;
   }
   
+  .book-container a {
+    text-decoration: none;
+  }
+  
   .book-container img {
     width: 100%;
     height: auto;
