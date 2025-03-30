@@ -1,8 +1,7 @@
-/* main_styles.css */
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #015701, #001a00);
+    background: linear-gradient(to bottom, #d4f0e8, #005f6b);
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
