@@ -16,6 +16,7 @@
             align-items: center;
             min-height: 100vh;
             font-family: Arial, sans-serif;
+            position: relative;
         }
         .content-box {
             background-color: white;
@@ -26,90 +27,142 @@
             text-align: center;
         }
         .typewriter-box {
-            background-color: #d4f0e8; 
-            padding: 20px; 
-            border-radius: 15px; 
-            display: inline-block; 
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
+            background-color: #d4f0e8;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
         .typewriter-box h1 {
             overflow: hidden;
-            border-right: 2px solid #000; 
+            border-right: 2px solid #000;
             white-space: nowrap;
-            margin: 0 auto;
+            margin: 0;
             letter-spacing: 2px;
             animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
             font-family: "Cookie", cursive;
             line-height: 1.4;
         }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: black }
-        }
-
         ul {
-            list-style-type: none; 
+            list-style-type: none;
             padding: 0;
         }
         ul li {
-            margin: 5px 0; 
+            margin: 5px 0;
         }
         a {
-            color: #005f6b; 
-            text-decoration: none; 
+            color: #005f6b;
+            text-decoration: none;
         }
         a:hover {
-            text-decoration: underline; 
+            text-decoration: underline;
         }
         .image-container {
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
         .image-container img {
-            max-width: 40%; 
-            height: auto; 
+            max-width: 40%;
+            height: auto;
+        }
+        .book-button {
+            margin-left: 20px;
+            width: 60px;
+            height: 80px;
+            background: url(Closedbook.png) no-repeat center center;
+            background-size: cover;
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease-in-out, transform 0.3s;
+        }
+        .book-button.flipping {
+            background: url(Flippingpages.png) no-repeat center center;
+            background-size: cover;
+        }
+        .book-button.open {
+            background: url(Openbook.png) no-repeat center center;
+            background-size: cover;
+        }
+        .book-links {
+            display: none;
+            margin-top: 10px;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            text-align: center;
+        }
+        .book-links a {
+            display: block;
+            text-decoration: none;
+            color: #005f6b;
+            margin: 5px 0;
+        }
+        .book-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="content-box">
         <div class="typewriter-box">
-            <h1>Boundless Pages: A Journey Through Books</h1>
+            <h1>Boundless Pages</h1>
+            <div class="book-button" onclick="toggleLinks()"></div>
+            <div class="book-links" id="book-links">
+                <a href="newpage1.html">Page 1</a>
+                <a href="newpage2.html">Page 2</a>
+            </div>
         </div>
         <h2>Turning Pages, Discovering Worlds</h2>
         <h3>Unlock the Magic of Stories</h3>
-
         <p>
             Books have the power to transport us to faraway places, introduce us to incredible characters, and spark our imagination like nothing else. Whether you're reading a thrilling mystery or an inspiring biography, there's always something to learn and enjoy.
         </p>
         <p>
             From ancient tales to modern masterpieces, books remain a timeless source of entertainment, knowledge, and inspiration for all generations.
         </p>
-
         <hr>
-
         <ul>
             <li><a href="https://www.goodreads.com" target="_blank">Visit Goodreads</a></li>
             <li><a href="https://www.nytimes.com/section/books" target="_blank">NY Times Book Reviews</a></li>
             <li><a href="https://www.gutenberg.org" target="_blank">Free Classics on Project Gutenberg</a></li>
             <li><a href="https://www.bookbub.com" target="_blank">Find Your Next Favorite Book</a></li>
         </ul>
-
         <hr>
-
         <div class="image-container">
             <img src="CozyBookCorner.jpeg" alt="Cozy Book Corner">
             <img src="OnyxStormDedication.jpg" alt="Onyx Storm Dedication">
         </div>
-
         <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
     </div>
+    <script>
+        function toggleLinks() {
+            const links = document.getElementById("book-links");
+            const button = document.querySelector(".book-button");
+
+            if (!button.classList.contains("open")) {
+                button.classList.add("flipping");
+
+                setTimeout(() => {
+                    button.classList.remove("flipping");
+                    button.classList.add("open");
+                }, 300);
+            } else {
+                button.classList.remove("open");
+            }
+
+            links.style.display = links.style.display === "block" ? "none" : "block";
+        }
+    </script>
 </body>
 </html>
