@@ -1,117 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-    <title>Boundless Pages</title>
-    <link rel="stylesheet" href="book_button_styles.css">
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(to bottom, #d4f0e8, #005f6b);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            position: relative;
-        }
-        .content-box {
-            background-color: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
-            text-align: center;
-        }
-        .title-container { /* New container */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px; /* Spacing between title/button and content */
-            position: relative; /* For absolute positioning of links */
-        }
-        .typewriter-box {
-            background-color: #d4f0e8;
-            padding: 20px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-        .typewriter-box h1 {
-            overflow: hidden;
-            border-right: 2px solid #000;
-            white-space: nowrap;
-            margin: 0;
-            letter-spacing: 2px;
-            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-            font-family: "Cookie", cursive;
-            line-height: 1.4;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            margin: 5px 0;
-        }
-        a {
-            color: #005f6b;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .image-container img {
-            max-width: 40%;
-            height: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <title>Boundless Pages</title>
+  <link rel="stylesheet" href="book_button_styles.css">
+  <link rel="stylesheet" href="typewriter_animation.css">
+  <link rel="stylesheet" href="main_styles.css">
 </head>
+
 <body>
-    <div class="content-box">
-        <div class="title-container">
-            <div class="typewriter-box">
-                <h1>Boundless Pages</h1>
-            </div>
-            <div class="book-button" onclick="toggleLinks()"></div>
-        </div>
-        <div class="book-links" id="book-links">
-            <a href="Mylibrary.html">Page 2</a>
-            <a href="Myfavoritebookquotes.html">Page 3</a>
-        </div>
-        <h2>Turning Pages, Discovering Worlds</h2>
-        <h3>Unlock the Magic of Stories</h3>
-        <p>
-            Books have the power to transport us to faraway places, introduce us to incredible characters, and spark our imagination like nothing else. Whether you're reading a thrilling mystery or an inspiring biography, there's always something to learn and enjoy.
-        </p>
-        <p>
-            From ancient tales to modern masterpieces, books remain a timeless source of entertainment, knowledge, and inspiration for all generations.
-        </p>
-        <hr>
-        <ul>
-            <li><a href="https://www.goodreads.com" target="_blank">Visit Goodreads</a></li>
-            <li><a href="https://www.nytimes.com/section/books" target="_blank">NY Times Book Reviews</a></li>
-            <li><a href="https://www.gutenberg.org" target="_blank">Free Classics on Project Gutenberg</a></li>
-            <li><a href="https://www.bookbub.com" target="_blank">Find Your Next Favorite Book</a></li>
-        </ul>
-        <hr>
-        <div class="image-container">
-            <img src="CozyBookCorner.jpeg" alt="Cozy Book Corner">
-            <img src="OnyxStormDedication.jpg" alt="Onyx Storm Dedication">
-        </div>
-        <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
+  <div class="content-box">
+    <div class="title-container">
+      <div class="typewriter-box">
+        <h1>Boundless Pages</h1>
+      </div>
+      <div class="book-button" onclick="toggleLinks()"></div>
     </div>
-    <script src="book_button_script.js"></script>
+    <div class="book-links" id="book-links">
+      <a href="Mylibrary.html">My Library</a>
+      <a href="Myfavoritebookquotes.html">Favorite Quotes</a>
+    </div>
+    <h2>Turning Pages, Discovering Worlds</h2>
+    <h3>Unlock the Magic of Stories</h3>
+    <p>
+      Books have the power to transport us to faraway places, introduce us to incredible characters, and spark our imagination
+      like nothing else. Whether you're reading a thrilling mystery or an inspiring biography, there's always something to
+      learn and enjoy.
+    </p>
+    <p>
+      From ancient tales to modern masterpieces, books remain a timeless source of entertainment, knowledge, and inspiration
+      for all generations.
+    </p>
+    <hr>
+    <ul>
+      <li><a href="https://www.goodreads.com" target="_blank">Visit Goodreads</a></li>
+      <li><a href="https://www.nytimes.com/section/books" target="_blank">NY Times Book Reviews</a></li>
+      <li><a href="https://www.gutenberg.org" target="_blank">Free Classics on Project Gutenberg</a></li>
+      <li><a href="https://www.bookbub.com" target="_blank">Find Your Next Favorite Book</a></li>
+    </ul>
+    <hr>
+    <div class="image-container">
+      <img src="CozyBookCorner.jpeg" alt="Cozy Book Corner">
+      <img src="OnyxStormDedication.jpg" alt="Onyx Storm Dedication">
+    </div>
+    <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
+  </div>
+  <script src="book_button_script.js"></script>
 </body>
+
 </html>

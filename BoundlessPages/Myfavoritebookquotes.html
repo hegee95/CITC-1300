@@ -1,139 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Favorite Book Quotes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script&family=Roboto&family=Caveat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="book_button_styles.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(to bottom, #d4f0e8, #005f6b);
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-        .notebook-page {
-            background-color: #005f6b;
-            border: 1px solid #ccc;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4),
-                        10px 10px 20px rgba(0, 0, 0, 0.3);
-            border-radius: 5px;
-            width: 90%;
-            max-width: 800px;
-            padding: 30px;
-            padding-top: 27px;
-            text-align: left;
-            line-height: 27px;
-            color: #C4A484;
-            position: relative;
-            margin-bottom: 20px;
-            font-size: 18px;
-            overflow-y: auto;
-            background: repeating-linear-gradient(
-                white 0px,
-                white 29px,
-                #C4A484 30px
-            );
-        }
-        .title-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            position: relative;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-        }
-        .title-box {
-            background-color: #d4f0e8;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            font-family: 'Cookie', cursive;
-            font-size: 36px;
-            color: #005f6b;
-            text-align: center;
-        }
-        .title-box span {
-            border-right: 2px solid #000;
-            animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: black; }
-        }
-        .quote {
-            font-family: 'Caveat', 'Dancing Script', cursive;
-            margin-bottom: 0px;
-            padding-left: 10px;
-            font-size: 20px;
-            position: relative;
-            z-index: 1;
-            padding-top: 5px;
-            font-weight: 600;
-        }
-        .quote span {
-            font-style: italic;
-            color: #5c4033;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Favorite Book Quotes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script&family=Roboto&family=Caveat&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="book_button_styles.css">
+  <link rel="stylesheet" href="typewriter_animation.css">
+  <link rel="stylesheet" href="main_styles.css">
 </head>
+
 <body>
-    <div class="title-container">
+  <header>
+    <nav>
+      <div class="title-container">
         <div class="title-box">
-            <span>My Favorite Book Quotes</span>
+          <span>My Favorite Book Quotes</span>
         </div>
         <div class="book-button" onclick="toggleLinks()"></div>
-    </div>
-    <div class="book-links" id="book-links">
-        <a href="index.html">Page 1</a>
-        <a href="Mylibrary.html">Page 2</a>
-    </div>
+      </div>
+      <div class="book-links" id="book-links">
+        <a href="index.html">Boundless Pages</a>
+        <a href="Mylibrary.html">My Library</a>
+      </div>
+    </nav>
+  </header>
+  <main>
     <div class="notebook-page">
-        <div class="quote">
-            <span>"You could rattle the stars," she whispered. "You could do anything, if only you dared. And deep down, you know it, too. That’s what scares you most." – Aelin Galathynius: Throne of Glass</span>
-        </div>
-        <div class="quote">
-            <span>"To the stars who listen—and the dreams that are answered." – A Court of Thorns and Roses</span>
-        </div>
-        <div class="quote">
-            <span>"You do not fear. You do not falter. You do not yield." – Rhysand: ACOTAR</span>
-        </div>
-        <div class="quote">
-            <span>"I would rather lose this entire war than live without you, and if that means I have to prove myself over and over, then I'll do it. You gave me your heart, and I'm keeping
-                it. – Xaden: Empyrean Series</span>
-        </div>
-        <div class="quote">
-            <span>"If you live to be a hundred, I want to live to be a hundred minus one day, so I never have to live without you." – A.A. Milne: Winnie The Pooh</span>
-        </div>
-        <div class="quote">
-            <span>"Even the smallest person can change the course of the future." – J.R.R. Tolkien</span>
-        </div>
-        <div class="quote">
-            <span>"Not all those who wander are lost." – J.R.R. Tolkien</span>
-        </div>
-        <div class="quote">
-            <span>“I love you. There is no limit to what I can give to you, no time I need. Even when this world is forgotten whisper of dust between the stars, I will love you.” – Rowan Whitethorn: Throne of Glass</span>
-        </div>
-        <div class="quote">
-            <span>“To whatever end.” – Aelin Galathynius: Throne of Glass</span>
-        </div><div class="quote">
-            <span>“‘Even after all this time?’ ‘Always.'” –Albus Dumbledore to Severus Snape: Harry Potter and the Deathly Hallows</span>
-        </div>
+      <h2>My Favorite Quotes</h2>
+      <p>Here are some of my favorite quotes from the books I love. They have inspired me, made me think, and have been
+        a great source of comfort when I needed it.</p>
+      <p>These quotes have been with me through thick and thin, and I hope they will be with me for years to come. I hope
+        that you, too, will enjoy them as much as I have.</p>
+      <h3>Quotes from Throne of Glass</h3>
+      <div class="quote">
+        <span>"You could rattle the stars," she whispered. "You could do anything, if only you dared. And deep down, you know
+          it, too. That’s what scares you most." – Aelin Galathynius: Throne of Glass</span>
+      </div>
+      <h3>Quotes from A Court of Thorns and Roses</h3>
+      <div class="quote">
+        <span>"To the stars who listen—and the dreams that are answered." – A Court of Thorns and Roses</span>
+      </div>
+      <div class="quote">
+        <span>"You do not fear. You do not falter. You do not yield." – Rhysand: ACOTAR</span>
+      </div>
+      <div class="quote">
+        <span>"I would rather lose this entire war than live without you, and if that means I have to prove myself over and over,
+          then I'll do it. You gave me your heart, and I'm keeping it. – Xaden: Empyrean Series</span>
+      </div>
+      <div class="quote">
+        <span>"If you live to be a hundred, I want to live to be a hundred minus one day, so I never have to live without you."
+          – A.A. Milne: Winnie The Pooh</span>
+      </div>
+      <div class="quote">
+        <span>"Even the smallest person can change the course of the future." – J.R.R. Tolkien</span>
+      </div>
+      <div class="quote">
+        <span>"Not all those who wander are lost." – J.R.R. Tolkien</span>
+      </div>
+      <div class="quote">
+        <span>“I love you. There is no limit to what I can give to you, no time I need. Even when this world is forgotten
+          whisper of dust between the stars, I will love you.” – Rowan Whitethorn: Throne of Glass</span>
+      </div>
+      <div class="quote">
+        <span>“To whatever end.” – Aelin Galathynius: Throne of Glass</span>
+      </div>
+      <div class="quote">
+        <span>“‘Even after all this time?’ ‘Always.'” –Albus Dumbledore to Severus Snape: Harry Potter and the Deathly Hallows</span>
+      </div>
+      <div class="title-box">
+        <span>Common Quote Themes</span>
+      </div>
+      <ul>
+        <li>Love</li>
+        <li>Courage</li>
+        <li>Friendship</li>
+        <li>Adventure</li>
+        <li>Loss</li>
+      </ul>
+      <a href="https://www.goodreads.com" target="_blank">Goodreads</a>
+      <a href="https://www.bookbub.com" target="_blank">Bookbub</a>
     </div>
-    <script src="book_button_script.js"></script>
+  </main>
+  <footer>
+    <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
+  </footer>
+  <script src="book_button_script.js"></script>
 </body>
+
 </html>
