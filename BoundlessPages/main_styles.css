@@ -1,13 +1,9 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #d4f0e8, #005f6b);
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    position: relative;
+    background-image: url(Wisterialibrary.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
   
   body::before {
