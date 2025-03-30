@@ -93,7 +93,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  width: calc(100% - 20px);
+  width: calc(200% - 20px);
 }
 
 .synopsis p {

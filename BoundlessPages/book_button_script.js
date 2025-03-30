@@ -1,6 +1,6 @@
 // book_button_script.js
 function toggleLinks() {
-    const links = document.getElementById("book-links");
+    const links = document.getElementById("img").src = "Openbook.png";
     const button = document.querySelector(".book-button");
   
     if (!button.classList.contains("open")) {

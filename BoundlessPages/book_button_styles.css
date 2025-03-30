@@ -4,7 +4,7 @@
     width: 100px;
     height: 100px;
     background: url(Closedbook.png) no-repeat center center;
-    background-size: cover;
+    background-size: contain;
     border-radius: 2px;
     cursor: pointer;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
@@ -26,10 +26,10 @@
   
   .book-button.flipping {
     background: url(Flippingpages.png) no-repeat center center;
-    background-size: cover;
+    background-size: contain;
   }
   
   .book-button.open {
     background: url(Openbook.png) no-repeat center center;
-    background-size: cover;
+    background-size: contain;
   }
