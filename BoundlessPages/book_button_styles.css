@@ -1,4 +1,4 @@
-
+/* book_button_styles.css */
 .book-button {
     margin-left: 20px;
     width: 60px;
@@ -8,41 +8,28 @@
     border-radius: 2px;
     cursor: pointer;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease-in-out, transform 0.3s;
-}
-
-.book-button.flipping {
+    transition: background 0.3s ease-in-out,
+      transform 0.3s;
+    position: relative;
+  }
+  
+  .book-button::after {
+    content: "Click Me";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .book-button.flipping {
     background: url(Flippingpages.png) no-repeat center center;
     background-size: cover;
-}
-
-.book-button.open {
+  }
+  
+  .book-button.open {
     background: url(Openbook.png) no-repeat center center;
     background-size: cover;
-}
-
-.book-links {
-    display: none;
-    margin-top: 10px;
-    position: absolute;
-    top: 100%; 
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    text-align: center;
-    z-index: 10;
-}
-
-.book-links a {
-    display: block;
-    text-decoration: none;
-    color: #005f6b;
-    margin: 5px 0;
-}
-
-.book-links a:hover {
-    text-decoration: underline;
-}
+  }

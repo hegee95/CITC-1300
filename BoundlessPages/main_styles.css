@@ -1,7 +1,8 @@
+/* main_styles.css */
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #d4f0e8, #005f6b);
+    background: linear-gradient(to bottom, #015701, #001a00);
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -93,9 +94,9 @@ body {
     display: none;
     margin-top: 5px;
     position: absolute;
-    top: 100%;
-    left: 0;
-    transform: translateY(0);
+    bottom: -10px;
+    left: 60px;
+    transform: translateX(-50%);
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -114,29 +115,4 @@ body {
   
   .book-links a:hover {
     text-decoration: underline;
-  }
-  
-  .book-button {
-    margin-left: 20px;
-    width: 60px;
-    height: 80px;
-    background: url(Closedbook.png) no-repeat center center;
-    background-size: cover;
-    border-radius: 2px;
-    cursor: pointer;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease-in-out,
-      transform 0.3s;
-    position: relative;
-  }
-  
-  .book-button::after {
-    content: "Click Me";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    color: #fff;
-    font-weight: bold;
   }
