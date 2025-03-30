@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script&family=Roboto&family=Caveat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="bookbuttonstyles.css">
+    <link rel="stylesheet" href="book_button_styles.css">
     <style>
         body {
             margin: 0;
@@ -43,6 +43,16 @@
                 #C4A484 30px
             );
         }
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
         .title-box {
             background-color: #d4f0e8;
             padding: 20px;
@@ -52,11 +62,6 @@
             font-size: 36px;
             color: #005f6b;
             text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
         }
         .title-box span {
             border-right: 2px solid #000;
@@ -87,13 +92,15 @@
     </style>
 </head>
 <body>
-    <div class="title-box">
-        <span>My Favorite Book Quotes</span>
+    <div class="title-container">
+        <div class="title-box">
+            <span>My Favorite Book Quotes</span>
+        </div>
+        <div class="book-button" onclick="toggleLinks()"></div>
     </div>
-    <div class="book-button" onclick="toggleLinks()"></div>
     <div class="book-links" id="book-links">
-        <a href="index.html">Link 1</a>
-        <a href="Mylibrary.html">Link 2</a>
+        <a href="index.html">Page 1</a>
+        <a href="Mylibrary.html">Page 2</a>
     </div>
     <div class="notebook-page">
         <div class="quote">
@@ -127,6 +134,6 @@
             <span>“‘Even after all this time?’ ‘Always.'” –Albus Dumbledore to Severus Snape: Harry Potter and the Deathly Hallows</span>
         </div>
     </div>
-    <script src="bookbuttonscript.js"></script>
+    <script src="book_button_script.js"></script>
 </body>
 </html>
