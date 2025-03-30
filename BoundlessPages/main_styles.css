@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #003300, #001c00);
+    background: linear-gradient(to bottom, #006100, #002900);
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -18,18 +18,18 @@ body {
     right: 0;
     bottom: 0;
     border: 50px solid transparent;
-    border-image: url('leafy_vine_border.png') 50 round;
+    border-image: url(leafy_vine_border.png) 50 round;
     pointer-events: none;
     z-index: 1;
   }
   
   .content-box {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-    width: 90%;
+    max-width: 800px;
+    width: 800px;
     text-align: center;
     margin: 0 auto;
     position: relative;
@@ -42,8 +42,8 @@ body {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4),
       10px 10px 20px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
-    width: 90%;
-    max-width: 90%;
+    width: 800px;
+    max-width: 800px;
     padding: 30px;
     padding-top: 27px;
     text-align: left;
@@ -53,8 +53,8 @@ body {
     margin: 0 auto;
     overflow-y: auto;
     background: repeating-linear-gradient(
-      white 0px,
-      white 29px,
+      rgba(255, 255, 255, 0.6) 0px,
+      rgba(255, 255, 255, 0.6) 29px,
       #C4A484 30px
     );
     z-index: 2;
@@ -67,4 +67,50 @@ body {
     margin-bottom: 20px;
     position: relative;
     width: 100%;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .image-container img {
+    max-width: 40%;
+    height: auto;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
+  .book-links {
+    display: none;
+    margin-top: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    z-index: 10;
+  }
+  
+  .book-links a {
+    display: block;
+    text-decoration: none;
+    color: #005f6b;
+    margin: 5px 0;
+  }
+  
+  .book-links a:hover {
+    text-decoration: underline;
   }
