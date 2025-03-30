@@ -20,7 +20,7 @@
     }
 }
 
-.typewriter-box h1 {
+.typewriter-box h1,h2,h3 {
     overflow: hidden;
     border-right: 2px solid #000;
     white-space: nowrap;
