@@ -76,7 +76,6 @@ body::before {
   display: flex;
   justify-content: center;
   gap: 20px;
-  align-items: center;
 }
 
 .image-container img {
@@ -95,9 +94,10 @@ ul li {
 
 .book-links {
   display: none;
+  margin-top: 5px;
   position: absolute;
-  top: 110%;
-  left: 50%;
+  bottom: -10px;
+  left: 60px;
   transform: translateX(-50%);
   background-color: white;
   border: 1px solid #ccc;
