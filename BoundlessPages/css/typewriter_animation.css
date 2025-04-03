@@ -1,0 +1,51 @@
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: black;
+    }
+}
+
+.typewriter-box h1,h2,h3 {
+    overflow: hidden;
+    border-right: 2px solid #000;
+    white-space: nowrap;
+    margin: 0;
+    letter-spacing: 2px;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+    font-family: "Cookie", cursive;
+    line-height: 1.4;
+}
+
+.title { 
+    background-color: #d4f0e8;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-family: "Cookie", cursive;
+    font-size: 36px;
+    color: #005f6b;
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.title span { 
+    border-right: 2px solid #000;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+}

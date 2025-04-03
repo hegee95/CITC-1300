@@ -1,0 +1,78 @@
+
+.title-box {
+    background-color: #d4f0e8;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Cookie', cursive;
+    font-size: 36px;
+    color: #005f6b;
+    text-align: center;
+  }
+  
+  .title-box span {
+    border-right: 2px solid #000;
+    animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+  
+    50% {
+      border-color: black;
+    }
+  }
+  
+  .quote {
+    font-family: 'Caveat', 'Dancing Script', cursive;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    font-size: 20px;
+    position: relative;
+    z-index: 1;
+    padding-top: 5px;
+    font-weight: 600;
+  }
+  
+  .quote span {
+    font-style: italic;
+    color: #5c4033;
+  }
+
+  
+.image-container-left,
+.image-container-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: auto;
+}
+
+.image-container-left {
+  left: 10px;
+}
+
+.image-container-right {
+  right: 10px;
+}
+
+.image-container-left img,
+.image-container-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
