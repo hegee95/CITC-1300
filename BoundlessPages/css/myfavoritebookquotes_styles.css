@@ -41,6 +41,7 @@
     margin-bottom: 0px;
     padding-left: 10px;
     font-size: 20px;
+    line-height: 30px;
     position: relative;
     z-index: 1;
     padding-top: 5px;
@@ -55,24 +56,32 @@
   
 .image-container-left,
 .image-container-right {
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 150px;
+  width: 30vw;
+  max-width: 500px;
   height: auto;
+  z-index: 10;
 }
 
 .image-container-left {
-  left: 10px;
+  left: 2vw;
 }
 
 .image-container-right {
-  right: 10px;
+  right: 2vw;
 }
 
-.image-container-left img,
+.image-container-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+  line-height: normal;
+}
 .image-container-right img {
   width: 100%;
   height: auto;
   display: block;
+  line-height: normal;
 }

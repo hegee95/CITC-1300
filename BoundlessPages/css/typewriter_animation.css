@@ -1,9 +1,7 @@
-
 @keyframes typing {
     from {
         width: 0;
     }
-
     to {
         width: 100%;
     }
@@ -14,23 +12,47 @@
     to {
         border-color: transparent;
     }
-
     50% {
         border-color: black;
     }
 }
 
-.typewriter-box h1,h2,h3 {
-    overflow: hidden;
-    border-right: 2px solid #000;
-    white-space: nowrap;
-    margin: 0;
-    letter-spacing: 2px;
-    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-    font-family: "Cookie", cursive;
-    line-height: 1.4;
+@keyframes fade-out-caret {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
+.typewriter-box h1, h2, h3 {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 2px;
+    animation: typing 3.5s steps(30, end);
+    font-family: "Cookie", cursive;
+    line-height: 1.4;
+    max-width: 100%;
+    width: fit-content;
+    text-align: center;
+    position: relative;
+}
+
+.typewriter-box h1::after, 
+.typewriter-box h2::after, 
+.typewriter-box h3::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: black;
+    animation: blink-caret 0.75s step-end infinite, fade-out-caret 2s ease-in-out 3.5s forwards;
+    opacity: 1;
+}
 .title { 
     background-color: #d4f0e8;
     padding: 20px;
