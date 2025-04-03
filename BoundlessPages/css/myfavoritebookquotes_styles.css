@@ -1,20 +1,21 @@
+.title {
+  background-color: #d4f0e8; 
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
+  font-family: "Cookie", cursive;
+  font-size: 36px;
+  color: #005f6b;
+  text-align: center;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
-.title-box {
-    background-color: #d4f0e8;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    font-family: 'Cookie', cursive;
-    font-size: 36px;
-    color: #005f6b;
-    text-align: center;
-  }
-  
-  .title-box span {
-    border-right: 2px solid #000;
-    animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
-  }
-  
+.title span {
+  border-right: 2px solid #000; 
+  animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+}
   @keyframes typing {
     from {
       width: 0;
