@@ -2,8 +2,8 @@
 .bookshelf {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  padding: 25px 20px 35px 20px;
+  gap: 5px;
+  padding: 25px 20px 43x 20px;
 
   background-image: url('../Images/bookshelf.jpeg');
   background-color: #8b4513;
@@ -68,11 +68,15 @@
   overflow: hidden;
   flex-shrink: 0;
   border-radius: 3px 2px 0 0;
-  z-index: 2; 
+  z-index: 2;
+
+
   background-image:
+    url('../Images/leather.jpg'),
     linear-gradient(115deg, rgba(255,255,255,0.05) 10%, rgba(0,0,0,0.05) 70%, rgba(0,0,0,0.15)),
     linear-gradient(to right, rgba(0,0,0,0.15), rgba(255,255,255,0.05) 30%, rgba(0,0,0,0.1) 90%);
-
+  background-size: cover;
+  background-blend-mode: overlay;
 
   box-shadow:
     inset 3px 0px 5px rgba(0, 0, 0, 0.35),
