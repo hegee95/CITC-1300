@@ -1,39 +1,61 @@
-/* --- Bookshelf Styling (Enhanced for Realism) --- */
+/* --- Bookshelf Styling (More Realistic) --- */
 .bookshelf {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
-  gap: 15px; /* Space between books */
-  padding: 30px 20px 20px 20px; /* Adjusted padding */
+  flex-wrap: wrap;
+  gap: 18px; /* Slightly adjusted gap */
+  /* Increased padding-bottom to make space for books to "sit" above the bottom shadow */
+  padding: 25px 20px 35px 20px;
 
   /* --- Wood Texture --- */
   /* !!! REPLACE 'your-seamless-wood-texture.jpg' with your image URL/path !!! */
-  background-image: url(wood-texture.jpg); /* Seamless wood texture */
-  background-color: #8B4513; /* Fallback wood color (SaddleBrown) */
-  background-size: cover; /* Cover the area */
+  background-image: url(../Images/woodtexture.jpeg);
+  background-color: #8B4513; /* Fallback wood color */
+  background-size: cover;
 
-  /* --- Depth & Edges --- */
-  border: 1px solid #5C4033; /* Slightly darker edge */
-  border-radius: 5px;
-  /* Outer shadow for depth off the page, inner shadow for shelf edge */
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4),
-              inset 0px 5px 10px rgba(0, 0, 0, 0.3),
-              inset 0px -2px 4px rgba(255, 255, 255, 0.1); /* Subtle top highlight */
+  /* --- Enhanced Depth & Edges --- */
+  border: 1px solid #4d331a; /* Darker edge */
+  border-top: none; /* Remove top border, pseudo-element will fake it */
+  border-radius: 3px 3px 6px 6px; /* Slightly different rounding */
+  /* More pronounced bottom shadow, softer inner shadow, subtle top highlight */
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5), /* Shadow cast below */
+              inset 0px 3px 8px rgba(0, 0, 0, 0.4), /* Inner top shadow */
+              inset 0px -2px 3px rgba(0, 0, 0, 0.2); /* Inner bottom shadow */
 
-  min-height: 300px; /* Minimum height */
-  align-items: flex-end; /* Align books to the bottom */
-  justify-content: center; /* Center books */
-  max-width: 1000px; /* Adjust max width as needed */
-  margin: 30px auto 20px auto; /* Center shelf */
-  position: relative;
+  min-height: 300px;
+  align-items: flex-end; /* Books sit on the bottom padding area */
+  justify-content: center;
+  max-width: 1000px;
+  margin: 30px auto 20px auto;
+  position: relative; /* Needed for pseudo-element */
+  z-index: 1; /* Ensure shelf is behind lifted books if needed */
 }
 
-/* --- Book Spine Styling (Enhanced for Realism) --- */
+/* --- Shelf Top Surface Pseudo-Element --- */
+.bookshelf::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px; /* Thickness of the shelf plank top */
+  background-image: linear-gradient(rgba(255,255,255,0.15), rgba(0,0,0,0.1)), url('your-seamless-wood-texture.jpg'); /* Slightly lighter gradient + texture */
+  background-color: #a05a2c; /* Slightly lighter fallback */
+  background-size: cover;
+  background-position: center top; /* Align texture */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2); /* Edge between top and front */
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 0px 2px 4px rgba(255, 255, 255, 0.15); /* Inner highlight on top */
+  z-index: -1; /* Place it behind the books */
+}
+
+/* --- Book Spine Styling (More Detail) --- */
 .book {
-  color: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-left: 2px solid rgba(0, 0, 0, 0.4);
+  /* Base background-color is set via inline style */
+  color: rgba(255, 255, 255, 0.9); /* Slightly brighter text */
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-left-width: 2px;
   width: 45px;
-  height: 250px; /* Base height, can be overridden by inline style */
+  height: 250px; /* Base height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,78 +63,74 @@
   cursor: pointer;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  font-size: 0.85em;
+  font-size: 0.9em; /* Slightly larger text */
   font-weight: bold;
-  font-family: 'Georgia', serif;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Garamond', 'Times New Roman', serif; /* More classic font */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; /* Smoother transition */
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-  border-radius: 2px 2px 0 0;
-  background-image: linear-gradient(to right, rgba(0,0,0,0.15), rgba(255,255,255,0.05) 30%, rgba(0,0,0,0.1) 90%);
-  box-shadow: inset 2px 0px 4px rgba(0, 0, 0, 0.3),
-              inset -1px 0px 2px rgba(255, 255, 255, 0.1);
-   /* Base background color should be set via inline style in HTML for variety */
+  border-radius: 3px 2px 0 0; /* Slightly sharper top-right */
+  z-index: 2; /* Ensure books are above shelf surface */
+
+  /* --- Enhanced Texture & Lighting --- */
+  /* Base gradient + subtle diagonal overlay */
+  background-image:
+    linear-gradient(115deg, rgba(255,255,255,0.05) 10%, rgba(0,0,0,0.05) 70%, rgba(0,0,0,0.15)),
+    linear-gradient(to right, rgba(0,0,0,0.15), rgba(255,255,255,0.05) 30%, rgba(0,0,0,0.1) 90%);
+
+  /* --- Enhanced Shadow --- */
+  box-shadow:
+    inset 3px 0px 5px rgba(0, 0, 0, 0.35), /* Main inner shadow */
+    inset -1px 0px 2px rgba(255, 255, 255, 0.1), /* Opposite highlight */
+    1px 1px 2px rgba(0,0,0,0.2); /* Faint outer shadow */
 }
 
 .book:hover {
-  transform: translateY(-10px) rotate(-1deg);
-  box-shadow: inset 2px 0px 4px rgba(0, 0, 0, 0.3),
-              inset -1px 0px 2px rgba(255, 255, 255, 0.1),
-              5px 5px 15px rgba(0,0,0,0.4);
+  transform: translateY(-12px) rotate(-1.5deg) scale(1.02); /* More dynamic hover */
+  box-shadow:
+    inset 2px 0px 4px rgba(0, 0, 0, 0.3),
+    inset -1px 0px 2px rgba(255, 255, 255, 0.1),
+    8px 8px 18px rgba(0,0,0,0.5); /* Stronger drop shadow on hover */
+  z-index: 3; /* Ensure hovered book is on top */
 }
 
-/* Optional: Book bands */
+/* --- Enhanced Book Bands --- */
 .book::before,
 .book::after {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    height: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    height: 6px; /* Slightly thicker band */
+    /* Gradient for band dimension */
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.15));
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 1px 1px rgba(0,0,0,0.1); /* Inner highlight + outer shadow */
+    z-index: 1; /* Ensure bands are below text but above base gradient */
 }
-.book::before { top: 3px; }
-.book::after { bottom: 3px; }
 
-/* --- Modal Styling --- */
+.book::before {
+    top: 4px; /* Position top band */
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.book::after {
+    bottom: 4px; /* Position bottom band */
+     border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* --- Modal Styling (Unchanged from previous version) --- */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.7);
+  display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7);
 }
 .modal-content {
-  background-color: #f4e8c1;
-  color: #333;
-  margin: 10% auto;
-  padding: 30px;
-  border: 10px solid #8B4513;
-  border-radius: 5px;
-  width: 80%;
-  max-width: 600px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  position: relative;
-  font-family: 'Georgia', serif;
+  background-color: #f4e8c1; color: #333; margin: 10% auto; padding: 30px; border: 10px solid #8B4513; border-radius: 5px; width: 80%; max-width: 600px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); position: relative; font-family: 'Georgia', serif;
 }
 .modal-close {
-  color: #aaa;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+  color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer;
 }
-.modal-close:hover,
-.modal-close:focus { color: #333; text-decoration: none; }
+.modal-close:hover, .modal-close:focus { color: #333; text-decoration: none; }
 .modal-content h3 {
   margin-bottom: 15px; color: #5C4033; font-size: 1.8em; text-align: center; font-family: "Cookie", cursive;
 }
