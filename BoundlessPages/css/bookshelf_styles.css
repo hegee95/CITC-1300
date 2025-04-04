@@ -38,7 +38,7 @@
   left: 0;
   right: 0;
   height: 25px; /* Thickness of the shelf plank top */
-  background-image: linear-gradient(rgba(255,255,255,0.15), rgba(0,0,0,0.1)), url('your-seamless-wood-texture.jpg'); /* Slightly lighter gradient + texture */
+  background-image: linear-gradient(rgba(255,255,255,0.15), rgba(0,0,0,0.1)), url(../Images/woodtexture.jpeg); /* Slightly lighter gradient + texture */
   background-color: #a05a2c; /* Slightly lighter fallback */
   background-size: cover;
   background-position: center top; /* Align texture */
