@@ -6,7 +6,7 @@
   padding: 25px 20px 35px 20px;
 
   background-image: url('../Images/bookshelf.jpeg');
-  background-color: #8B4513;
+  background-color: #8b451300;
   background-size: cover;
 
 
@@ -35,7 +35,7 @@
   right: 0;
   height: 25px;
   background-image: linear-gradient(rgba(255,255,255,0.15), rgba(0,0,0,0.1)), url('../Images/bookshelf.jpeg'); 
-  background-color: #a05a2c;
+  background-color: #a05a2c00;
   background-size: cover;
   background-position: center top; 
   border-bottom: 2px solid rgba(0, 0, 0, 0.2); 
