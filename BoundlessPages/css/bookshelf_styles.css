@@ -34,7 +34,7 @@
   left: 0;
   right: 0;
   height: 25px;
-  background-image: linear-gradient(rgba(255,255,255,0.15), rgba(0,0,0,0.1)), url('../Images/bookshelf.jpeg'); 
+  background-image: linear-gradient(rgba(255,255,255,0.15), rgba(0,0,0,0.1)), url('../Images/WisteriaShelf.png'); 
   background-color: #a05a2c00;
   background-size: cover;
   background-position: center top; 
@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  cursor: pointer;
+  cursor: grab; 
   writing-mode: vertical-rl;
   text-orientation: mixed;
   font-size: 0.9em;
@@ -63,7 +63,7 @@
   font-family: 'Garamond', 'Times New Roman', serif;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
-  position: relative;
+  position: absolute;
   overflow: hidden;
   flex-shrink: 0;
   border-radius: 3px 2px 0 0;
@@ -76,11 +76,17 @@
     linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(255, 255, 255, 0.05) 30%, rgba(0, 0, 0, 0.1) 90%);
   background-size: cover;
   background-blend-mode: overlay, multiply;
+  background-repeat: no-repeat;
+  background-position: center;
 
   box-shadow:
     inset 3px 0px 5px rgba(0, 0, 0, 0.35),
     inset -1px 0px 2px rgba(255, 255, 255, 0.1),
     1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.book:active {
+  cursor: grabbing;
 }
 
 .book:hover {
@@ -117,6 +123,25 @@
 }
 
 
+.book.spine-1 {
+    background-image: url('../Images/throneofglassspine.png');
+}
+
+.book.spine-2 {
+    background-image: url('../Images/fourthwingspine.png');
+}
+
+.book.spine-3 {
+    background-image: url('../Images/acourtofthornsandrosesspine.png');
+}
+.book.spine-3 {
+  background-image: url('../Images/inkheartspine.png');
+}.book.spine-3 {
+  background-image: url('../Images/fallenspine.png');.book.spine-3 {
+    background-image: url('../Images/harrypotterspine.png');
+}
+}
+
 .modal {
   display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7);
 }
@@ -134,7 +159,7 @@
 .modal-content p:last-child { margin-bottom: 0; }
 
 .bookshelf-container {
-    background-size: cover; /* Make the background fill the container */
-    background-repeat: no-repeat; /* Prevent tiling */
-    background-position: center; /* Center the background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
