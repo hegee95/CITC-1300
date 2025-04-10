@@ -26,7 +26,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .book-item {
+        .book {
             width: 100px;
             height: 200px;
             background-size: cover;
@@ -39,19 +39,19 @@
             transition: transform 0.3s ease;
         }
 
-        .book-item:hover {
+        .book:hover {
             transform: scale(1.1);
         }
 
-        .book-item:nth-child(1) {
+        .book1 {
             background-image: url('../Images/lotr.jpg');
         }
 
-        .book-item:nth-child(2) {
+        .book2 {
             background-image: url('../Images/harrypotter.jpg');
         }
 
-        .book-item:nth-child(3) {
+        .book3 {
             background-image: url('../Images/hungergames.jpg');
         }
     </style>
@@ -66,9 +66,9 @@
         <section class="bookshelf">
             <h2>Bookshelf</h2>
             <div class="bookshelf-container">
-                <div class="book-item interactive">Lord Of The Rings</div>
-                <div class="book-item interactive">Harry Potter</div>
-                <div class="book-item interactive">Hunger Games</div>
+                <div class="book book1"></div>
+                <div class="book book2"></div>
+                <div class="book book3"></div>
             </div>
         </section>
 

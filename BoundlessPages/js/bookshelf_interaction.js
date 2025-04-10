@@ -24,5 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         book.ondragstart = () => false; // Prevent default drag behavior
+
+        book.addEventListener('click', () => {
+            alert('Book clicked!'); // Placeholder for future functionality
+        });
     });
 });
