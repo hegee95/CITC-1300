@@ -6,6 +6,55 @@
     <title>Book to Movie</title>
     <link rel="stylesheet" href="BoundlessPages/css/main_styles.css">
     <link rel="stylesheet" href="BoundlessPages/css/bookshelf_styles.css">
+    <style>
+        body {
+            background-image: url('../Images/background.jpg'); /* Ensure consistent background */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .bookshelf-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for contrast */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-item {
+            width: 100px;
+            height: 200px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .book-item:hover {
+            transform: scale(1.1);
+        }
+
+        .book-item:nth-child(1) {
+            background-image: url('../Images/lotr.jpg');
+        }
+
+        .book-item:nth-child(2) {
+            background-image: url('../Images/harrypotter.jpg');
+        }
+
+        .book-item:nth-child(3) {
+            background-image: url('../Images/hungergames.jpg');
+        }
+    </style>
 </head>
 <body>
     <header>
