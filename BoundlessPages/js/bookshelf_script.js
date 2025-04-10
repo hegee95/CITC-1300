@@ -1,88 +1,77 @@
-// --- Bookshelf Interaction ---
-const modal = document.getElementById('bookModal');
-const modalTitle = document.getElementById('modal-book-title');
-const modalSummaryContainer = document.getElementById('modal-book-summary');
-const closeBtn = document.querySelector('.modal-close');
-const books = document.querySelectorAll('.book');
+const pageFlip = document.getElementById('pageFlipSound');
+const pageClose = document.getElementById('pageCloseSound');
+const bookThump = document.getElementById('bookThumpSound');
+const hoverWhoosh = document.getElementById('hoverWhoosh');
+const shelfCreak = document.getElementById('shelfCreak');
 
-// Check if modal elements exist before adding listeners
-if (modal && modalTitle && modalSummaryContainer && closeBtn && books.length > 0) {
-
-    books.forEach(book => {
-        book.addEventListener('click', () => {
-            // Get data from the clicked book
-            const title = book.getAttribute('data-title');
-            const summary = book.getAttribute('data-summary');
-
-            // Populate the modal
-            modalTitle.textContent = title;
-
-            // Clear previous summary and add new paragraphs
-            modalSummaryContainer.innerHTML = ''; // Clear existing content
-            // Split summary into paragraphs if needed (assuming paragraphs are separated by newlines in the attribute)
-            const summaryParagraphs = summary.split('\n').filter(p => p.trim() !== '');
-            summaryParagraphs.forEach(paraText => {
-                const p = document.createElement('p');
-                p.textContent = paraText.trim();
-                modalSummaryContainer.appendChild(p);
-            });
-
-            // Show the modal
-            modal.style.display = 'block';
-        });
-    });
-
-    // Close modal when clicking the close button (x)
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    // Close modal when clicking outside the modal content area
-    window.addEventListener('click', (event) => {
-        // Make sure modal is actually displayed before hiding
-        if (event.target == modal && modal.style.display === 'block') {
-            modal.style.display = 'none';
-        }
-    });
-
-    // Optional: Close modal with the Escape key
-    window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-            modal.style.display = 'none';
-        }
-    });
-
-} else {
-    // Log an error if essential elements are missing
-    console.error("Bookshelf modal elements not found. Interaction script will not run.");
-}
-
-// --- Draggable Books ---
-document.addEventListener('DOMContentLoaded', () => {
-    const books = document.querySelectorAll('.book');
-
-    books.forEach(book => {
-        book.addEventListener('mousedown', (e) => {
-            let shiftX = e.clientX - book.getBoundingClientRect().left;
-            let shiftY = e.clientY - book.getBoundingClientRect().top;
-
-            const moveAt = (pageX, pageY) => {
-                book.style.left = pageX - shiftX + 'px';
-                book.style.top = pageY - shiftY + 'px';
-            };
-
-            const onMouseMove = (e) => {
-                moveAt(e.pageX, e.pageY);
-            };
-
-            document.addEventListener('mousemove', onMouseMove);
-
-            book.addEventListener('mouseup', () => {
-                document.removeEventListener('mousemove', onMouseMove);
-                book.onmouseup = null;
-            });
-        });
-
-        book.ondragstart = () => false; // Prevent default drag behavior
-    });
+window.addEventListener('DOMContentLoaded', () => {
+  if (shelfCreak) {
+    shelfCreak.play().catch(() => {});
+  }
 });
+
+document.querySelectorAll('.book').forEach(book => {
+  const closeBtn = book.querySelector('.close-btn');
+
+  book.addEventListener('mouseenter', () => {
+    if (hoverWhoosh) {
+      hoverWhoosh.currentTime = 0;
+      hoverWhoosh.play().catch(() => {});
+    }
+  });
+
+  book.addEventListener('click', () => {
+    if (!book.classList.contains('active')) {
+      document.querySelectorAll('.book.active').forEach(b => b.classList.remove('active'));
+      book.classList.add('active');
+      if (pageFlip) {
+        pageFlip.currentTime = 0;
+        pageFlip.play().catch(() => {});
+      }
+    }
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    book.classList.remove('active');
+    if (pageClose) {
+      pageClose.currentTime = 0;
+      pageClose.play().catch(() => {});
+    }
+    if (bookThump) {
+      setTimeout(() => {
+        bookThump.currentTime = 0;
+        bookThump.play().catch(() => {});
+      }, 400);
+    }
+  });
+});
+
+document.querySelectorAll('.book').forEach(book => {
+    const synopsis = book.querySelector('.synopsis');
+    const closeBtn = synopsis.querySelector('.close-btn');
+    const pageFlip = document.getElementById('pageFlipSound');
+  
+    book.addEventListener('click', e => {
+      if (!synopsis.classList.contains('visible')) {
+        synopsis.classList.add('visible');
+        pageFlip.currentTime = 0;
+        pageFlip.play();
+        e.stopPropagation();
+      }
+    });
+  
+    closeBtn.addEventListener('click', e => {
+      synopsis.classList.remove('visible');
+      pageFlip.currentTime = 0;
+      pageFlip.play();
+      e.stopPropagation();
+    });
+  
+    synopsis.addEventListener('click', e => e.stopPropagation());
+  });
+  
+  document.body.addEventListener('click', () => {
+    document.querySelectorAll('.synopsis.visible').forEach(s => s.classList.remove('visible'));
+  });
+  
