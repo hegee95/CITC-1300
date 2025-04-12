@@ -119,3 +119,37 @@
 #book1.open, #book2.open, #book5.open {
   transform: translateY(-40px) scale(0.8);
 }
+/* Default synopsis style (hidden) */
+.synopsis {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+}
+
+/* Reveal synopsis when book is open */
+.book.open .synopsis {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+
+/* Book lift effect with shadow */
+.book.open {
+  animation: floatUp 0.5s ease forwards;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* Keyframes for lift animation */
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotateY(180deg);
+    box-shadow: none;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
