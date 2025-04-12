@@ -1,93 +1,101 @@
 /* Container holding everything */
 .library-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  /* Bookshelf background image */
-  .bookshelf {
-    background-image: url('./Images/Wisteriashelf.png'); /* Adjusted path to ensure correct relative reference */
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-  
-  .bookshelf-bg {
-    width: 100%;
-    display: block;
-  }
-  
-  /* Each book */
-  .book {
-    position: absolute;
-    bottom: 0;
-    cursor: pointer;
-    transition: transform 0.4s ease;
-    transform-origin: bottom center;
-    z-index: 3;
-  }
-  
-  /* Inner wrapper for spine and open book */
-  .book-inner {
-    display: flex;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease;
-  }
-  
-  /* Spine side */
-  .book-spine img {
-    width: 60px;
-    height: auto;
-    display: block;
-    backface-visibility: hidden;
-    z-index: 2;
-  }
-  
-  /* Open book (synopsis) side */
-  .book-open {
-    transform: rotateY(180deg);
-    background: #fdf6e3;
-    padding: 10px;
-    width: 180px;
-    display: none;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    backface-visibility: hidden;
-    z-index: 1;
-  }
-  
-  /* When book is opened */
-  .book.open {
-    transform: translateY(-30px);
-  }
-  
-  .book.open .book-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .book.open .book-open {
-    display: block;
-  }
-  
-  /* Close Button */
-  .close-button {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: #8b0000;
-    color: white;
-    border: none;
-    font-size: 1.2rem;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
-  .close-button:hover {
-    background: #a40000;
-  }
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Bookshelf background image */
+.bookshelf {
+  background-image: url('../Images/Wisteriashelf.png'); /* Adjusted path to ensure correct relative reference */
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.bookshelf-bg {
+  width: 100%;
+  display: block;
+}
+
+/* Each book */
+.book {
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+  transform-origin: bottom center;
+  z-index: 3;
+}
+
+/* Inner wrapper for spine and open book */
+.book-inner {
+  display: flex;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+/* Spine side */
+.book-spine img {
+  width: 60px;
+  height: auto;
+  display: block;
+  backface-visibility: hidden;
+  z-index: 2;
+}
+
+/* Open book (synopsis) side */
+.book-open {
+  transform: rotateY(180deg);
+  background: #fdf6e3;
+  padding: 10px;
+  width: 180px;
+  display: none;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+/* When book is opened */
+.book.open {
+  transform: translateY(-30px);
+}
+
+.book.open .book-inner {
+  transform: rotateY(180deg);
+}
+
+.book.open .book-open {
+  display: block;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: #8b0000;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: #a40000;
+}
+
+/* Book images */
+.book.book1 { background-image: url('../Images/acourtofthornsandrosesspine.png'); }
+.book.book2 { background-image: url('../Images/fallenspine.png'); }
+.book.book3 { background-image: url('../Images/fourthwingspine.png'); }
+.book.book4 { background-image: url('../Images/harrypotterspine.png'); }
+.book.book5 { background-image: url('../Images/inkheartspine.png'); }
+.book.book6 { background-image: url('../Images/throneofglassspine.png'); }
