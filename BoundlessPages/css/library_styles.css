@@ -9,12 +9,14 @@
   
   /* Bookshelf background image */
   .bookshelf {
+    background-image: url(../Images/Wisteriashelf.png);
     position: relative;
     width: 100%;
     height: auto;
   }
   
   .bookshelf-bg {
+    background-image: url(../Images/Wisteriashelf.png)
     width: 100%;
     display: block;
   }
