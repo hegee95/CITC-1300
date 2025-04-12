@@ -46,7 +46,7 @@
 /* Inside book wrapper */
 .book-inner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
@@ -54,6 +54,7 @@
 
 /* Synopsis panel */
 .book-open {
+  margin-left: 15px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.4s ease 0.6s, transform 0.4s ease 0.6s;
@@ -99,23 +100,31 @@
 }
 
 /* Position each book on a shelf */
-#book1 { left: 25%; bottom: 55%; }
-#book2 { left: 35%; bottom: 41%; }
-#book3 { left: 31%; bottom: 20%; }
-#book4 { left: 27%; bottom: 7%; }
-#book5 { left: 50%; bottom: 55%; }
-#book6 { left: 42%; bottom: 30%; }
+#book1 { left: 28%; top: 22%; }
+#book2 { left: 35%; top: 22%; }
+#book3 { left: 31%; top: 59%; }
+#book4 { left: 27%; top: 81%; }
+#book5 { left: 50%; top: 22%; }
+#book6 { left: 42%; top: 9%; }
 
 /* Shrink specific books */
 #book3,
 #book4,
 #book6 {
-  transform: translateY(0) scale(0.5);
+  transform: translateY(0) scale(0.4);
+}
+#book1,
+#book2,
+#book5 {
+  transform: translateY(0) scale(0.8);
 }
 
 /* Open animation for scaled books */
 #book3.open,
 #book4.open,
 #book6.open {
-  transform: translateY(-25px) scale(0.5);
+  transform: translateY(-25px) scale(0.4);
+}
+#book1.open, #book2.open, #book5.open {
+  transform: translateY(-40px) scale(0.8);
 }
