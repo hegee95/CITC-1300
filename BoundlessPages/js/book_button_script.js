@@ -21,3 +21,14 @@ function toggleLinks() {
     const synopsis = bookContainer.querySelector(".synopsis");
     synopsis.style.display = synopsis.style.display === "block" ? "none" : "block";
   }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const bookButton = document.querySelector('.book-button');
+    const bookLinks = document.getElementById('book-links');
+
+    if (bookButton && bookLinks) {
+        bookButton.addEventListener('click', () => {
+            bookLinks.classList.toggle('visible');
+        });
+    }
+});

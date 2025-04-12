@@ -1,26 +1,35 @@
-function openBook(bookElement, soundId) {
-    const isOpen = bookElement.classList.contains('open');
-  
-    // Close all books first
-    document.querySelectorAll('.book').forEach(book => {
-      book.classList.remove('open');
+document.addEventListener('DOMContentLoaded', () => {
+    const books = document.querySelectorAll('.book');
+
+    books.forEach(book => {
+        book.addEventListener('click', () => {
+            const bookOpen = book.querySelector('.book-open');
+            const audioId = book.getAttribute('onclick').match(/'(.*?)'/)[1];
+            const audio = document.getElementById(audioId);
+
+            if (bookOpen && audio) {
+                book.classList.add('open');
+                audio.play();
+            }
+        });
     });
-  
-    if (!isOpen) {
-      bookElement.classList.add('open');
-  
-      // Play sound effect
-      const sound = document.getElementById(soundId);
-      if (sound) {
-        sound.currentTime = 0;
-        sound.play();
-      }
-    }
-  }
-  
-  function closeBook(event, button) {
-    event.stopPropagation(); // Prevent triggering the book's onclick
-    const bookElement = button.closest('.book');
-    bookElement.classList.remove('open');
-  }
-  
+
+    const closeButtons = document.querySelectorAll('.close-button');
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const book = button.closest('.book');
+            const audioId = book.getAttribute('onclick').match(/'(.*?)'/)[1];
+            const audio = document.getElementById(audioId);
+
+            if (book) {
+                book.classList.remove('open');
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
+        });
+    });
+});
