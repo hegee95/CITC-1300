@@ -7,7 +7,7 @@
 }
 
 .bookshelf {
-  background-image: url('../../Images/WisteriaShelf.png'); /* Fixed case and relative path */
+  background-image: url('../Images/WisteriaShelf.png'); /* Fixed case and relative path */
   position: relative;
   width: 100%;
   height: auto;
@@ -84,10 +84,9 @@
   background: #a40000;
 }
 
-/* Optional background versions (not used if you're using <img> tags) */
-.book.book1 { background-image: url('../../Images/acourtofthornsandrosesspine.png'); }
-.book.book2 { background-image: url('../../Images/fallenspine.png'); }
-.book.book3 { background-image: url('../../Images/fourthwingspine.png'); }
-.book.book4 { background-image: url('../../Images/harrypotterspine.png'); }
-.book.book5 { background-image: url('../../Images/throneofglassspine.png'); }
-.book.book6 { background-image: url('../../Images/inkheartspine.png'); }
+.book.book1 { background-image: url('../Images/acourtofthornsandrosesspine.png'); }
+.book.book2 { background-image: url('../Images/fallenspine.png'); }
+.book.book3 { background-image: url('../Images/fourthwingspine.png'); }
+.book.book4 { background-image: url('../Images/harrypotterspine.png'); }
+.book.book5 { background-image: url('../Images/throneofglassspine.png'); }
+.book.book6 { background-image: url('../Images/inkheartspine.png'); }
