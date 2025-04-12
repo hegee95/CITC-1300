@@ -25,6 +25,9 @@
   transition: transform 0.4s ease;
   transform-origin: bottom center;
   z-index: 3;
+  .book {
+    border: 1px dashed rgba(255, 0, 0, 0.3); /* debug outline */
+  }
 }
 
 .book-inner {
@@ -90,3 +93,34 @@
 .book.book4 { background-image: url('../Images/harrypotterspine.png'); }
 .book.book5 { background-image: url('../Images/throneofglassspine.png'); }
 .book.book6 { background-image: url('../Images/inkheartspine.png'); }
+
+/* Position each book on a specific shelf */
+#book1 {
+  left: 5%;
+  bottom: 60%; /* Top shelf */
+}
+
+#book2 {
+  left: 20%;
+  bottom: 40%; /* Middle shelf */
+}
+
+#book3 {
+  left: 35%;
+  bottom: 20%; /* Bottom shelf */
+}
+
+#book4 {
+  left: 50%;
+  bottom: 60%; /* Top shelf */
+}
+
+#book5 {
+  left: 65%;
+  bottom: 40%; /* Middle shelf */
+}
+
+#book6 {
+  left: 80%;
+  bottom: 20%; /* Bottom shelf */
+}
