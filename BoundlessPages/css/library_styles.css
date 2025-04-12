@@ -10,11 +10,15 @@
 }
 
 .bookshelf {
-  background-image: url('../Images/WisteriaShelf.png'); /* Fixed case and relative path */
-    position: relative;
-    max-width: 1200px;
-    width: 100%;
-  }
+  position: relative;
+  width: 100%;
+  height: 700px; /* or however tall your bookshelf image is */
+  background-image: url('../Images/WisteriaShelf.png'); /* path adjusted for CSS file location */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
 
   .bookshelf-bg {
     position: absolute;
