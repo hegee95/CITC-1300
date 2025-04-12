@@ -9,7 +9,7 @@
   
   /* Bookshelf background image */
   .bookshelf {
-    background-image: url(../Images/Wisteriashelf.png);
+    background-image: url('./Images/Wisteriashelf.png'); /* Adjusted path to ensure correct relative reference */
     position: relative;
     width: 100%;
     height: auto;
@@ -91,4 +91,3 @@
   .close-button:hover {
     background: #a40000;
   }
-  
