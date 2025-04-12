@@ -14,7 +14,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-image: url('../Images/WisteriaShelf.png');
+  background-image: url('../Images/wisteriabookshelfresize.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -193,17 +193,6 @@
 
 
 
-#book3,
-#book4,
-#book6,
-#book1,
-#book2,
-#book5 {
-  transform: translateY(0) scale(0.8);
-}
-#book1.open, #book2.open, #book5.open {
-  transform: translateY(-40px) scale(0.8);
-}
 /* Default synopsis style (hidden) */
 .synopsis {
   opacity: 0;
