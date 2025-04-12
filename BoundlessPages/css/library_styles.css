@@ -29,14 +29,14 @@
   transition: transform 0.5s ease;
   transform-origin: bottom center;
   z-index: 3;
-  transform: translateY(0) scale(0.8);
+  transform: translateY(0); /* Removed scale */
   margin: 0;
   padding: 0;
   pointer-events: none;
 }
 
 .book-spine img {
-  width: 60px;
+  width: 75px; /* Adjusted width */
   height: auto;
   display: block;
   backface-visibility: hidden;
@@ -63,6 +63,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
+  padding-bottom: 50px; /* Space for buttons */
 }
 
 .book-open::before {
@@ -70,7 +71,7 @@
   position: absolute;
   left: 50%;
   top: 15px;
-  bottom: 15px;
+  bottom: 50px; /* Adjusted bottom */
   width: 1px;
   background-color: rgba(0, 0, 0, 0.15);
   transform: translateX(-50%);
@@ -81,14 +82,73 @@
   pointer-events: auto;
 }
 
+/* --- Styles for Pagination --- */
 .synopsis {
-  max-height: 350px;
-  overflow-y: auto;
   text-align: left;
-  padding-right: 10px;
-  column-count: 2;
-  column-gap: 40px;
+  position: relative;
+  min-height: 200px; /* Or adjust as needed */
+  /* Removed columns, overflow, max-height */
 }
+
+.synopsis h3 { /* Style for title within synopsis */
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: "Cookie", cursive; /* Example font */
+  font-size: 1.8em;
+  color: #5C4033;
+}
+
+.synopsis-page {
+  display: none; /* Hide pages by default */
+}
+
+.synopsis-page.active {
+  display: block; /* Show the active page */
+}
+
+.pagination-button {
+  position: absolute;
+  bottom: 10px;
+  background-color: #a07d5a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease;
+  pointer-events: auto;
+}
+
+.pagination-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pagination-button:not(:disabled):hover {
+  background-color: #7c5c3f;
+}
+
+.pagination-button.prev {
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+.pagination-button.next {
+  right: 40%;
+  transform: translateX(50%);
+}
+/* --- End Pagination Styles --- */
+
 
 .close-button {
   position: absolute;
@@ -117,17 +177,20 @@
 }
 
 .book.open {
-  transform: translateY(-50px) scale(0.8);
+  transform: translateY(-60px); /* Adjusted lift */
   z-index: 10;
   pointer-events: none;
 }
 
-#book1 { left: 25%; bottom: 27.5%; }
-#book2 { left: 29.5%; bottom: 25.5%; }
-#book3 { left: 34%; bottom: 25.5%; }
-#book4 { left: 39.5%; bottom: 27%; }
-#book5 { left: 45%; bottom: 32.5%; }
-#book6 { left: 50%; bottom: 26.9%; }
+/* --- ADJUSTED: Book positions (Fine-tune these!) --- */
+/* These are examples, adjust based on your background image */
+#book1 { left: 25%; bottom: 27.5%; }    /* Original */
+#book2 { left: 29.5%; bottom: 25.5%; }  /* Original */
+#book3 { left: 34%; bottom: 25.5%; }    /* Original */
+#book4 { left: 39.5%; bottom: 27%; }    /* Original */
+#book5 { left: 45%; bottom: 32.5%; }    /* Original */
+#book6 { left: 50%; bottom: 26.9%; }    /* Original */
+
 
 
 #book3,
