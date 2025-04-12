@@ -1,19 +1,23 @@
+/* Styles from library_styles.css - Updated for Synopsis Pop-up & Spacing */
 
 /* Layout */
 .library-container {
   display: flex;
   justify-content: center;
+  /* Add relative positioning if needed for absolute children */
+  position: relative;
 }
 
 .content-box {
   position: relative;
   width: 95%;
   min-height: 100vh;
-  overflow: hidden;
+  /* Ensure overflow is visible if pop-ups need to go outside bounds */
+  /* overflow: hidden; */ /* Comment out or remove if it causes cutoff */
 }
 
 .bookshelf {
-  position: relative;
+  position: relative; /* Needed for absolute positioning of books */
   width: 100%;
   min-height: 100vh;
   background-image: url('../Images/WisteriaShelf.png');
@@ -31,82 +35,138 @@
   cursor: pointer;
   transition: transform 0.5s ease;
   transform-origin: bottom center;
-  z-index: 3;
-  transform: translateY(0);
+  z-index: 3; /* Default z-index */
+  transform: translateY(0) scale(0.8); /* Apply default scale */
+  /* Explicitly set margin and padding to 0 to avoid unexpected space */
+  margin: 0;
+  padding: 0;
 }
 
 /* Book image (spine) */
 .book-spine img {
-  width: 250px;
+  /* Adjust width as needed, ensure it matches your image aspect ratio */
+  width: 60px; /* Example width, adjust based on your spine images */
   height: auto;
-  display: block;
+  display: block; /* Ensure it behaves like a block element */
   backface-visibility: hidden;
-  z-index: 2;
+  /* Removed z-index: 2; let the parent .book handle stacking */
 }
 
-/* Inside book wrapper */
-.book-inner {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
-
-/* Synopsis panel */
+/* --- UPDATED: Synopsis panel --- */
 .book-open {
-  margin-left: 15px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease 0.6s, transform 0.4s ease 0.6s;
-  background: #fffbe6;
-  padding: 10px;
-  width: 180px;
-  display: block;
-  position: relative;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  /* Core Styling */
+  background: #fffbe6; /* Creamy page color */
+  padding: 20px;
+  padding-left: 30px; /* Extra padding on left for "binding" */
+  padding-right: 30px; /* Extra padding on right */
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Softer shadow */
+  color: #333; /* Text color */
+  font-family: 'Georgia', serif; /* Or your preferred reading font */
+  line-height: 1.6;
+
+  /* Sizing */
+  width: 450px; /* Width for two-page look */
+  max-width: 90vw; /* Prevent overflow on small screens */
+
+  /* Positioning */
+  position: absolute; /* Position relative to the .book container */
+  bottom: calc(100% + 15px); /* Position above the original book bottom + gap */
+  left: 50%; /* Center horizontally relative to book origin */
+  transform: translateX(-50%); /* Fine-tune centering */
+  z-index: 15; /* Ensure it's above the lifted book */
+
+  /* Visibility Transition */
+  opacity: 0; /* Hidden by default */
+  pointer-events: none; /* Not interactive when hidden */
+  transition: opacity 0.4s ease; /* Smooth fade-in */
 }
 
-/* Reveal the synopsis */
+/* --- NEW: Two-page visual divider --- */
+.book-open::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 15px; /* Padding top */
+  bottom: 15px; /* Padding bottom */
+  width: 1px; /* Line width */
+  background-color: rgba(0, 0, 0, 0.15); /* Subtle line color */
+  transform: translateX(-50%); /* Center the line precisely */
+}
+
+/* --- UPDATED: Reveal the synopsis --- */
 .book.open .book-open {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; /* Make visible */
+  pointer-events: auto; /* Make interactive */
 }
 
-/* Button */
+/* --- UPDATED: Synopsis text container --- */
+.synopsis {
+  /* Remove old positioning/opacity styles if any */
+  /* opacity: 0; */
+  /* transform: translateY(10px); */
+  /* transition: all 0.5s ease; */
+
+  /* Add scrolling if content overflows */
+  max-height: 350px; /* Adjust max height as needed */
+  overflow-y: auto;
+  text-align: left; /* Ensure text is left-aligned */
+  padding-right: 10px; /* Add padding for scrollbar */
+}
+
+/* --- UPDATED: Button --- */
 .close-button {
   position: absolute;
-  top: 8px;
-  right: 10px;
-  background: #009c9c;
+  top: 10px; /* Adjust position */
+  right: 10px; /* Adjust position */
+  background: #a07d5a; /* Muted color */
   color: white;
   border: none;
   font-size: 1.2rem;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 28px; /* Slightly larger */
+  height: 28px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 20; /* Above synopsis content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Center the 'x' better */
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .close-button:hover {
-  background: #023c41;
+  background: #7c5c3f; /* Darker on hover */
 }
 
-/* Book open animation */
+/* --- UPDATED: Book open animation/state --- */
 .book.open {
-  transform: translateY(-50px);
-  z-index: 10;
+  transform: translateY(-50px) scale(0.8); /* Lift effect (keep scale consistent) */
+  z-index: 10; /* Ensure lifted book is above others */
+  /* Remove box-shadow from here if added previously, apply to .book-open instead */
+  /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); */
 }
 
-/* Position each book on a shelf */
-#book1 { left: 25%; bottom: 27.5%; }
-#book2 { left: 29.5%; bottom: 25.5%; }
-#book3 { left: 34%; bottom: 25.5%; }
-#book4 { left: 39.5%; bottom: 27%; }
-#book5 { left: 45%; bottom: 32.5%; }
-#book6 { left: 50%; bottom: 26.9%; }
+/* Remove old .book.open .synopsis reveal styles */
+/* .book.open .synopsis { ... } */
+
+/* Remove old keyframes if they conflict */
+/* @keyframes floatUp { ... } */
+
+
+/* --- UPDATED: Ensure book positions are consistent AND SPACED OUT --- */
+/* (Adjust these values based on your visual needs and bookshelf width) */
+#book1 { left: 25%; bottom: 27.5%; z-index: 3; } /* Base z-index */
+#book2 { left: 31%; bottom: 25.5%; z-index: 4; } /* Increased left, higher z-index */
+#book3 { left: 37%; bottom: 25.5%; z-index: 3; } /* Increased left */
+#book4 { left: 43%; bottom: 27%;   z-index: 4; } /* Increased left, higher z-index */
+#book5 { left: 49%; bottom: 32.5%; z-index: 3; } /* Increased left */
+#book6 { left: 55%; bottom: 26.9%; z-index: 4; } /* Increased left, higher z-index */
+
+/* Remove specific transforms for open books if they conflict */
+/* #book1.open, #book2.open, #book5.open { ... } */
+
 
 #book3,
 #book4,
