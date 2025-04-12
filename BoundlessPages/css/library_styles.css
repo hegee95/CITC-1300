@@ -1,5 +1,5 @@
 
-/* Layout setup */
+/* Layout */
 .library-container {
   display: flex;
   justify-content: center;
@@ -23,23 +23,16 @@
   z-index: 1;
 }
 
-/* Book appearance and animation */
+/* Book setup */
 .book {
   position: absolute;
-  bottom: 0;
   cursor: pointer;
   transition: transform 0.5s ease;
   transform-origin: bottom center;
   z-index: 3;
-  border: 1px dashed rgba(255, 0, 0, 0.3); /* debug outline */
 }
 
-.book-inner {
-  display: flex;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
-
+/* Book image (spine) */
 .book-spine img {
   width: 250px;
   height: auto;
@@ -48,34 +41,36 @@
   z-index: 2;
 }
 
-/* Book open panel animation */
+/* Inside book wrapper */
+.book-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+/* Synopsis (starts hidden, lifts up after book opens) */
 .book-open {
-  transform: rotateX(90deg);
-  transform-origin: bottom;
   opacity: 0;
-  transition: transform 0.4s ease, opacity 0.3s ease;
-  transition-delay: 0.6s;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease 0.6s, transform 0.4s ease 0.6s;
   background: #fffbe6;
   padding: 10px;
   width: 180px;
   display: block;
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  backface-visibility: hidden;
   z-index: 1;
 }
 
-.book.open .book-inner {
-  transform: rotateY(180deg);
-  transition-delay: 0.3s;
-}
-
+/* Reveal synopsis */
 .book.open .book-open {
-  transform: rotateX(0deg);
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Close button styling */
+/* Close button */
 .close-button {
   position: absolute;
   top: 8px;
@@ -95,39 +90,23 @@
   background: #023c41;
 }
 
-/* Optional background classes (unused if using <img>) */
-.book.book1 { background-image: url('../Images/acourtofthornsandrosesspine.png'); }
-.book.book2 { background-image: url('../Images/fallenspine.png'); }
-.book.book3 { background-image: url('../Images/fourthwingspine.png'); }
-.book.book4 { background-image: url('../Images/harrypotterspine.png'); }
-.book.book5 { background-image: url('../Images/throneofglassspine.png'); }
-.book.book6 { background-image: url('../Images/inkheartspine.png'); }
+/* Book open animation */
+.book.open {
+  transform: translateY(-50px);
+  z-index: 10;
+}
 
-/* Position each book on the shelf */
+/* Positions */
 #book1 { left: 25%; bottom: 55%; }
 #book2 { left: 35%; bottom: 41%; }
-#book3 { left: 31%; bottom: 20%; }
-#book4 { left: 27%; bottom: 7%; }
+#book3 { left: 31%; bottom: 20%; transform: scale(0.5); }
+#book4 { left: 27%; bottom: 7%; transform: scale(0.5); }
 #book5 { left: 50%; bottom: 55%; }
-#book6 { left: 42%; bottom: 30%; }
+#book6 { left: 42%; bottom: 30%; transform: scale(0.5); }
 
-/* Shrink specific books */
-#book3,
-#book4,
-#book6 {
-  transform: scale(0.5);
-  transform-origin: bottom center;
-}
-
-/* Combined transform for open + scaled books */
-#book1.open,
-#book2.open,
-#book5.open {
-  transform: translateY(-60px) rotateY(20deg);
-}
-
+/* Open animation for scaled books */
 #book3.open,
 #book4.open,
 #book6.open {
-  transform: translateY(-30px) rotateY(20deg) scale(0.5);
+  transform: translateY(-25px) scale(0.5);
 }
