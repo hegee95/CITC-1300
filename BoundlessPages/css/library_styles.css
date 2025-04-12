@@ -94,33 +94,39 @@
 .book.book5 { background-image: url('../Images/throneofglassspine.png'); }
 .book.book6 { background-image: url('../Images/inkheartspine.png'); }
 
-/* Position each book on a specific shelf */
+/* Position books on visible shelves */
 #book1 {
   left: 5%;
-  bottom: 60%; /* Top shelf */
+  bottom: 60%;
+  position: absolute;
 }
 
 #book2 {
   left: 20%;
-  bottom: 40%; /* Middle shelf */
+  bottom: 40%;
+  position: absolute;
 }
 
 #book3 {
   left: 35%;
-  bottom: 20%; /* Bottom shelf */
+  bottom: 20%;
+  position: absolute;
 }
 
 #book4 {
   left: 50%;
-  bottom: 60%; /* Top shelf */
+  bottom: 60%;
+  position: absolute;
 }
 
 #book5 {
   left: 65%;
-  bottom: 40%; /* Middle shelf */
+  bottom: 40%;
+  position: absolute;
 }
 
 #book6 {
   left: 80%;
-  bottom: 20%; /* Bottom shelf */
+  bottom: 20%;
+  position: absolute;
 }
