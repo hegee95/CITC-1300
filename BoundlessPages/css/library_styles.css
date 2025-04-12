@@ -16,7 +16,6 @@
   }
   
   .bookshelf-bg {
-    background-image: url(../Images/Wisteriashelf.png)
     width: 100%;
     display: block;
   }
@@ -28,6 +27,7 @@
     cursor: pointer;
     transition: transform 0.4s ease;
     transform-origin: bottom center;
+    z-index: 3;
   }
   
   /* Inner wrapper for spine and open book */
