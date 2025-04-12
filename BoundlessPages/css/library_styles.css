@@ -9,7 +9,7 @@
 
 /* Bookshelf background image */
 .bookshelf {
-  background-image: url('../Images/Wisteriashelf.png'); /* Adjusted path to ensure correct relative reference */
+  background-image: url('../../Images/WisteriaShelf.png'); /* Fixed path and capitalization */
   position: relative;
   width: 100%;
   height: auto;
@@ -92,10 +92,10 @@
   background: #a40000;
 }
 
-/* Book images */
-.book.book1 { background-image: url('../Images/acourtofthornsandrosesspine.png'); }
-.book.book2 { background-image: url('../Images/fallenspine.png'); }
-.book.book3 { background-image: url('../Images/fourthwingspine.png'); }
-.book.book4 { background-image: url('../Images/harrypotterspine.png'); }
-.book.book5 { background-image: url('../Images/inkheartspine.png'); }
-.book.book6 { background-image: url('../Images/throneofglassspine.png'); }
+/* Book images as background (if still needed) */
+.book.book1 { background-image: url('../../Images/acourtofthornsandrosesspine.png'); }
+.book.book2 { background-image: url('../../Images/fallenspine.png'); }
+.book.book3 { background-image: url('../../Images/fourthwingspine.png'); }
+.book.book4 { background-image: url('../../Images/harrypotterspine.png'); }
+.book.book5 { background-image: url('../../Images/throneofglassspine.png'); }
+.book.book6 { background-image: url('../../Images/inkheartspine.png'); }
