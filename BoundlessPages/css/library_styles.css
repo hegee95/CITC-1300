@@ -186,9 +186,9 @@
 
 /* --- User's Book positions (Fine-tune these!) --- */
 /* You will likely still need to adjust these using browser dev tools */
-#book1 { left: 15%; bottom: 53%; }
-#book2 { left: 25%; bottom: 53%; }
-#book3 { left: 65%; bottom: 53%; }
-#book4 { left: 55%; bottom: 53%; }
-#book5 { left: 35%; bottom: 53%; }
-#book6 { left: 45%; bottom: 53%; }
+#book1 { left: 15%; bottom: 52.5%; }
+#book2 { left: 25%; bottom: 52.5%; }
+#book3 { left: 65%; bottom: 52.5%; }
+#book4 { left: 55%; bottom: 52.5%; }
+#book5 { left: 35%; bottom: 52.5%; }
+#book6 { left: 45%; bottom: 52.5%; }
