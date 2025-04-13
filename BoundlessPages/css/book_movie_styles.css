@@ -1,0 +1,226 @@
+/* Styles for BookToMovie.html */
+
+/* --- Bookshelf Container --- */
+/* Re-uses the background and aspect ratio from library_styles */
+/* Ensure these match your desired background and image aspect ratio */
+.bookshelf {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../Images/bookshelf.png'); /* Or your preferred shelf background */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    aspect-ratio: 2 / 3; /* Match your background image aspect ratio */
+  }
+  
+  /* --- Comparison Item (Book/Movie Representation) --- */
+  .comparison-item {
+    position: absolute;
+    bottom: 0; /* Positioned like books, adjust % */
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    transform-origin: bottom center;
+    z-index: 3;
+    transform: translateY(0);
+    margin: 0;
+    padding: 0;
+    pointer-events: none; /* Clicks handled by image */
+  }
+  
+  .comparison-item-image img {
+    width: 150px; /* Adjust as needed */
+    height: auto;
+    display: block;
+    backface-visibility: hidden;
+    pointer-events: auto; /* Only image is clickable */
+    border: 2px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .comparison-item:hover {
+      transform: translateY(-10px); /* Lift effect on hover */
+  }
+  
+  /* --- TV Pop-up --- */
+  .tv-popup {
+    /* Basic Box Styling */
+    background: #3a3a3a; /* Dark grey TV frame */
+    padding: 25px; /* Thick frame padding */
+    border-radius: 15px 15px 5px 5px; /* Rounded top, flatter bottom */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.3);
+    color: #E0E0E0; /* Light text for dark bg */
+    font-family: 'Roboto', sans-serif; /* Standard readable font */
+    line-height: 1.6;
+  
+    /* Sizing */
+    width: 550px; /* Wider than book pop-up */
+    max-width: 95vw;
+  
+    /* Positioning (Centered above item) */
+    position: absolute;
+    bottom: calc(100% + 20px); /* Position above the original item bottom + gap */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+  
+    /* Visibility */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Add transform transition */
+    transform: translateX(-50%) scale(0.95); /* Start slightly scaled down */
+  }
+  
+  /* TV Screen Area */
+  .tv-screen {
+    background: #1a1a1a; /* Very dark screen */
+    padding: 20px;
+    border-radius: 5px; /* Inner screen radius */
+    height: 400px; /* Fixed height for screen */
+    position: relative; /* For positioning buttons */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.7); /* Inset shadow for depth */
+    overflow: hidden; /* Hide content overflow */
+  }
+  
+  /* Subtle Scanline Effect (Optional) */
+  .tv-screen::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03));
+      background-size: 100% 3px, 5px 100%;
+      z-index: 1; /* Below content */
+      pointer-events: none;
+      opacity: 0.4;
+  }
+  
+  .comparison-content {
+    position: relative; /* Ensure content is above scanlines */
+    z-index: 2;
+    height: calc(100% - 40px); /* Adjust based on button space needed */
+    overflow: hidden; /* Prevent pages from overflowing */
+  }
+  
+  
+  /* --- Styles for Pagination (Inside TV) --- */
+  .comparison-page {
+    display: none; /* Hide pages by default */
+    height: 100%; /* Fill the content area */
+    overflow-y: auto; /* Allow scrolling within a page if needed */
+    padding-right: 10px; /* Space for scrollbar */
+  }
+  
+  .comparison-page.active {
+    display: block; /* Show the active page */
+  }
+  
+  .comparison-page h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: "Press Start 2P", cursive; /* Retro font */
+    font-size: 1.1em;
+    color: #00ffcc; /* Cyan retro color */
+    text-shadow: 0 0 5px #00ffcc;
+  }
+  
+  .pagination-button {
+    position: absolute;
+    bottom: 15px; /* Position inside tv-screen */
+    background-color: #00ffcc; /* Match heading */
+    color: #1a1a1a; /* Dark text */
+    border: 1px solid #00ffcc;
+    border-radius: 5px; /* Square buttons */
+    width: 35px;
+    height: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+    transition: all 0.2s ease;
+    pointer-events: auto;
+  }
+  
+  .pagination-button:disabled {
+    background-color: #555;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.7;
+     box-shadow: none;
+     border-color: #555;
+  }
+  
+  .pagination-button:not(:disabled):hover {
+    background-color: #fff;
+    color: #00ffcc;
+  }
+  
+  .pagination-button.prev {
+    left: 30px; /* Position near left edge */
+  }
+  
+  .pagination-button.next {
+    right: 30px; /* Position near right edge */
+  }
+  /* --- End Pagination Styles --- */
+  
+  
+  /* --- TV Pop-up Close Button --- */
+  .tv-popup .close-button {
+    position: absolute;
+    top: -10px;  /* Position slightly outside the top edge */
+    right: -10px; /* Position slightly outside the right edge */
+    background: #ff4d4d; /* Red close button */
+    color: white;
+    border: 2px solid white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 30; /* Above everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    pointer-events: auto;
+  }
+  
+  .tv-popup .close-button:hover {
+    background: #cc0000; /* Darker red */
+  }
+  
+  /* --- Pop-up Open State --- */
+  .comparison-item.open .tv-popup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1); /* Scale to full size */
+  }
+  
+  /* --- Item Open State (Lift) --- */
+  .comparison-item.open {
+    transform: translateY(-20px); /* Lift amount */
+    z-index: 10;
+    pointer-events: none; /* Container non-clickable when open */
+  }
+  
+  /* --- Item Positioning (Fine-tune these!) --- */
+  /* Example positions - ADJUST THESE in browser dev tools! */
+  #item1 { left: 15%; bottom: 53%; }
+  #item2 { left: 35%; bottom: 53%; }
+  #item3 { left: 55%; bottom: 53%; }
+  #item4 { left: 75%; bottom: 53%; }
+  /* Add positions for #item4, #item5, #item6 if needed */
+  
+  
