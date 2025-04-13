@@ -14,7 +14,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-image: url('../Images/wisteriabookshelfresize.png');
+  background-image: url('../Images/bookshelf.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -36,7 +36,8 @@
 }
 
 .book-spine img {
-  width: 75px; /* Adjusted width */
+  /* --- UPDATED WIDTH --- */
+  width: 200px;
   height: auto;
   display: block;
   backface-visibility: hidden;
@@ -183,47 +184,12 @@
 }
 
 /* --- ADJUSTED: Book positions (Fine-tune these!) --- */
-/* These are examples, adjust based on your background image */
-#book1 { left: 25%; bottom: 27.5%; }    /* Original */
-#book2 { left: 29.5%; bottom: 25.5%; }  /* Original */
-#book3 { left: 34%; bottom: 25.5%; }    /* Original */
-#book4 { left: 39.5%; bottom: 27%; }    /* Original */
-#book5 { left: 45%; bottom: 32.5%; }    /* Original */
-#book6 { left: 50%; bottom: 26.9%; }    /* Original */
-
-
-
-/* Default synopsis style (hidden) */
-.synopsis {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.5s ease;
-}
-
-/* Reveal synopsis when book is open */
-.book.open .synopsis {
-  opacity: 1;
-  transform: translateY(-20px);
-}
-
-/* Book lift effect with shadow */
-.book.open {
-  animation: floatUp 0.5s ease forwards;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-  z-index: 10;
-}
-
-/* Keyframes for lift animation */
-@keyframes floatUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px) rotateY(180deg);
-    box-shadow: none;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-50px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-  }
-}
+/* These original values WILL likely cause overlap with 200px spines */
+/* You MUST adjust these using browser dev tools */
+#book1 { left: 25%; bottom: 27.5%; }
+#book2 { left: 29.5%; bottom: 25.5%; }
+#book3 { left: 34%; bottom: 25.5%; }
+#book4 { left: 39.5%; bottom: 27%; }
+#book5 { left: 45%; bottom: 32.5%; }
+#book6 { left: 50%; bottom: 26.9%; }
 
