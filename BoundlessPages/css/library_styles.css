@@ -14,12 +14,13 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-image: url('../Images/bookshelf.png');
+  background-image: url('../Images/bookshelf.png'); /* User provided URL */
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-  aspect-ratio: 3/2;
+  /* --- CORRECTED ASPECT RATIO --- */
+  aspect-ratio: 2 / 3; /* Matches 1024 / 1536 */
 }
 
 .book {
@@ -36,7 +37,7 @@
 }
 
 .book-spine img {
-  /* --- UPDATED WIDTH --- */
+  /* User provided width */
   width: 150px;
   height: auto;
   display: block;
@@ -183,13 +184,11 @@
   pointer-events: none;
 }
 
-/* --- ADJUSTED: Book positions (Fine-tune these!) --- */
-/* These original values WILL likely cause overlap with 200px spines */
-/* You MUST adjust these using browser dev tools */
+/* --- User's Book positions (Fine-tune these!) --- */
+/* You will likely still need to adjust these using browser dev tools */
 #book1 { left: 15%; bottom: 53%; }
 #book2 { left: 25%; bottom: 53%; }
 #book3 { left: 65%; bottom: 53%; }
 #book4 { left: 55%; bottom: 53%; }
 #book5 { left: 35%; bottom: 53%; }
 #book6 { left: 45%; bottom: 53%; }
-
