@@ -60,7 +60,7 @@
   
     /* Positioning (Centered above item) */
     position: absolute;
-    bottom: calc(100% + 20px); /* Position above the original item bottom + gap */
+    bottom: calc(50% + 5px); /* Position above the original item bottom + gap */
     left: 50%;
     transform: translateX(-50%);
     z-index: 15;
