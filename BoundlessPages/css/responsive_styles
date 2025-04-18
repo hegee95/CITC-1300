@@ -1,0 +1,544 @@
+/* --- Global Resets and Base Styles (Mobile-First) --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Base readable font */
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4; /* Light background */
+  background-image: url(../Images/Wisterialibrary.png); /* Keep background */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Keep background fixed */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Utility Classes --- */
+.content-box {
+  width: 90%;
+  max-width: 1100px; /* Max width for larger screens */
+  margin: 30px auto; /* Centering and spacing */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.85); /* Slightly less transparent */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Allows main content to expand */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: #005f6b; /* Link color */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+/* --- Header and Navigation --- */
+.site-header {
+    padding: 15px 5%; /* Padding relative to viewport width */
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent header bg */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between title and button */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 15px;
+}
+
+/* Ensure typewriter and book button styles are loaded or integrated */
+/* Adjust .typewriter-box if needed */
+.typewriter-box h1 {
+    font-size: 2.5rem; /* Adjust size for mobile */
+    /* Ensure font-family is loaded */
+}
+
+/* Book button nav needs to be usable on mobile */
+/* Styles for .book-button and .book-links assumed from book_button_styles.css */
+/* Consider making .book-links display differently on mobile if needed */
+
+
+/* --- Footer --- */
+.site-footer {
+  text-align: center;
+  padding: 15px;
+  background-color: rgba(51, 51, 51, 0.7); /* Darker footer */
+  color: #f4f4f4;
+  margin-top: auto; /* Pushes footer to bottom */
+}
+
+/* --- Page Specific Base Styles (Mobile) --- */
+
+/* Index Page */
+.page-index h2, .page-index h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Caveat', cursive;
+}
+.page-index .image-container {
+    display: flex;
+    flex-direction: column; /* Stack images on mobile */
+    gap: 15px;
+    align-items: center;
+}
+.page-index .image-container img {
+    max-width: 80%; /* Limit image width */
+    border-radius: 5px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+.external-links {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.external-links li {
+    margin-bottom: 8px;
+}
+
+/* Quotes Page */
+.page-quotes .notebook-page {
+    background: repeating-linear-gradient(
+        rgba(255, 255, 255, 0.9) 0px,
+        rgba(255, 255, 255, 0.9) 29px,
+        #d1c5b7 30px /* Lighter line color */
+    );
+    padding: 25px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+    line-height: 1.8; /* Adjust line height for readability */
+    font-family: 'Caveat', cursive;
+    color: #3a3a3a;
+}
+.page-quotes .quote {
+    font-family: 'Dancing Script', cursive; /* Different font for quotes */
+    margin-bottom: 1em;
+    padding-left: 15px;
+    border-left: 3px solid #a07d5a;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+.page-quotes .quote span {
+    font-style: normal; /* Author normal */
+    font-size: 0.9em;
+    color: #555;
+    display: block; /* Put author on new line */
+    margin-top: 5px;
+}
+.page-quotes .title-box {
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    font-family: 'Cookie', cursive;
+    font-size: 1.5rem;
+}
+.page-quotes .theme-list {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.page-quotes .quote-links a {
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+
+/* Library & Book-Movie Pages - Simplified Grid Layout */
+.bookshelf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns mobile */
+  gap: 20px;
+  padding: 15px 0;
+}
+
+.book-item, /* Used in Mylibrary.html */
+.comparison-item { /* Used in BookToMovie.html */
+  position: relative; /* Needed for pop-up positioning context */
+  text-align: center;
+  pointer-events: none; /* Let image handle clicks */
+  background-color: rgba(255, 255, 255, 0.6); /* Slight background */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.book-item-spine img, /* Used in Mylibrary.html */
+.comparison-item-image img { /* Used in BookToMovie.html */
+  width: 80%; /* Responsive width within grid item */
+  max-width: 150px; /* Max size */
+  height: auto;
+  margin: 0 auto; /* Center image */
+  display: block;
+  cursor: pointer;
+  pointer-events: auto; /* Image is clickable */
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.book-item-spine img:hover,
+.comparison-item-image img:hover {
+    transform: scale(1.05);
+}
+
+
+/* Responsive Pop-up Modal Styles (Used by both Library & Book-Movie) */
+.book-popup, /* Library pop-up */
+.tv-popup { /* Book-Movie pop-up */
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed position overlay */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Add .open class via JS to show */
+.book-item.open .book-popup,
+.comparison-item.open .tv-popup {
+  display: block;
+}
+
+/* Inner content area of the modal */
+.popup-content, /* Library */
+.tv-screen { /* Book-Movie */
+  background-color: #fffbe6; /* Book page color */
+  color: #333;
+  max-width: 600px; /* Max width */
+  width: 90%;
+  margin: 5vh auto; /* Center vertically and horizontally */
+  padding: 40px 20px 50px 20px; /* Adjust padding (more top/bottom) */
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  position: relative; /* For close button and pagination */
+  min-height: 70vh; /* Minimum height */
+}
+
+/* Specific TV screen styling */
+.tv-screen {
+   background-color: #1a1a1a; /* Dark screen */
+   color: #e0e0e0;
+   font-family: 'Roboto', sans-serif;
+   border: 10px solid #3a3a3a; /* TV Frame */
+   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(0,0,0,0.7);
+}
+
+.popup-content h3,
+.tv-screen h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: "Cookie", cursive;
+  font-size: 1.8em;
+  color: #5C4033;
+}
+.tv-screen h3 {
+   font-family: "Press Start 2P", cursive; /* Retro font */
+   font-size: 1.1em;
+   color: #00ffcc; /* Cyan retro color */
+   text-shadow: 0 0 5px #00ffcc;
+}
+
+
+/* Pagination Styles (Common) */
+.synopsis, /* Library */
+.comparison-content { /* Book-Movie */
+  position: relative;
+  height: calc(100% - 60px); /* Adjust based on padding/button space */
+  overflow: hidden; /* Hide non-active pages */
+}
+
+.synopsis-page, /* Library */
+.comparison-page { /* Book-Movie */
+  display: none; /* Hide pages by default */
+  height: 100%;
+  overflow-y: auto; /* Scroll within page if needed */
+  padding-right: 10px; /* Scrollbar space */
+}
+
+.synopsis-page.active,
+.comparison-page.active {
+  display: block; /* Show active page */
+}
+
+.pagination-button {
+  position: absolute;
+  bottom: 15px; /* Position at bottom of modal content */
+  background-color: #a07d5a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease;
+  pointer-events: auto;
+}
+/* TV Button override */
+.tv-screen .pagination-button {
+    background-color: #00ffcc;
+    color: #1a1a1a;
+    border: 1px solid #00ffcc;
+    border-radius: 5px;
+    width: 40px;
+    height: 30px;
+    font-size: 1rem;
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+}
+
+
+.pagination-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.tv-screen .pagination-button:disabled {
+    background-color: #555;
+    color: #888;
+    box-shadow: none;
+    border-color: #555;
+}
+
+.pagination-button:not(:disabled):hover {
+  background-color: #7c5c3f;
+}
+.tv-screen .pagination-button:not(:disabled):hover {
+    background-color: #fff;
+    color: #00ffcc;
+}
+
+.pagination-button.prev {
+  left: 35%;
+  transform: translateX(-50%);
+}
+.tv-screen .pagination-button.prev {
+    left: 40px;
+    transform: none;
+}
+
+.pagination-button.next {
+  right: 35%;
+  transform: translateX(50%);
+}
+.tv-screen .pagination-button.next {
+    right: 40px;
+    transform: none;
+}
+
+/* Close Button (Common) */
+.book-popup .close-button,
+.tv-popup .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #555;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 1010; /* Above overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+.book-popup .close-button:hover,
+.tv-popup .close-button:hover {
+    background: #333;
+}
+/* TV Close Button Override */
+.tv-popup .close-button {
+    background: #ff4d4d;
+    border: 2px solid white;
+    top: -15px; /* Position outside frame */
+    right: -15px;
+    width: 35px;
+    height: 35px;
+}
+.tv-popup .close-button:hover {
+    background: #cc0000;
+}
+
+
+/* Contact Page */
+.page-contact h2, .page-contact p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit; /* Use body font */
+}
+.form-group textarea {
+    resize: vertical; /* Allow vertical resize */
+}
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #005f6b; /* Theme color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.submit-button:hover {
+    background-color: #004c57;
+}
+#form-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* --- Tablet Styles --- */
+@media (min-width: 768px) {
+  .content-box {
+    width: 85%;
+    padding: 30px;
+  }
+
+  .typewriter-box h1 {
+     font-size: 3rem; /* Larger title */
+  }
+
+  .page-index .image-container {
+      flex-direction: row; /* Images side-by-side */
+      justify-content: space-around;
+  }
+   .page-index .image-container img {
+      max-width: 45%; /* Adjust size */
+  }
+
+  .bookshelf-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns tablet */
+    gap: 25px;
+  }
+
+  .popup-content,
+  .tv-screen {
+      width: 80%; /* Wider modal */
+      margin: 10vh auto; /* Adjust vertical margin */
+  }
+  .tv-screen {
+      height: 500px; /* Taller screen */
+  }
+
+  .submit-button {
+      width: auto; /* Allow button to size to content */
+      padding: 12px 30px;
+      margin: 0 auto; /* Center button */
+  }
+}
+
+
+/* --- Desktop Styles --- */
+@media (min-width: 1024px) {
+  .content-box {
+    width: 80%;
+    padding: 40px;
+  }
+
+   .typewriter-box h1 {
+     font-size: 3.5rem;
+  }
+
+  .bookshelf-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns desktop */
+    gap: 30px;
+  }
+
+  /* Make popups slightly larger on desktop */
+  .popup-content,
+  .tv-screen {
+      width: 70%;
+      max-width: 800px; /* Increase max width */
+  }
+   .tv-screen {
+      height: 550px; /* Even taller */
+   }
+
+   /* Optional: Reintroduce pop-up positioning relative to item? */
+   /* This is complex and might conflict with fixed modal. Sticking to modal. */
+   /* Example (DO NOT USE without careful testing): */
+   /*
+   .book-item.open .book-popup,
+   .comparison-item.open .tv-popup {
+        position: absolute;
+        top: auto;
+        left: 50%;
+        bottom: calc(100% + 10px);
+        width: 450px;
+        height: auto;
+        transform: translateX(-50%);
+        margin: 0;
+   }
+   */
+}
+
+/* --- Desktop Styles - Larger Screens --- */
+@media (min-width: 1200px) {
+    .bookshelf-grid {
+        grid-template-columns: repeat(5, 1fr); /* 5 columns on very wide screens */
+    }
+}
+
+

@@ -4,30 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Caveat&family=Roboto&display=swap" rel="stylesheet">
+
   <title>Boundless Pages</title>
+  <link rel="stylesheet" href="css/responsive_styles.css">
   <link rel="stylesheet" href="css/book_button_styles.css">
   <link rel="stylesheet" href="css/typewriter_animation.css">
-  <link rel="stylesheet" href="css/main_styles.css">
-  <link rel="stylesheet" href="css/index_styles.css">
+
 </head>
 
 <body>
-  <div class="content-box">
+  <header class="site-header">
     <div class="title-container">
       <div class="typewriter-box">
         <h1>Boundless Pages</h1>
       </div>
       <div class="book-button" onclick="toggleLinks()">
         <div class="book-links" id="book-links">
+          <a href="index.html">Home</a>
           <a href="Mylibrary.html">My Library</a>
           <a href="Myfavoritebookquotes.html">Favorite Quotes</a>
           <a href="BookToMovie.html">Books to Movies</a>
-        </div>
+          <a href="Contact.html">Contact</a> </div>
       </div>
     </div>
+  </header>
+
+  <main class="content-box page-index">
     <h2>Turning Pages, Discovering Worlds</h2>
     <h3>Unlock the Magic of Stories</h3>
     <p>
@@ -40,24 +46,23 @@
       for all generations.
     </p>
     <hr>
-    <ul>
-      <li><a href="https://www.goodreads.com" target="_blank">Visit Goodreads</a></li>
-      <li><a href="https://www.nytimes.com/section/books" target="_blank">NY Times Book Reviews</a></li>
-      <li><a href="https://www.gutenberg.org" target="_blank">Free Classics on Project Gutenberg</a></li>
-      <li><a href="https://www.bookbub.com" target="_blank">Find Your Next Favorite Book</a></li>
+    <ul class="external-links">
+      <li><a href="https://www.goodreads.com" target="_blank" rel="noopener noreferrer">Visit Goodreads</a></li>
+      <li><a href="https://www.nytimes.com/section/books" target="_blank" rel="noopener noreferrer">NY Times Book Reviews</a></li>
+      <li><a href="https://www.gutenberg.org" target="_blank" rel="noopener noreferrer">Free Classics on Project Gutenberg</a></li>
+      <li><a href="https://www.bookbub.com" target="_blank" rel="noopener noreferrer">Find Your Next Favorite Book</a></li>
     </ul>
     <hr>
     <div class="image-container">
-      <a href="#">
-        <img src="Images/CozyBookCorner.png" alt="Cozy Book Corner">
-      </a>
-      <a href="#">
-        <img src="Images/OnyxStormDedication.png" alt="Onyx Storm Dedication">
-      </a>
+        <img src="Images/CozyBookCorner.png" alt="Cozy reading corner with books and plants">
+        <img src="Images/OnyxStormDedication.png" alt="Dedication page from the book Onyx Storm">
     </div>
-  </div>
-  <footer>
+  </main>
+
+  <footer class="site-footer">
     <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
   </footer>
+
   <script src="js/book_button_script.js"></script>
 </body>
+</html>

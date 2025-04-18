@@ -1,158 +1,142 @@
 /**
  * library_script.js
- * Handles interactions for the bookshelf in Mylibrary.html
- * - Opens/closes books on click.
- * - Plays/pauses associated sound on open/close.
- * - Ensures only one book is open at a time.
- * - Handles synopsis pagination.
+ * Handles interactions for the bookshelf grid in Mylibrary.html (Responsive)
+ * - Opens/closes book pop-up modals on spine click.
+ * - Plays/pauses associated sound (optional).
+ * - Ensures only one pop-up is open at a time.
+ * - Handles synopsis pagination within the modal.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  const books = document.querySelectorAll('.book'); // Select all book elements
+    // Select all book items in the grid
+    const bookItems = document.querySelectorAll('.book-item');
 
-  // --- Helper Function for Pagination ---
-  function setupPagination(bookElement) {
-      const synopsisContainer = bookElement.querySelector('.synopsis');
-      const pages = synopsisContainer?.querySelectorAll('.synopsis-page');
-      const bookOpenContainer = bookElement.querySelector('.book-open'); // Container for buttons
+    // --- Helper Function for Pagination ---
+    function setupPagination(bookElement) {
+        const popup = bookElement.querySelector('.book-popup');
+        const synopsisContainer = popup?.querySelector('.synopsis');
+        const pages = synopsisContainer?.querySelectorAll('.synopsis-page');
+        const popupContent = popup?.querySelector('.popup-content'); // Container for buttons
 
-      if (!synopsisContainer || !pages || pages.length <= 1 || !bookOpenContainer) {
-          // No pages, only one page, or containers missing - no pagination needed
-          // Remove any existing buttons just in case
-           bookOpenContainer.querySelector('.pagination-button.prev')?.remove();
-           bookOpenContainer.querySelector('.pagination-button.next')?.remove();
-          return;
-      }
+        if (!synopsisContainer || !pages || pages.length <= 1 || !popupContent) {
+             popupContent?.querySelector('.pagination-button.prev')?.remove();
+             popupContent?.querySelector('.pagination-button.next')?.remove();
+            return; // No pagination needed
+        }
 
-      let currentPageIndex = 0;
+        let currentPageIndex = 0;
 
-      // --- Create Buttons ---
-      // Remove existing buttons before adding new ones
-      bookOpenContainer.querySelector('.pagination-button.prev')?.remove();
-      bookOpenContainer.querySelector('.pagination-button.next')?.remove();
+        // --- Create Buttons ---
+        popupContent.querySelector('.pagination-button.prev')?.remove();
+        popupContent.querySelector('.pagination-button.next')?.remove();
 
-      const prevButton = document.createElement('button');
-      prevButton.classList.add('pagination-button', 'prev');
-      prevButton.innerHTML = '&lt;'; // Left arrow
-      prevButton.disabled = true; // Start disabled
-      bookOpenContainer.appendChild(prevButton);
+        const prevButton = document.createElement('button');
+        prevButton.classList.add('pagination-button', 'prev');
+        prevButton.innerHTML = '&lt;';
+        prevButton.disabled = true;
+        popupContent.appendChild(prevButton); // Append to popup content area
 
-      const nextButton = document.createElement('button');
-      nextButton.classList.add('pagination-button', 'next');
-      nextButton.innerHTML = '&gt;'; // Right arrow
-      bookOpenContainer.appendChild(nextButton);
+        const nextButton = document.createElement('button');
+        nextButton.classList.add('pagination-button', 'next');
+        nextButton.innerHTML = '&gt;';
+        popupContent.appendChild(nextButton); // Append to popup content area
 
-      // --- Show Initial Page ---
-      const showPage = (index) => {
-          pages.forEach((page, i) => {
-              page.classList.toggle('active', i === index);
-          });
-          // Update button states
-          prevButton.disabled = index === 0;
-          nextButton.disabled = index === pages.length - 1;
-          currentPageIndex = index; // Update current index
-      };
+        // --- Show Page Function ---
+        const showPage = (index) => {
+            pages.forEach((page, i) => {
+                page.classList.toggle('active', i === index);
+            });
+            prevButton.disabled = index === 0;
+            nextButton.disabled = index === pages.length - 1;
+            currentPageIndex = index;
+            // Scroll page content to top
+             const activePage = synopsisContainer.querySelector('.synopsis-page.active');
+             if(activePage) activePage.scrollTop = 0;
+        };
 
-      showPage(currentPageIndex); // Show the first page initially
+        showPage(currentPageIndex); // Show first page
 
-      // --- Button Event Listeners ---
-      prevButton.addEventListener('click', (e) => {
-           e.stopPropagation(); // Prevent book close
-          if (currentPageIndex > 0) {
-              showPage(currentPageIndex - 1);
-          }
-      });
+        // --- Button Event Listeners ---
+        prevButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentPageIndex > 0) {
+                showPage(currentPageIndex - 1);
+            }
+        });
 
-      nextButton.addEventListener('click', (e) => {
-           e.stopPropagation(); // Prevent book close
-          if (currentPageIndex < pages.length - 1) {
-              showPage(currentPageIndex + 1);
-          }
-      });
+        nextButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentPageIndex < pages.length - 1) {
+                showPage(currentPageIndex + 1);
+            }
+        });
 
-       // Store reset function on the book element
-       bookElement.resetPagination = () => showPage(0);
-       // Store cleanup function
-       bookElement.removePagination = () => {
-           prevButton.remove();
-           nextButton.remove();
-       }
-  }
+        // Store reset function
+        bookElement.resetPagination = () => showPage(0);
+         // Store cleanup function
+         bookElement.removePagination = () => {
+             prevButton.remove();
+             nextButton.remove();
+         }
+    }
 
 
-  // --- Main Book Interaction Logic ---
-  books.forEach(book => {
-      const spine = book.querySelector('.book-spine img');
-      const audio = book.querySelector('audio');
-      const closeButton = book.querySelector('.close-button');
+    // --- Main Book Item Interaction Logic ---
+    bookItems.forEach(bookItem => {
+        const spine = bookItem.querySelector('.book-item-spine img');
+        const audio = bookItem.querySelector('audio');
+        const popup = bookItem.querySelector('.book-popup');
+        const closeButton = popup?.querySelector('.close-button');
 
-      // Add click listener to the book spine image
-      if (spine) {
-          spine.addEventListener('click', () => {
-              const isAlreadyOpen = book.classList.contains('open');
+        // Add click listener to the book spine image
+        if (spine) {
+            spine.addEventListener('click', () => {
+                // Close any other open popups first
+                document.querySelectorAll('.book-item.open').forEach(openItem => {
+                    if (openItem !== bookItem) {
+                        openItem.classList.remove('open');
+                        const otherAudio = openItem.querySelector('audio');
+                        if (otherAudio) { otherAudio.pause(); otherAudio.currentTime = 0; }
+                        if (typeof openItem.resetPagination === 'function') { openItem.resetPagination(); }
+                    }
+                });
 
-              // Close any other open books first
-              document.querySelectorAll('.book.open').forEach(openBook => {
-                  if (openBook !== book) {
-                      openBook.classList.remove('open');
-                      const otherAudio = openBook.querySelector('audio');
-                      if (otherAudio) {
-                          otherAudio.pause();
-                          otherAudio.currentTime = 0;
-                      }
-                      // Reset pagination if the function exists
-                      if (typeof openBook.resetPagination === 'function') {
-                           openBook.resetPagination();
-                      }
-                  }
-              });
+                // Open the clicked item's popup
+                bookItem.classList.add('open'); // Add .open to show modal
 
-              // Toggle the 'open' state of the clicked book
-              book.classList.toggle('open');
+                // Handle audio and pagination
+                setupPagination(bookItem); // Setup pagination when opening
+                if (audio) {
+                    audio.volume = 1.0; // Ensure full volume
+                    audio.currentTime = 0;
+                    audio.play().catch(error => console.error("Audio play failed:", error));
+                }
+            });
+        }
 
-              // Handle audio and pagination based on state
-              if (book.classList.contains('open')) {
-                  // Setup pagination when book opens
-                  setupPagination(book);
-                  if (audio) {
-                      audio.currentTime = 0;
-                      audio.volume = 1.0; // Set volume to 100%
-                      audio.play().catch(error => console.error("Audio play failed:", error));
-                  }
-              } else {
-                  // Reset pagination when book closes
-                  if (typeof book.resetPagination === 'function') {
-                       book.resetPagination();
-                  }
-                  // Optionally remove buttons on close if preferred
-                  // if (typeof book.removePagination === 'function') {
-                  //     book.removePagination();
-                  // }
-                  if (audio) {
-                      audio.pause();
-                      audio.currentTime = 0;
-                  }
-              }
-          });
-      }
+        // Add click listener to the close button
+        if (closeButton) {
+            closeButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                bookItem.classList.remove('open'); // Remove .open to hide modal
+                if (typeof bookItem.resetPagination === 'function') { bookItem.resetPagination(); }
+                if (audio) { audio.pause(); audio.currentTime = 0; }
+                 // Optionally remove buttons on close
+                 // if (typeof bookItem.removePagination === 'function') { bookItem.removePagination(); }
+            });
+        }
 
-      // Add click listener to the close button within the book
-      if (closeButton) {
-          closeButton.addEventListener('click', (event) => {
-              event.stopPropagation();
-              book.classList.remove('open');
-               // Reset pagination when book closes
-               if (typeof book.resetPagination === 'function') {
-                    book.resetPagination();
-               }
-               // Optionally remove buttons on close if preferred
-               // if (typeof book.removePagination === 'function') {
-               //     book.removePagination();
-               // }
-              if (audio) {
-                  audio.pause();
-                  audio.currentTime = 0;
-              }
-          });
-      }
-  });
+        // Optional: Close modal if clicking outside the content area
+        if (popup) {
+            popup.addEventListener('click', (event) => {
+                // Check if the click target is the overlay itself (not the content)
+                if (event.target === popup) {
+                     bookItem.classList.remove('open');
+                     if (typeof bookItem.resetPagination === 'function') { bookItem.resetPagination(); }
+                     if (audio) { audio.pause(); audio.currentTime = 0; }
+                      // Optionally remove buttons on close
+                     // if (typeof bookItem.removePagination === 'function') { bookItem.removePagination(); }
+                }
+            });
+        }
+    });
 });
