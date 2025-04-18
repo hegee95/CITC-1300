@@ -70,13 +70,76 @@ hr {
   gap: 15px;
 }
 
-/* Ensure typewriter styles are loaded or integrated */
-/* Adjust .typewriter-box if needed */
+/* --- Typewriter Animation Styles (Integrated) --- */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; } /* Or theme color */
+}
+
+@keyframes fade-out-caret {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.typewriter-box {
+    /* Optional: Add background/padding if needed, or style h1 directly */
+    /* background-color: #d4f0e8; */
+    /* padding: 10px; */
+    /* border-radius: 8px; */
+    display: inline-block; /* Or block */
+    position: relative; /* Needed for caret */
+    vertical-align: middle; /* Align with button */
+}
+
 .typewriter-box h1 {
     font-size: 2.5rem; /* Adjust size for mobile */
-    /* Ensure font-family is loaded */
-    /* font-family: 'Cookie', cursive; */ /* Example if needed */
+    font-family: "Cookie", cursive; /* Ensure font is loaded */
+    color: #005f6b; /* Theme color */
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto; /* Center if block */
+    letter-spacing: 2px;
+    line-height: 1.4;
+    border-right: 3px solid black; /* Initial caret */
+    animation: typing 3.5s steps(30, end) forwards, /* Run typing once */
+               blink-caret 0.75s step-end infinite;
+    width: 0; /* Start with zero width for animation */
+    /* Ensure it doesn't inherit other h1 styles that conflict */
+    padding: 0;
+    background: none;
+    box-shadow: none;
 }
+
+/* Optional: Fade out caret after typing finishes */
+/* Add a class 'typing-done' via JS after animation, or use animation delay */
+/* Simpler: Use animation delay on caret fade-out */
+.typewriter-box h1::after { /* Using pseudo-element for potentially better control */
+    content: "";
+    position: absolute;
+    right: -3px; /* Position next to border */
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: transparent; /* Use border instead */
+    /* This pseudo-element doesn't seem necessary if border-right is used */
+    /* Keeping structure from original file if needed */
+    /* animation: blink-caret 0.75s step-end infinite, fade-out-caret 2s ease-in-out 3.5s forwards; */
+    /* opacity: 1; */
+}
+
+/* Style for title box on quotes page (if different) */
+.title-box span { /* Assuming this is the element on quotes page */
+    border-right: 2px solid #000;
+    /* Apply typing/blink animations if needed */
+    /* animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite; */
+}
+/* --- End Typewriter Styles --- */
+
 
 /* --- Book Button Navigation Styles (Integrated) --- */
 .book-button {
