@@ -309,7 +309,7 @@ hr {
 .book-item-spine img, /* Used in Mylibrary.html */
 .comparison-item-image img { /* Used in BookToMovie.html */
   /* --- UPDATED IMAGE SIZE --- */
-  width: 100px; /* Explicit width - Increased */
+  width: 200px; /* Explicit width - Increased */
   /* Removed width: 80% and max-width: 150px */
   height: auto;
   margin: 0 auto; /* Center image */
