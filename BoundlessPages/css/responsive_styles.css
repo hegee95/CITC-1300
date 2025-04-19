@@ -146,7 +146,7 @@ hr {
 }
 
 /* Optional: Text hint inside button */
-
+/*
 .book-button::after {
     content: "Menu"; // Or "Click Me"
     position: absolute;
@@ -158,7 +158,7 @@ hr {
     font-weight: bold;
     font-family: 'Roboto', sans-serif; // Match site font
 }
-
+*/
 
 .book-button.flipping { /* If using flipping animation from original JS */
     background: url(../Images/Flippingpages.png) no-repeat center center;
@@ -308,7 +308,9 @@ hr {
 
 .book-item-spine img, /* Used in Mylibrary.html */
 .comparison-item-image img { /* Used in BookToMovie.html */
-  width: 80px; /* Explicit width */
+  /* --- UPDATED IMAGE SIZE --- */
+  width: 100px; /* Explicit width - Increased */
+  /* Removed width: 80% and max-width: 150px */
   height: auto;
   margin: 0 auto; /* Center image */
   display: block;
@@ -498,6 +500,7 @@ hr {
   justify-content: center;
   line-height: 1;
   padding: 0;
+  pointer-events: auto; /* Ensure clickable */
 }
 .book-popup .close-button:hover,
 .tv-popup .close-button:hover {
@@ -511,6 +514,7 @@ hr {
     right: -15px;
     width: 35px;
     height: 35px;
+    pointer-events: auto; /* Ensure clickable */
 }
 .tv-popup .close-button:hover {
     background: #cc0000;
