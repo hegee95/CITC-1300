@@ -3,54 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Boundless Pages</title>
+    <title>Contact Control - Boundless Pages</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Roboto&family=Caveat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Roboto+Mono&family=VT323&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/responsive_styles.css"> </head>
+    <link rel="stylesheet" href="css/atomic_styles.css">
+
+    </head>
 <body>
     <header class="site-header">
-        <div class="title-container">
-            <div class="typewriter-box">
-                <h1>Contact Us</h1>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Boundless Pages</a>
             </div>
-            <div class="book-button" onclick="toggleLinks()">
-                <div class="book-links" id="book-links">
-                  <a href="index.html">Home</a>
-                  <a href="Mylibrary.html">My Library</a>
-                  <a href="Myfavoritebookquotes.html">Favorite Quotes</a>
-                  <a href="BookToMovie.html">Books to Movies</a>
-                  <a href="Contact.html">Contact</a> </div>
-            </div>
+            <nav class="main-nav" id="main-nav">
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Mylibrary.html">Library</a></li>
+                    <li><a href="Myfavoritebookquotes.html">Quotes</a></li>
+                    <li><a href="BookToMovie.html">Book vs Movie</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <main class="content-box page-contact">
-        <div class="contact-layout parchment-background">
+    <main class="content-container page-contact">
+        <h1 class="main-title page-title">Establish Communication Link</h1>
+
+        <div class="contact-layout">
 
             <div class="contact-info">
-                <h2>Get In Touch</h2>
-                <p>Have questions about a book comparison, suggestions for the library, or just want to share your thoughts on literature? Send a message using the form!</p>
-                <p>I appreciate your feedback and love discussing all things books!</p>
-                </div>
+                <h2 class="secondary-title">Send Transmission</h2>
+                <p>Have feedback on our data logs? Questions about alternate timelines? Or just want to hail us on subspace?</p>
+                <p>Use the adjacent console to transmit your message across the void. We monitor these frequencies!</p>
+            </div>
 
-            <div class="contact-form-container">
-                <form action="#" method="POST" class="contact-form">
-                     <div class="form-group">
-                         <label for="name">Name:</label>
-                         <input type="text" id="name" name="name" required placeholder="Your Name">
+            <div class="contact-form-container vintage-screen-effect">
+                <form action="#" method="POST" class="contact-form"> <div class="form-group">
+                         <label for="name">Call Sign (Name):</label>
+                         <input type="text" id="name" name="name" required placeholder="> ENTER NAME">
                      </div>
                      <div class="form-group">
-                         <label for="email">Email:</label>
-                         <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                         <label for="email">Comm Frequency (Email):</label>
+                         <input type="email" id="email" name="email" required placeholder="> ENTER EMAIL">
                      </div>
                      <div class="form-group">
-                         <label for="message">Message:</label>
-                         <textarea id="message" name="message" rows="6" required placeholder="Your message here..."></textarea>
+                         <label for="message">Message Log:</label>
+                         <textarea id="message" name="message" rows="7" required placeholder="> ENTER MESSAGE..."></textarea>
                      </div>
-                     <button type="submit" class="submit-button">Send Message</button>
+                     <button type="submit" class="submit-button">Transmit Message</button>
                 </form>
                 <div id="form-status"></div>
             </div>
@@ -58,9 +67,9 @@
         </div> </main>
 
     <footer class="site-footer">
-        <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
+         <p>&copy; 2025 Boundless Pages Command Center. All rights reserved.</p>
     </footer>
 
-    <script src="js/book_button_script.js"></script>
+    <script src="js/atomic_nav.js"></script>
     </body>
 </html>

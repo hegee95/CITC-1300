@@ -1,105 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Favorite Book Quotes - Boundless Pages</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Quotes - Boundless Pages</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script&family=Roboto&family=Caveat&display=swap"
-    rel="stylesheet">
-  <link rel="icon" type="image/png" href="Images/my_icon.png">
-  <link rel="stylesheet" href="css/responsive_styles.css">  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/atomic_styles.css">
+
+    </head>
 <body>
-   <header class="site-header">
-    <div class="title-container">
-      <div class="typewriter-box">
-         <h1>My Favorite Book Quotes</h1>
-      </div>
-      <div class="book-button" onclick="toggleLinks()">
-        <div class="book-links" id="book-links">
-          <a href="index.html">Home</a>
-          <a href="Mylibrary.html">My Library</a>
-          <a href="Myfavoritebookquotes.html">Favorite Quotes</a>
-          <a href="BookToMovie.html">Books to Movies</a>
-          <a href="Contact.html">Contact</a> </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="content-box page-quotes">
-    <div class="notebook-page">
-      <h2>My Favorite Quotes</h2>
-      <p>Here are some of my favorite quotes from the books I love. They have inspired me, made me think, and have been a great source of comfort when I needed it. Each quote holds a special place in my heart, reminding me of the wisdom and beauty found within the pages of these books. They serve as a beacon of hope during challenging times and a source of motivation when I need a little push. These words have the power to transport me back to the moments when I first read them, evoking the same emotions and reflections. I hope they resonate with you as much as they have with me, offering insight and solace whenever you need it.</p>
-      <p>These quotes have been with me through thick and thin, and I hope they will be with me for years to come. I hope that you, too, will enjoy them as much as I have.</p>
-
-      <h3>Quotes from Throne of Glass</h3>
-      <div class="quote">
-        <span>"You could rattle the stars," she whispered. "You could do anything, if only you dared. And deep down, you know it, too. That’s what scares you most." – Aelin Galathynius</span>
-      </div>
-       <div class="quote">
-          <span>“I love you. There is no limit to what I can give to you, no time I need. Even when this world is forgotten whisper of dust between the stars, I will love you.” – Rowan Whitethorn</span>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Boundless Pages</a>
+            </div>
+            <nav class="main-nav" id="main-nav">
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Mylibrary.html">Library</a></li>
+                    <li><a href="Myfavoritebookquotes.html">Quotes</a></li>
+                    <li><a href="BookToMovie.html">Book vs Movie</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="quote">
-          <span>“To whatever end.” – Aelin Galathynius</span>
+    </header>
+
+    <main class="content-container page-quotes">
+        <h1 class="main-title page-title">Transmissions from the Ether</h1>
+        <p class="page-intro">Inspiring signals intercepted from other worlds.</p>
+
+        <div class="quotes-list">
+            <article class="quote-card">
+                <blockquote class="quote-text">"You could rattle the stars. You could do anything, if only you dared. And deep down, you know it, too. That’s what scares you most."</blockquote>
+                <cite class="quote-author">– Aelin Galathynius, Throne of Glass</cite>
+            </article>
+
+            <article class="quote-card">
+                <blockquote class="quote-text">"To the stars who listen—and the dreams that are answered."</blockquote>
+                <cite class="quote-author">– A Court of Thorns and Roses</cite>
+            </article>
+
+            <article class="quote-card">
+                 <blockquote class="quote-text">"You do not fear. You do not falter. You do not yield."</blockquote>
+                 <cite class="quote-author">– Rhysand, ACOTAR</cite>
+            </article>
+
+             <article class="quote-card">
+                <blockquote class="quote-text">"I would rather lose this entire war than live without you, and if that means I have to prove myself over and over, then I'll do it. You gave me your heart, and I'm keeping it."</blockquote>
+                <cite class="quote-author">– Xaden, Empyrean Series</cite>
+            </article>
+
+             <article class="quote-card">
+                 <blockquote class="quote-text">"If you live to be a hundred, I want to live to be a hundred minus one day, so I never have to live without you."</blockquote>
+                 <cite class="quote-author">– A.A. Milne, Winnie The Pooh</cite>
+            </article>
+
+            <article class="quote-card">
+                 <blockquote class="quote-text">"Even the smallest person can change the course of the future."</blockquote>
+                 <cite class="quote-author">– J.R.R. Tolkien</cite>
+            </article>
+
+            <article class="quote-card">
+                 <blockquote class="quote-text">"Not all those who wander are lost."</blockquote>
+                 <cite class="quote-author">– J.R.R. Tolkien</cite>
+            </article>
+
+             <article class="quote-card">
+                <blockquote class="quote-text">"I love you. There is no limit to what I can give to you, no time I need. Even when this world is forgotten whisper of dust between the stars, I will love you."</blockquote>
+                <cite class="quote-author">– Rowan Whitethorn, Throne of Glass</cite>
+            </article>
+
+             <article class="quote-card">
+                 <blockquote class="quote-text">"To whatever end."</blockquote>
+                 <cite class="quote-author">– Aelin Galathynius, Throne of Glass</cite>
+            </article>
+
+            <article class="quote-card">
+                <blockquote class="quote-text">"‘Even after all this time?’ ‘Always.’"</blockquote>
+                <cite class="quote-author">– Albus Dumbledore & Severus Snape, Harry Potter</cite>
+            </article>
+
         </div>
 
+         <section class="external-links-section">
+             <h2 class="secondary-title">Further Frequencies</h2>
+             <ul class="external-links">
+                <li><a href="https://www.goodreads.com/work/quotes/21905102-a-court-of-thorns-and-roses" target="_blank" rel="noopener noreferrer">ACOTAR Quote Signals</a></li>
+                <li><a href="https://www.goodreads.com/work/quotes/11138426-throne-of-glass" target="_blank" rel="noopener noreferrer">Throne of Glass Quote Signals</a></li>
+             </ul>
+         </section>
 
-      <h3>Quotes from A Court of Thorns and Roses</h3>
-      <div class="quote">
-        <span>"To the stars who listen—and the dreams that are answered."</span>
-      </div>
-      <div class="quote">
-        <span>"You do not fear. You do not falter. You do not yield." – Rhysand</span>
-      </div>
+    </main>
 
-      <h3>Quotes from Empyrean Series</h3>
-       <div class="quote">
-          <span>"I would rather lose this entire war than live without you, and if that means I have to prove myself over and over, then I'll do it. You gave me your heart, and I'm keeping it." – Xaden</span>
-        </div>
+    <footer class="site-footer">
+         <p>&copy; 2025 Boundless Pages Command Center. All rights reserved.</p>
+    </footer>
 
-      <h3>Other Favorites</h3>
-       <div class="quote">
-          <span>"If you live to be a hundred, I want to live to be a hundred minus one day, so I never have to live without you." – A.A. Milne: Winnie The Pooh</span>
-        </div>
-        <div class="quote">
-          <span>"Even the smallest person can change the course of the future." – J.R.R. Tolkien</span>
-        </div>
-        <div class="quote">
-          <span>"Not all those who wander are lost." – J.R.R. Tolkien</span>
-        </div>
-        <div class="quote">
-          <span>“‘Even after all this time?’ ‘Always.’” – Albus Dumbledore to Severus Snape: Harry Potter</span>
-        </div>
-
-
-      <div class="title-box">
-        <span>Common Quote Themes</span>
-      </div>
-      <ul class="theme-list">
-        <li>Love</li>
-        <li>Courage</li>
-        <li>Friendship</li>
-        <li>Adventure</li>
-        <li>Loss</li>
-      </ul>
-
-      <div class="quote-links">
-          <a href="https://www.goodreads.com/work/quotes/21905102-a-court-of-thorns-and-roses" target="_blank" rel="noopener noreferrer">📖 A Court of Thorns and Roses Quotes</a>
-          <a href="https://www.goodreads.com/work/quotes/11138426-throne-of-glass" target="_blank" rel="noopener noreferrer">✨ Throne of Glass Quotes</a>
-      </div>
-    </div>
-
-     </main>
-
-  <footer class="site-footer">
-    <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
-  </footer>
-
-  <script src="js/book_button_script.js"></script>
+    <script src="js/atomic_nav.js"></script>
 </body>
-
 </html>

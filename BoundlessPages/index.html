@@ -1,67 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boundless Pages - Atomic Edition</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Caveat&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="Images/my_icon.png">
-  <title>Boundless Pages</title>
-  <link rel="stylesheet" href="css/responsive_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/atomic_styles.css">
 
-</head>
-
+    </head>
 <body>
-  <header class="site-header">
-    <div class="title-container">
-      <div class="typewriter-box">
-        <h1>Boundless Pages</h1>
-      </div>
-      <div class="book-button" onclick="toggleLinks()">
-        <div class="book-links" id="book-links">
-          <a href="index.html">Home</a>
-          <a href="Mylibrary.html">My Library</a>
-          <a href="Myfavoritebookquotes.html">Favorite Quotes</a>
-          <a href="BookToMovie.html">Books to Movies</a>
-          <a href="Contact.html">Contact</a> </div>
-      </div>
-    </div>
-  </header>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Boundless Pages</a>
+            </div>
+            <nav class="main-nav" id="main-nav">
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Mylibrary.html">Library</a></li>
+                    <li><a href="Myfavoritebookquotes.html">Quotes</a></li>
+                    <li><a href="BookToMovie.html">Book vs Movie</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <main class="content-box page-index">
-    <h2>Turning Pages, Discovering Worlds</h2>
-    <h3>Unlock the Magic of Stories</h3>
-    <p>
-      Books have the power to transport us to faraway places, introduce us to incredible characters, and spark our imagination
-      like nothing else. Whether you're reading a thrilling mystery or an inspiring biography, there's always something to
-      learn and enjoy.
-    </p>
-    <p>
-      From ancient tales to modern masterpieces, books remain a timeless source of entertainment, knowledge, and inspiration
-      for all generations.
-    </p>
-    <hr>
-    <ul class="external-links">
-      <li><a href="https://www.goodreads.com" target="_blank" rel="noopener noreferrer">Visit Goodreads</a></li>
-      <li><a href="https://www.nytimes.com/section/books" target="_blank" rel="noopener noreferrer">NY Times Book Reviews</a></li>
-      <li><a href="https://www.gutenberg.org" target="_blank" rel="noopener noreferrer">Free Classics on Project Gutenberg</a></li>
-      <li><a href="https://www.bookbub.com" target="_blank" rel="noopener noreferrer">Find Your Next Favorite Book</a></li>
-    </ul>
-    <hr>
-    <div class="image-container">
-        <img src="Images/CozyBookCorner.png" alt="Cozy reading corner with books and plants">
-        <img src="Images/OnyxStormDedication.png" alt="Dedication page from the book Onyx Storm">
-    </div>
-  </main>
+    <main class="content-container page-home">
+        <section class="hero">
+            <h1 class="main-title">Blast Off Into Reading!</h1>
+            <p class="subtitle">Explore galaxies of stories and universes of imagination.</p>
+            <a href="Mylibrary.html" class="cta-button">Explore the Library</a>
+        </section>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Boundless Pages. All rights reserved.</p>
-  </footer>
+        <section class="features">
+            <h2 class="secondary-title">Discover Our Sections</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3 class="tertiary-title">My Library</h3>
+                    <p>Browse a collection of fantastic reads.</p>
+                    <a href="Mylibrary.html">Go to Library</a>
+                </div>
+                <div class="feature-card">
+                    <h3 class="tertiary-title">Favorite Quotes</h3>
+                    <p>Get inspired by memorable lines.</p>
+                    <a href="Myfavoritebookquotes.html">See Quotes</a>
+                </div>
+                <div class="feature-card">
+                    <h3 class="tertiary-title">Book vs. Movie</h3>
+                    <p>See how the stories translate to screen.</p>
+                    <a href="BookToMovie.html">Compare Now</a>
+                </div>
+                 <div class="feature-card">
+                    <h3 class="tertiary-title">Contact Us</h3>
+                    <p>Share your thoughts or suggestions.</p>
+                    <a href="Contact.html">Get in Touch</a>
+                </div>
+            </div>
+        </section>
 
-  <script src="js/book_button_script.js"></script>
+         <section class="external-links-section">
+             <h2 class="secondary-title">Outer Rim Resources</h2>
+             <ul class="external-links">
+                <li><a href="https://www.goodreads.com" target="_blank" rel="noopener noreferrer">Goodreads Galaxy</a></li>
+                <li><a href="https://www.nytimes.com/section/books" target="_blank" rel="noopener noreferrer">NY Times Nebula</a></li>
+                <li><a href="https://www.gutenberg.org" target="_blank" rel="noopener noreferrer">Project Gutenberg Archive</a></li>
+                <li><a href="https://www.bookbub.com" target="_blank" rel="noopener noreferrer">BookBub Black Hole</a></li>
+             </ul>
+         </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Boundless Pages Command Center. All rights reserved.</p>
+    </footer>
+
+    <script src="js/atomic_nav.js"></script>
 </body>
 </html>
