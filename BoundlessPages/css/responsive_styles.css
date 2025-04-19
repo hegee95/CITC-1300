@@ -87,10 +87,6 @@ hr {
 }
 
 .typewriter-box {
-    /* Optional: Add background/padding if needed, or style h1 directly */
-    /* background-color: #d4f0e8; */
-    /* padding: 10px; */
-    /* border-radius: 8px; */
     display: inline-block; /* Or block */
     position: relative; /* Needed for caret */
     vertical-align: middle; /* Align with button */
@@ -109,31 +105,22 @@ hr {
     animation: typing 3.5s steps(30, end) forwards, /* Run typing once */
                blink-caret 0.75s step-end infinite;
     width: 0; /* Start with zero width for animation */
-    /* Ensure it doesn't inherit other h1 styles that conflict */
     padding: 0;
     background: none;
     box-shadow: none;
 }
 
-/* Optional: Fade out caret after typing finishes */
-/* Add a class 'typing-done' via JS after animation, or use animation delay */
-/* Simpler: Use animation delay on caret fade-out */
-.typewriter-box h1::after { /* Using pseudo-element for potentially better control */
+.typewriter-box h1::after {
     content: "";
     position: absolute;
-    right: -3px; /* Position next to border */
+    right: -3px;
     top: 0;
     bottom: 0;
     width: 3px;
-    background-color: transparent; /* Use border instead */
-    /* This pseudo-element doesn't seem necessary if border-right is used */
-    /* Keeping structure from original file if needed */
-    /* animation: blink-caret 0.75s step-end infinite, fade-out-caret 2s ease-in-out 3.5s forwards; */
-    /* opacity: 1; */
+    background-color: transparent;
 }
 
-/* Style for title box on quotes page (if different) */
-.title-box span { /* Assuming this is the element on quotes page */
+.title-box span { /* Style for title box on quotes page (if different) */
     border-right: 2px solid #000;
     /* Apply typing/blink animations if needed */
     /* animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite; */
@@ -159,7 +146,7 @@ hr {
 }
 
 /* Optional: Text hint inside button */
-/*
+
 .book-button::after {
     content: "Menu"; // Or "Click Me"
     position: absolute;
@@ -171,7 +158,7 @@ hr {
     font-weight: bold;
     font-family: 'Roboto', sans-serif; // Match site font
 }
-*/
+
 
 .book-button.flipping { /* If using flipping animation from original JS */
     background: url(../Images/Flippingpages.png) no-repeat center center;
@@ -321,8 +308,7 @@ hr {
 
 .book-item-spine img, /* Used in Mylibrary.html */
 .comparison-item-image img { /* Used in BookToMovie.html */
-  width: 80%; /* Responsive width within grid item */
-  max-width: 150px; /* Max size */
+  width: 80px; /* Explicit width */
   height: auto;
   margin: 0 auto; /* Center image */
   display: block;
@@ -531,55 +517,112 @@ hr {
 }
 
 
-/* Contact Page */
-.page-contact h2, .page-contact p {
+/* --- Contact Page Styles --- */
+.page-contact h2 { /* Style heading */
     text-align: center;
     margin-bottom: 20px;
+    font-family: 'Caveat', cursive; /* Example theme font */
+    font-size: 2rem;
 }
+
+/* Parchment background container */
+.parchment-background {
+    background-color: #f5eecf; /* Parchment color */
+    /* Optional texture using gradient */
+    background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 4px 4px; /* Adjust texture density */
+    border: 1px solid #d2b48c; /* Tan border */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+/* Contact Info section */
+.contact-info h2 {
+    font-size: 1.8rem; /* Slightly smaller */
+    margin-bottom: 15px;
+    color: #5C4033; /* Dark brown */
+    text-align: left; /* Align left in its column */
+    font-family: 'Cookie', cursive; /* Match other headings */
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: #4a4a4a;
+    text-align: left; /* Align left */
+}
+
+/* Contact Form Container */
+.contact-form-container {
+    /* Styles for the form container itself, if needed */
+}
+
 .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
+    /* Form styles */
 }
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px; /* Increased spacing */
 }
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-weight: bold;
+    color: #4a4a4a; /* Slightly muted label color */
+    text-align: left;
 }
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 12px; /* More padding */
+    border: 1px solid #c5b8a5; /* Border matching parchment */
     border-radius: 4px;
-    font-family: inherit; /* Use body font */
+    font-family: inherit;
+    background-color: #fffdf5; /* Slightly off-white input background */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: #a07d5a; /* Highlight color on focus */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06), 0 0 5px rgba(160, 125, 90, 0.4);
+    outline: none; /* Remove default outline */
+}
+
 .form-group textarea {
-    resize: vertical; /* Allow vertical resize */
+    resize: vertical;
+    min-height: 120px; /* Minimum height */
 }
 .submit-button {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #005f6b; /* Theme color */
+    background-color: #a07d5a; /* Button color matching theme */
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
 }
 .submit-button:hover {
-    background-color: #004c57;
+    background-color: #8c6d4e; /* Darker hover */
 }
+.submit-button:active {
+    transform: scale(0.98); /* Click effect */
+}
+
 #form-status {
     text-align: center;
     margin-top: 15px;
     font-weight: bold;
 }
+/* --- End Contact Page Styles --- */
 
 
 /* --- Tablet Styles --- */
@@ -615,10 +658,22 @@ hr {
       height: 500px; /* Taller screen */
   }
 
+  /* Contact Page Tablet Layout */
+  .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr; /* Info | Form */
+      gap: 30px; /* Space between columns */
+      align-items: start; /* Align items to the top */
+  }
+  .contact-info, .contact-form-container {
+      margin-top: 0; /* Remove top margin when in columns */
+  }
+
   .submit-button {
       width: auto; /* Allow button to size to content */
       padding: 12px 30px;
       margin: 0 auto; /* Center button */
+      display: table; /* Another way to center */
   }
 }
 
@@ -639,7 +694,6 @@ hr {
     gap: 30px;
   }
 
-  /* Make popups slightly larger on desktop */
   .popup-content,
   .tv-screen {
       width: 70%;
@@ -649,22 +703,11 @@ hr {
       height: 550px; /* Even taller */
    }
 
-   /* Optional: Reintroduce pop-up positioning relative to item? */
-   /* This is complex and might conflict with fixed modal. Sticking to modal. */
-   /* Example (DO NOT USE without careful testing): */
-   /*
-   .book-item.open .book-popup,
-   .comparison-item.open .tv-popup {
-        position: absolute;
-        top: auto;
-        left: 50%;
-        bottom: calc(100% + 10px);
-        width: 450px;
-        height: auto;
-        transform: translateX(-50%);
-        margin: 0;
+   /* Contact Page Desktop Layout */
+   .contact-layout {
+        gap: 40px; /* Increase gap */
+        grid-template-columns: 1fr 2fr; /* More space for form */
    }
-   */
 }
 
 /* --- Desktop Styles - Larger Screens --- */
