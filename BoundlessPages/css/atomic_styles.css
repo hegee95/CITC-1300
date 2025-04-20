@@ -132,7 +132,7 @@ h3, .tertiary-title {
   margin: 30px auto;
   padding: 20px;
   /* --- UPDATED: Darker Background --- */
-  background-color: rgba(44, 62, 80, 0.85); /* Dark blue-grey from --clr-text, semi-transparent */
+  background-color: var(--clr-dark-bg); /* Use dark variable */
   color: var(--clr-bg); /* Default light text color for dark background */
   border-radius: var(--radius-med);
   box-shadow: var(--shadow-light);
@@ -314,8 +314,7 @@ h3, .tertiary-title {
 .page-home .hero {
     text-align: center;
     padding: 40px 20px;
-    /* Keep hero light or make it dark too? Let's keep light for now */
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8); /* Keep hero light */
     border-radius: var(--radius-med);
     margin-bottom: 40px;
     color: var(--clr-text); /* Ensure text is dark on light hero */
@@ -327,10 +326,6 @@ h3, .tertiary-title {
 .page-home .hero .subtitle {
     color: var(--clr-text); /* Ensure subtitle is dark */
 }
-.page-home .hero .cta-button {
-     /* Styles fine as is */
-}
-
 
 .features { margin-bottom: 40px; }
 .feature-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
@@ -367,8 +362,7 @@ h3, .tertiary-title {
 }
 .external-links { list-style: none; padding: 0; text-align: center; }
 .external-links li { margin-bottom: 10px; }
-.external-links a { color: var(--clr-accent); } /* Standard link color */
-.external-links a:hover { color: var(--clr-secondary); }
+/* Links inside inherit from .content-container a */
 
 
 /* --- Quotes Page (Neon Sign Style - Toned Down) --- */
@@ -378,38 +372,39 @@ h3, .tertiary-title {
     grid-template-columns: 1fr; /* Mobile default */
 }
 .quote-card {
-    background-color: var(--clr-dark-bg); /* Dark background */
+    background-color: var(--clr-dark-bg);
     padding: 30px;
     border-radius: var(--radius-med);
-    border: 3px solid var(--clr-neon-pink); /* Neon border */
-    box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4); /* Toned down glow + inset */
+    border: 3px solid var(--clr-neon-pink);
+    box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4);
     position: relative;
-    color: #fff; /* Light base text for dark bg */
+    color: #fff;
 }
 
 .quote-text {
     font-size: 1.4rem;
     font-style: normal;
     margin-bottom: 1em;
-    color: var(--clr-neon-pink); /* Neon text color */
-    text-shadow: var(--shadow-neon-pink-text-subtle); /* Toned down glow */
-    font-family: var(--font-neon); /* Use Tilt Neon */
+    color: var(--clr-neon-pink);
+    text-shadow: var(--shadow-neon-pink-text-subtle);
+    font-family: var(--font-neon);
     line-height: 1.5;
 }
 .quote-author {
     font-style: normal;
-    font-weight: normal; /* Neon fonts often look better normal weight */
-    color: var(--clr-neon-cyan); /* Contrasting neon */
-    text-shadow: var(--shadow-neon-cyan-text-subtle); /* Toned down glow */
+    font-weight: normal;
+    color: var(--clr-neon-cyan);
+    text-shadow: var(--shadow-neon-cyan-text-subtle);
     display: block;
     text-align: right;
     margin-top: 10px;
-    font-size: 1.1rem; /* Slightly larger */
-    font-family: var(--font-neon); /* Use Tilt Neon */
+    font-size: 1.1rem;
+    font-family: var(--font-neon);
 }
 
 
 /* Library & Book-Movie Pages Grid */
+/* Base grid style */
 .item-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -428,11 +423,9 @@ h3, .tertiary-title {
   border: 2px solid var(--clr-secondary);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-/* Ensure text inside grid item is dark */
 .grid-item .item-title {
-    color: var(--clr-text);
+    color: var(--clr-text); /* Ensure dark text on light bg */
 }
-
 .grid-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-strong);
@@ -482,14 +475,14 @@ h3, .tertiary-title {
 
 /* Unified modal content style */
 .modal-content {
-  background-color: var(--clr-dark-bg); /* Dark background */
-  color: #eee; /* Light base text */
+  background-color: var(--clr-dark-bg);
+  color: #eee;
   max-width: 700px;
   width: 90%;
-  padding: 50px 30px 60px 30px; /* Padding: Top, RL, Bottom */
-  border: 3px solid var(--clr-neon-cyan); /* Neon border - Cyan */
+  padding: 50px 30px 60px 30px;
+  border: 3px solid var(--clr-neon-cyan);
   border-radius: var(--radius-med);
-  box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); /* Neon glow + inset */
+  box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5);
   position: relative;
   max-height: 85vh;
   display: flex;
@@ -499,9 +492,9 @@ h3, .tertiary-title {
 
 /* Style headings inside the unified modal */
 .modal-content h3 {
-    font-family: var(--font-neon); /* Use Tilt Neon */
-    font-size: 1.6rem; /* Adjust size */
-    color: var(--clr-neon-cyan); /* Match border */
+    font-family: var(--font-neon);
+    font-size: 1.6rem;
+    color: var(--clr-neon-cyan);
     text-shadow: var(--shadow-neon-cyan-text-subtle);
     text-align: center;
     margin-bottom: 1em;
@@ -510,8 +503,8 @@ h3, .tertiary-title {
 
 /* Style paragraphs inside the unified modal */
 .modal-content p {
-    font-family: var(--font-body); /* Poppins for readability */
-    color: #e0e0e0; /* Light grey text */
+    font-family: var(--font-body);
+    color: #e0e0e0;
     font-size: 1rem;
     line-height: 1.7;
     margin-bottom: 1em;
@@ -539,7 +532,7 @@ h3, .tertiary-title {
   position: absolute;
   bottom: 15px;
   background-color: transparent;
-  color: var(--clr-neon-pink); /* Pink neon */
+  color: var(--clr-neon-pink);
   border: 2px solid var(--clr-neon-pink);
   border-radius: 50%;
   width: 40px;
@@ -552,7 +545,7 @@ h3, .tertiary-title {
   align-items: center;
   justify-content: center;
   line-height: 1;
-  box-shadow: var(--shadow-neon-pink-box-subtle); /* Pink glow */
+  box-shadow: var(--shadow-neon-pink-box-subtle);
   transition: all 0.2s ease;
   pointer-events: auto;
 }
@@ -580,9 +573,9 @@ h3, .tertiary-title {
 /* Close Button (Common inside modal - Neon Theme) */
 .modal-content .close-button {
   position: absolute;
-  top: -18px; /* Position outside */
+  top: -18px;
   right: -18px;
-  background: var(--clr-neon-pink); /* Match pagination */
+  background: var(--clr-neon-pink);
   color: var(--clr-dark-bg);
   border: 3px solid var(--clr-dark-bg);
   font-size: 1.5rem;
@@ -602,24 +595,25 @@ h3, .tertiary-title {
   pointer-events: auto;
 }
 .modal-content .close-button:hover {
-    background: var(--clr-neon-cyan); /* Contrasting hover */
+    background: var(--clr-neon-cyan);
     border-color: var(--clr-dark-bg);
     color: var(--clr-dark-bg);
-    transform: scale(1.1); /* Simpler hover */
+    transform: scale(1.1);
     box-shadow: var(--shadow-neon-cyan-box-subtle);
 }
 
 
 /* --- Contact Page Styles --- */
-/* Ensure headings/text in info column are light on dark container */
+/* Text in info column inherits light color from dark .content-container */
 .page-contact .contact-info h2 {
-    color: var(--clr-primary); /* Light teal */
-}
-.page-contact .contact-info p {
-     color: var(--clr-bg); /* Light text */
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: var(--font-secondary-title);
+    font-size: 1.8rem;
+    color: var(--clr-primary); /* Light teal for visibility */
 }
 
-/* --- Option 2: Simple Neon Form Styles (Chosen) --- */
+/* Simple Neon Form Styles (Chosen) */
 .simple-neon-form {
     background-color: rgba(255, 255, 255, 0.8); /* Simple light background */
     border-radius: var(--radius-med);
@@ -692,13 +686,14 @@ h3, .tertiary-title {
     color: var(--clr-accent); /* Form status text color */
     font-family: var(--font-body);
     font-size: 1rem;
-    margin-top: 20px;
+     margin-top: 20px;
 }
 /* --- End Contact Page Styles --- */
 
 
 /* --- Tablet Styles --- */
 @media (min-width: 600px) {
+  /* General grids */
   .item-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -730,10 +725,17 @@ h3, .tertiary-title {
    .main-nav li { margin: 0 0 0 25px; text-align: left; }
 
 
-  .item-grid {
+  /* Library Grid: 3 columns */
+  .page-library .item-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
   }
+  /* BookVsMovie Grid: 2 columns */
+   .page-book-movie .item-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
 
   .modal-content {
       width: 80%;
@@ -750,10 +752,9 @@ h3, .tertiary-title {
   .contact-info {
       padding-right: 20px;
   }
-  .control-panel-form, .simple-neon-form { /* Apply to chosen style */
+  .simple-neon-form { /* Apply to chosen style */
        margin-top: 0; /* Remove top margin when in columns */
   }
-  .control-panel-form .submit-button,
   .simple-neon-form .submit-button { /* Apply to chosen style */
       width: auto;
       padding: 10px 30px;
@@ -770,13 +771,19 @@ h3, .tertiary-title {
     padding: 40px;
   }
 
-  .item-grid {
+  /* Library Grid: Still 3 columns */
+   .page-library .item-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+  }
+  /* BookVsMovie Grid: 4 columns */
+   .page-book-movie .item-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 35px;
   }
-
+  /* Quotes Grid: 3 columns */
    .quotes-list {
-      grid-template-columns: repeat(3, 1fr); /* 3 columns for quotes */
+      grid-template-columns: repeat(3, 1fr);
    }
 
   .modal-content {
@@ -793,7 +800,16 @@ h3, .tertiary-title {
 
 /* --- Desktop Styles - Larger Screens --- */
 @media (min-width: 1200px) {
-    .item-grid {
-        grid-template-columns: repeat(5, 1fr);
+    /* Library Grid: Still 3 columns */
+    .page-library .item-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+     /* BookVsMovie Grid: Still 4 columns */
+    .page-book-movie .item-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    /* Feature Grid */
+    .feature-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 features */
     }
 }
