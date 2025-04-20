@@ -24,10 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Optional: Close menu if clicking outside on mobile/tablet
         document.addEventListener('click', (event) => {
+            // Check if mainNav exists and is open before proceeding
+            // Also check if navToggle exists before trying to access contains method
+            if (!mainNav || !mainNav.classList.contains('nav-open') || !navToggle) {
+                return;
+            }
+
             const isClickInsideNav = mainNav.contains(event.target);
             const isClickOnToggle = navToggle.contains(event.target);
 
-            if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('nav-open')) {
+            if (!isClickInsideNav && !isClickOnToggle) {
                 console.log("Clicked outside nav, closing menu."); // Debug log
                 mainNav.classList.remove('nav-open');
                 navToggle.classList.remove('active');
@@ -36,6 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     } else {
-        console.error("Navigation toggle button or main nav element not found!");
+        console.error("Navigation toggle button or main nav element not found! Ensure IDs 'nav-toggle' and 'main-nav' exist.");
     }
 });

@@ -1,7 +1,7 @@
 /**
  * atomic_library.js (Atomic Age Redesign)
  * Handles interactions for the library grid in Mylibrary.html
- * Uses event delegation.
+ * Uses event delegation and a single decoupled modal.
  * Includes refined "click outside" logic.
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,169 +25,247 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Stop if no grid found for this page
         }
     }
-     console.log("Library grid container found:", gridContainer); // Log 2: Grid found
+     console.log("Grid container found:", gridContainer); // Log 2: Grid found
+
+    // Find the single modal elements
+    const mainModal = document.getElementById('main-modal');
+    const modalContainer = mainModal?.querySelector('.modal-container'); // The styled box inside overlay
+    const modalBody = mainModal?.querySelector('.modal-body'); // Where content goes
+    const modalCloseButton = mainModal?.querySelector('.close-button'); // The single close button
+
+    if (!mainModal || !modalContainer || !modalBody || !modalCloseButton) {
+        console.error("Essential modal elements (#main-modal, .modal-container, .modal-body, .close-button) not found!");
+        return;
+    }
+    console.log("Main modal elements found."); // Log 3: Modal elements found
 
 
-    let currentlyOpenItem = null; // Track the currently open item
+    let currentlyOpenTrigger = null; // Track which item opened the modal
 
     // --- Helper Function for Pagination ---
-    function setupPagination(gridItemElement) {
-        console.log("Setting up pagination for:", gridItemElement?.id); // Log P1: Setup start
-        const popup = gridItemElement?.querySelector('.modal-popup');
-        const contentArea = popup?.querySelector('.synopsis'); // Specific content class for library
-        const pages = contentArea?.querySelectorAll('.modal-page'); // Use generic page class
-        const modalContent = popup?.querySelector('.modal-content'); // Container for buttons
+    function setupPagination(modalBodyContainer, themeClass) {
+        // Select pages within the *currently loaded* modal body
+        const pages = modalBodyContainer?.querySelectorAll('.modal-page');
+        console.log("Setting up pagination inside modal. Found pages:", pages?.length); // Log P1
 
-        if (!contentArea || !pages || pages.length <= 1 || !modalContent) {
-             console.log("No pagination needed or elements missing for:", gridItemElement?.id); // Log P2: No pagination
-             modalContent?.querySelector('.pagination-button.prev')?.remove();
-             modalContent?.querySelector('.pagination-button.next')?.remove();
+        // Remove previous buttons first
+        modalContainer.querySelectorAll('.pagination-button').forEach(btn => btn.remove());
+
+        if (!pages || pages.length <= 1) {
+             console.log("No pagination needed."); // Log P2
             return; // No pagination needed
         }
-        console.log(`Found ${pages.length} pages for:`, gridItemElement.id); // Log P3: Pages found
+        console.log(`Found ${pages.length} pages.`); // Log P3
 
         let currentPageIndex = 0;
 
         // --- Create Buttons ---
-        modalContent.querySelector('.pagination-button.prev')?.remove();
-        modalContent.querySelector('.pagination-button.next')?.remove();
-
         const prevButton = document.createElement('button');
         prevButton.classList.add('pagination-button', 'prev');
         prevButton.innerHTML = '&lt;'; // Or use SVG/Icon font
         prevButton.disabled = true;
-        modalContent.appendChild(prevButton);
+        modalContainer.appendChild(prevButton); // Append to modal container
 
         const nextButton = document.createElement('button');
         nextButton.classList.add('pagination-button', 'next');
         nextButton.innerHTML = '&gt;'; // Or use SVG/Icon font
-        modalContent.appendChild(nextButton);
-        console.log("Pagination buttons created for:", gridItemElement.id); // Log P4: Buttons created
+        modalContainer.appendChild(nextButton);
+        console.log("Pagination buttons created."); // Log P4
 
         const showPage = (index) => {
-            console.log(`Showing page ${index} for:`, gridItemElement.id); // Log P5: Show page
+            console.log(`Showing page ${index}`); // Log P5
             pages.forEach((page, i) => {
                 page.classList.toggle('active', i === index);
             });
             prevButton.disabled = index === 0;
             nextButton.disabled = index === pages.length - 1;
             currentPageIndex = index;
-             const activePage = contentArea.querySelector('.modal-page.active');
+             const activePage = modalBodyContainer.querySelector('.modal-page.active');
              if(activePage) activePage.scrollTop = 0;
         };
 
         showPage(currentPageIndex); // Show first page
 
-        prevButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            console.log("Prev button clicked for:", gridItemElement.id); // Log P6: Prev click
-            if (currentPageIndex > 0) showPage(currentPageIndex - 1);
-        });
+        // Use event delegation for pagination buttons as well, attached to modal container
+        // This avoids issues if buttons are removed/re-added frequently
+        // We store the handler function to remove it later if needed
+        const paginationClickHandler = (e) => {
+             if (e.target === prevButton) {
+                 e.stopPropagation();
+                 console.log("Prev button clicked."); // Log P6
+                 if (currentPageIndex > 0) showPage(currentPageIndex - 1);
+             } else if (e.target === nextButton) {
+                 e.stopPropagation();
+                 console.log("Next button clicked."); // Log P7
+                 if (currentPageIndex < pages.length - 1) showPage(currentPageIndex + 1);
+             }
+         };
 
-        nextButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            console.log("Next button clicked for:", gridItemElement.id); // Log P7: Next click
-            if (currentPageIndex < pages.length - 1) showPage(currentPageIndex + 1);
-        });
+        // Store reference to handler for removal later
+        modalContainer._paginationHandler = paginationClickHandler;
+        modalContainer.addEventListener('click', paginationClickHandler);
 
-        gridItemElement.resetPagination = () => {
-            console.log("Resetting pagination for:", gridItemElement.id); // Log P8: Reset
-            showPage(0);
-        }
-        gridItemElement.removePagination = () => {
-             console.log("Removing pagination buttons for:", gridItemElement.id); // Log P9: Remove buttons
+        // Function to remove pagination elements and listener
+        modalContainer.removePagination = () => {
+             console.log("Removing pagination elements and listener."); // Log P9
              prevButton.remove();
              nextButton.remove();
+             // Check if handler exists before trying to remove
+             if (modalContainer._paginationHandler) {
+                 modalContainer.removeEventListener('click', modalContainer._paginationHandler);
+                 delete modalContainer._paginationHandler; // Clean up reference
+             }
          }
+
     } // --- End setupPagination ---
 
-    // --- Function to close an item ---
-    function closeItem(gridItem) {
-        if (!gridItem || !gridItem.classList.contains('open')) return;
-        console.log("Closing item:", gridItem.id); // Log CL1: Closing item
-        gridItem.classList.remove('open');
-        const audio = gridItem.querySelector('audio');
-        if (typeof gridItem.resetPagination === 'function') gridItem.resetPagination();
-        if (audio) { audio.pause(); audio.currentTime = 0; }
-        currentlyOpenItem = null; // Reset tracker
+     // --- Function to open the modal ---
+    function openModal(targetContentId, themeClass) {
+        const contentSource = document.getElementById(targetContentId?.substring(1)); // Get ID without #
+        const audio = currentlyOpenTrigger?.querySelector('audio'); // Get audio from the trigger item
+
+        if (!contentSource) {
+            console.error(`Content source element not found for ID: ${targetContentId}`);
+            return;
+        }
+        if (!modalBody || !mainModal || !modalContainer) {
+             console.error("Cannot open modal, essential elements missing.");
+             return;
+        }
+
+        console.log(`Opening modal with content from ${targetContentId} and theme ${themeClass}`); // Log O1
+
+        // Clear previous content and theme
+        modalBody.innerHTML = '';
+        modalContainer.className = 'modal-container'; // Reset to base class
+
+        // Clone content pages and append to modal body
+        // Wrap content in appropriate container (.synopsis or .comparison-content)
+        let contentWrapperClass = themeClass === 'neon-sign-modal' ? 'synopsis' : 'synopsis'; // Defaulting to synopsis for library
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = contentWrapperClass;
+        Array.from(contentSource.children).forEach(page => {
+            contentWrapper.appendChild(page.cloneNode(true));
+        });
+        modalBody.appendChild(contentWrapper);
+        console.log("Modal body populated."); // Log O2
+
+        // Add the theme class to the container
+        if(themeClass) {
+            modalContainer.classList.add(themeClass);
+        }
+
+        // Setup pagination for the newly added content
+        setupPagination(modalBody, themeClass);
+
+        // Show the modal
+        mainModal.classList.add('open');
+        mainModal.setAttribute('aria-hidden', 'false');
+        console.log("Modal open class added."); // Log O3
+
+        // Play sound
+        if (audio) {
+            audio.volume = 1.0; // Adjust volume if needed
+            audio.currentTime = 0;
+            audio.play().catch(error => console.error("Audio play failed:", error));
+        }
     }
 
-    // --- Main Click Handler using Event Delegation ---
-    gridContainer.addEventListener('click', (event) => {
-        console.log("Click detected inside library grid. Target:", event.target); // Log C1: Grid click
+    // --- Function to close the modal ---
+    function closeModal() {
+        if (!mainModal.classList.contains('open')) return; // Already closed
 
-        const clickedImage = event.target.closest('.item-image img');
-        const clickedCloseButton = event.target.closest('.modal-content .close-button'); // More specific selector
+        console.log("Closing modal."); // Log CL1
+        mainModal.classList.remove('open');
+        mainModal.setAttribute('aria-hidden', 'true');
 
-        // --- Handle Image Click ---
-        if (clickedImage) {
-            const gridItem = clickedImage.closest('.grid-item');
-            if (!gridItem) {
-                 console.error("Could not find parent .grid-item for clicked image:", clickedImage);
-                 return;
+        // Stop audio associated with the item that opened the modal
+        if (currentlyOpenTrigger) {
+            const audio = currentlyOpenTrigger.querySelector('audio');
+            if (audio) { audio.pause(); audio.currentTime = 0; }
+        }
+
+        // Remove pagination buttons and listener
+        if (typeof modalContainer.removePagination === 'function') {
+            modalContainer.removePagination();
+        }
+
+        // Clear content after fade out (optional, helps reset state)
+        setTimeout(() => {
+            if (!mainModal.classList.contains('open')) { // Check if still closed
+                 modalBody.innerHTML = '';
+                 modalContainer.className = 'modal-container'; // Reset theme
+                 console.log("Modal content cleared."); // Log CL2
             }
+        }, 300); // Match CSS opacity transition duration
 
-            console.log("Item image clicked:", gridItem.id); // Log C2: Image click
-            const isAlreadyOpen = gridItem.classList.contains('open');
-            const audio = gridItem.querySelector('audio');
+        // currentlyOpenItem = null; // This variable wasn't defined/used consistently, using currentlyOpenTrigger
+        currentlyOpenTrigger = null; // Reset trigger tracker
+    }
 
-            // If clicking the currently open item's image, close it
-            if (isAlreadyOpen) {
-                closeItem(gridItem);
+    // --- Main Click Handler for Grid Items ---
+    gridContainer.addEventListener('click', (event) => {
+        console.log("Click detected inside library grid. Target:", event.target); // Log C1
+
+        // Find the grid item that was clicked (or contains the click target)
+        const gridItem = event.target.closest('.grid-item');
+        if (!gridItem) {
+            console.log("Click was not inside a grid item.");
+            return; // Click was not on an item or its descendant
+        }
+
+        // Check if an image inside the item was the primary target (or the item itself if no image)
+        const clickedImage = event.target.closest('.item-image img');
+        // Allow click on item itself if image isn't hit directly
+        // Also check that the click wasn't on a pagination button inside the modal triggered by THIS item
+        if ((clickedImage || event.target === gridItem || gridItem.contains(event.target)) && !event.target.closest('.pagination-button')) {
+
+            console.log("Grid item clicked:", gridItem.id); // Log C2
+
+            const targetContentId = gridItem.dataset.modalTarget; // Get #content-bookX
+            const targetTheme = gridItem.dataset.modalTheme || 'neon-sign-modal'; // Get theme or default
+
+            if (!targetContentId) {
+                console.error("Grid item is missing data-modal-target attribute:", gridItem.id);
                 return;
             }
 
-            // Close any other item that might be open
-            if (currentlyOpenItem && currentlyOpenItem !== gridItem) {
-                 closeItem(currentlyOpenItem);
-            }
-
-            // Open the new item
-            console.log("Opening item:", gridItem.id); // Log C4b: Opening item
-            gridItem.classList.add('open');
-            currentlyOpenItem = gridItem; // Track open item
-            setupPagination(gridItem);
-            if (audio) {
-                audio.volume = 1.0; // Adjust volume if needed
-                audio.currentTime = 0;
-                audio.play().catch(error => console.error("Audio play failed:", error));
-            }
-            return; // Stop processing click here
-        }
-
-        // --- Handle Close Button Click ---
-        if (clickedCloseButton) {
-            const gridItem = clickedCloseButton.closest('.grid-item'); // Find the grid item associated with the button
-            console.log("Close button element clicked:", clickedCloseButton); // Log C5: Close button element found
-            if (gridItem && gridItem.classList.contains('open')) {
-                console.log("Close button click confirmed for open item:", gridItem.id); // Log C6: Close confirmed
-                event.stopPropagation(); // Prevent triggering other listeners like 'click outside'
-                closeItem(gridItem); // Use close function
-                return; // Stop processing click here
+            // Close if already open (clicking the trigger again), otherwise open
+            if (currentlyOpenTrigger === gridItem) {
+                 closeModal();
             } else {
-                 console.log("Close button clicked, but parent item not found or not open."); // Log C7: Close invalid context
-                 console.log("GridItem found:", gridItem);
-                 console.log("GridItem has 'open' class:", gridItem?.classList.contains('open'));
+                // Close any potentially open modal first
+                if (currentlyOpenTrigger) {
+                    closeModal();
+                }
+                // Set the trigger and open
+                currentlyOpenTrigger = gridItem;
+                openModal(targetContentId, targetTheme);
             }
         }
-
     }); // End gridContainer click listener
 
-     // --- Refined Click Outside Listener ---
-     document.addEventListener('click', (event) => {
-         if (currentlyOpenItem) { // Only run if an item is open
-             const modalContent = currentlyOpenItem.querySelector('.modal-content');
-             const clickedImage = currentlyOpenItem.querySelector('.item-image img'); // Get the image that opened it
+    // --- Listener for Close Button ---
+    modalCloseButton.addEventListener('click', (event) => {
+         console.log("Modal close button clicked."); // Log CL3
+         event.stopPropagation(); // Prevent triggering click outside
+         closeModal();
+    });
 
-             // Check if the click target is NOT the modal content or anything inside it,
-             // AND also NOT the image that opened it
-             if (modalContent && !modalContent.contains(event.target) && event.target !== clickedImage) {
-                  // Also check it wasn't the close button itself (which handles its own closing)
-                 if (!event.target.closest('.close-button')) {
-                    console.log("Click detected outside open modal content and trigger image for:", currentlyOpenItem.id); // Log C8: Outside click
-                    closeItem(currentlyOpenItem); // Close the item
-                 }
-             }
+    // --- Listener for Click Outside Modal ---
+    mainModal.addEventListener('click', (event) => {
+        // Check if the click target is the overlay itself (and not the container/content or buttons)
+        if (event.target === mainModal) {
+             console.log("Click detected on modal overlay."); // Log CL4
+             closeModal();
+        }
+    });
+
+    // --- Listener for Escape Key ---
+     document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mainModal.classList.contains('open')) {
+             console.log("Escape key pressed."); // Log CL5
+             closeModal();
          }
      });
 

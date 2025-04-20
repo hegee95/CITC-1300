@@ -7,9 +7,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/atomic_styles.css">
+    <link rel="stylesheet" href="css/atomic_styles_v2.css">
 
     </head>
 <body>
@@ -39,88 +39,35 @@
          <h1 class="main-title page-title">Alternate Realities: Book vs. Screen</h1>
          <p class="page-intro">Tune in for a comparison transmission.</p>
 
-         <div class="item-grid comparison-grid"> <div class="grid-item comparison-item" id="item1">
-                <div class="item-image comparison-image"> <img src="Images/harrypottercompare.png" alt="Harry Potter Comparison">
+         <div class="item-grid comparison-grid"> <div class="grid-item comparison-item" id="item1" data-modal-target="#content-item1" data-modal-theme="neon-sign-modal">
+                <div class="item-image comparison-image">
+                    <img src="Images/harrypottercompare.png" alt="Harry Potter Comparison">
                 </div>
                  <h3 class="item-title">Harry Potter</h3>
-                 <div class="modal-popup tv-popup">
-                    <div class="modal-content"> <button class="close-button" aria-label="Close comparison">&times;</button>
-                        <div class="comparison-content"> <div class="modal-page comparison-page">
-                                <h3>Harry Potter: Book vs. Movie</h3>
-                                <p>The Harry Potter novels immerse readers deeply in the wizarding world through detailed descriptions and, crucially, Harry's internal perspective, allowing access to his thoughts, fears, and reasoning which films must translate visually or through dialogue. Many subplots, like Hermione's S.P.E.W. campaign or the full backstory of the Marauders, are significantly condensed or omitted entirely from the cinematic adaptations due to time constraints inherent in filmmaking. Furthermore, beloved characters such as the mischievous poltergeist Peeves or the house-elf Winky are completely absent from the movies, altering the texture and some events of the Hogwarts experience presented on screen compared to the richer tapestry woven by the books.</p>
-                            </div>
-                            <div class="modal-page comparison-page">
-                                <p>While the films deliver breathtaking visual interpretations of Hogwarts, magical creatures, and spellcasting, the books rely on the power of individual imagination, creating a uniquely personal connection to the world for each reader which visuals alone cannot replicate. The necessary streamlining for film often results in faster pacing, sometimes losing the slower, character-building moments or the intricate details of magical theory explored more thoroughly in the text. Additionally, the portrayal of certain characters' complexities, like Snape's nuanced motivations or Dumbledore's calculated ambiguity, can feel simplified in the visual medium compared to the gradual unfolding across hundreds of pages in the novels, impacting the depth of understanding.</p>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-                <audio id="soundItem1" src="sounds/atomic_popup.mp3" preload="auto"></audio>
+                 <audio id="soundItem1" src="sounds/atomic_popup.mp3" preload="auto"></audio>
             </div>
 
-             <div class="grid-item comparison-item" id="item2">
+             <div class="grid-item comparison-item" id="item2" data-modal-target="#content-item2" data-modal-theme="neon-sign-modal">
                 <div class="item-image comparison-image">
                     <img src="Images/lotrcompare.png" alt="Lord of the Rings Comparison">
                 </div>
                  <h3 class="item-title">Lord of the Rings</h3>
-                 <div class="modal-popup tv-popup">
-                    <div class="modal-content">
-                        <button class="close-button" aria-label="Close comparison">&times;</button>
-                        <div class="comparison-content">
-                           <div class="modal-page comparison-page">
-                                <h3>LOTR: Book vs. Movie</h3>
-                                <p>J.R.R. Tolkien's novels offer an unparalleled depth of world-building, featuring extensive histories, intricate languages, genealogies, and poems that enrich the narrative far beyond what Peter Jackson's film adaptations could feasibly include, creating a denser, more scholarly experience. The books delve much deeper into the lore and cultural nuances of Middle-earth's various races, providing context that the visually-focused films often imply rather than explicitly state. Consequently, the pacing of the books is considerably more measured, allowing for moments of reflection, travel descriptions, and character interactions that build the world gradually, contrasting with the films' necessarily more action-oriented and streamlined progression through the main plot points to fit the runtime.</p>
-                            </div>
-                            <div class="modal-page comparison-page">
-                                <p>While the films achieved legendary status for their stunning visual realization of Middle-earth and epic battle sequences, they inevitably made significant alterations and omissions from the source material, most famously excising characters like Tom Bombadil and the entire "Scouring of the Shire" sequence which provides crucial thematic closure. Character arcs were also modified for cinematic effect; Arwen's role, for instance, is greatly expanded in the movies, while Faramir's initial portrayal differs notably from his book counterpart before aligning more closely later. These changes, while often dramatically effective on screen, fundamentally alter certain character dynamics and thematic elements explored more subtly or differently within Tolkien's original text, offering distinct yet related experiences.</p>
-                            </div>
-                        </div>
-                        </div>
-                </div>
                 <audio id="soundItem2" src="sounds/atomic_popup.mp3" preload="auto"></audio>
             </div>
 
-             <div class="grid-item comparison-item" id="item3">
+             <div class="grid-item comparison-item" id="item3" data-modal-target="#content-item3" data-modal-theme="neon-sign-modal">
                 <div class="item-image comparison-image">
                     <img src="Images/hungergamescompare.png" alt="Hunger Games Comparison">
                 </div>
                  <h3 class="item-title">Hunger Games</h3>
-                 <div class="modal-popup tv-popup">
-                    <div class="modal-content">
-                        <button class="close-button" aria-label="Close comparison">&times;</button>
-                        <div class="comparison-content">
-                            <div class="modal-page comparison-page">
-                                <h3>Hunger Games: Book vs. Movie</h3>
-                                <p>Suzanne Collins' novels utilize a powerful first-person present tense narration, granting readers immediate and constant access to Katniss Everdeen's internal thoughts, fears, strategic calculations, and emotional turmoil, a perspective the films must externalize through performance, dialogue, or visual cues. This narrative choice in the books creates intense intimacy and allows for deeper exploration of Katniss's complex feelings about Peeta, Gale, and the Capitol's oppression, which the movies, while faithful, convey with less direct nuance. The visceral horror and psychological toll of the Games, including Katniss's specific injuries and survival tactics, are often depicted more graphically and unflinchingly in the text compared to the necessary constraints of the films' PG-13 rating.</p>
-                            </div>
-                            <div class="modal-page comparison-page">
-                                <p>The film adaptations excel at visually realizing the stark contrast between the impoverished districts and the opulent, technologically advanced Capitol, bringing the distinct aesthetics described in the books vividly to life on screen, including the elaborate costumes and arena designs. While generally very faithful to the plot, the movies streamline some secondary character arcs and relationships to maintain focus and pacing, potentially lessening the impact of figures like Madge or the full extent of Haymitch's backstory initially. The political machinations within the Capitol, particularly President Snow's perspective, are given slightly more screen time in the films, offering viewers insights that Katniss, as the narrator, wouldn't necessarily have in the books.</p>
-                            </div>
-                        </div>
-                        </div>
-                </div>
                 <audio id="soundItem3" src="sounds/atomic_popup.mp3" preload="auto"></audio>
             </div>
 
-            <div class="grid-item comparison-item" id="item4">
+            <div class="grid-item comparison-item" id="item4" data-modal-target="#content-item4" data-modal-theme="neon-sign-modal">
                 <div class="item-image comparison-image">
                     <img src="Images/twilightcompare.png" alt="Twilight Comparison">
                 </div>
                  <h3 class="item-title">Twilight</h3>
-                 <div class="modal-popup tv-popup">
-                    <div class="modal-content">
-                        <button class="close-button" aria-label="Close comparison">&times;</button>
-                        <div class="comparison-content">
-                           <div class="modal-page comparison-page">
-                                <h3>Twilight: Book vs. Movie</h3>
-                                <p>Stephenie Meyer's novel is deeply rooted in Bella Swan's internal monologue, extensively detailing her insecurities, obsessive thoughts about Edward, and moment-by-moment sensory experiences, creating a very specific, sometimes polarizing, narrative voice that the film adaptation translates into Kristen Stewart's performance and visual storytelling. The book allows for lengthy internal debates and descriptions of Edward's perceived perfection, whereas the movie relies more on dialogue, atmosphere, and the actors' chemistry to convey the intensity of their initial connection and Bella's infatuation. Details about vampire lore, such as the specifics of their abilities or the nuances of their societal structure, are often explained more explicitly in the text than shown or briefly mentioned on screen.</p>
-                            </div>
-                            <div class="modal-page comparison-page">
-                                <p>The film adaptation, directed by Catherine Hardwicke, established a distinct visual style with its blue color palette and atmospheric Pacific Northwest setting, effectively capturing the moody tone described in the book, even if deviating from some specific visual details like the infamous vampire sparkle effect. While the core plot remains largely intact, the pacing is necessarily faster in the movie, condensing conversations, relationship development, and certain events like the baseball scene or the confrontation with James to fit the cinematic format. Edward's perspective and internal conflict, later explored in Meyer's companion novel "Midnight Sun," are only hinted at through dialogue and Robert Pattinson's portrayal in the first film, leaving much of his character motivations less directly accessible than Bella's in the original book.</p>
-                            </div>
-                        </div>
-                        </div>
-                </div>
                 <audio id="soundItem4" src="sounds/atomic_popup.mp3" preload="auto"></audio>
             </div>
 
@@ -129,6 +76,55 @@
     <footer class="site-footer">
          <p>&copy; 2025 Boundless Pages Command Center. All rights reserved.</p>
     </footer>
+
+    <div style="display: none;">
+        <div id="content-item1">
+            <div class="modal-page comparison-page">
+                <h3>Harry Potter: Book vs. Movie</h3>
+                <p>The Harry Potter novels immerse readers deeply in the wizarding world through detailed descriptions and, crucially, Harry's internal perspective, allowing access to his thoughts, fears, and reasoning which films must translate visually or through dialogue. Many subplots, like Hermione's S.P.E.W. campaign or the full backstory of the Marauders, are significantly condensed or omitted entirely from the cinematic adaptations due to time constraints inherent in filmmaking. Furthermore, beloved characters such as the mischievous poltergeist Peeves or the house-elf Winky are completely absent from the movies, altering the texture and some events of the Hogwarts experience presented on screen compared to the richer tapestry woven by the books.</p>
+            </div>
+            <div class="modal-page comparison-page">
+                <p>While the films deliver breathtaking visual interpretations of Hogwarts, magical creatures, and spellcasting, the books rely on the power of individual imagination, creating a uniquely personal connection to the world for each reader which visuals alone cannot replicate. The necessary streamlining for film often results in faster pacing, sometimes losing the slower, character-building moments or the intricate details of magical theory explored more thoroughly in the text. Additionally, the portrayal of certain characters' complexities, like Snape's nuanced motivations or Dumbledore's calculated ambiguity, can feel simplified in the visual medium compared to the gradual unfolding across hundreds of pages in the novels, impacting the depth of understanding.</p>
+            </div>
+        </div>
+
+        <div id="content-item2">
+            <div class="modal-page comparison-page">
+                <h3>LOTR: Book vs. Movie</h3>
+                <p>J.R.R. Tolkien's novels offer an unparalleled depth of world-building, featuring extensive histories, intricate languages, genealogies, and poems that enrich the narrative far beyond what Peter Jackson's film adaptations could feasibly include, creating a denser, more scholarly experience. The books delve much deeper into the lore and cultural nuances of Middle-earth's various races, providing context that the visually-focused films often imply rather than explicitly state. Consequently, the pacing of the books is considerably more measured, allowing for moments of reflection, travel descriptions, and character interactions that build the world gradually, contrasting with the films' necessarily more action-oriented and streamlined progression through the main plot points to fit the runtime.</p>
+            </div>
+            <div class="modal-page comparison-page">
+                <p>While the films achieved legendary status for their stunning visual realization of Middle-earth and epic battle sequences, they inevitably made significant alterations and omissions from the source material, most famously excising characters like Tom Bombadil and the entire "Scouring of the Shire" sequence which provides crucial thematic closure. Character arcs were also modified for cinematic effect; Arwen's role, for instance, is greatly expanded in the movies, while Faramir's initial portrayal differs notably from his book counterpart before aligning more closely later. These changes, while often dramatically effective on screen, fundamentally alter certain character dynamics and thematic elements explored more subtly or differently within Tolkien's original text, offering distinct yet related experiences.</p>
+            </div>
+        </div>
+
+        <div id="content-item3">
+            <div class="modal-page comparison-page">
+                 <h3>Hunger Games: Book vs. Movie</h3>
+                 <p>Suzanne Collins' novels utilize a powerful first-person present tense narration, granting readers immediate and constant access to Katniss Everdeen's internal thoughts, fears, strategic calculations, and emotional turmoil, a perspective the films must externalize through performance, dialogue, or visual cues. This narrative choice in the books creates intense intimacy and allows for deeper exploration of Katniss's complex feelings about Peeta, Gale, and the Capitol's oppression, which the movies, while faithful, convey with less direct nuance. The visceral horror and psychological toll of the Games, including Katniss's specific injuries and survival tactics, are often depicted more graphically and unflinchingly in the text compared to the necessary constraints of the films' PG-13 rating.</p>
+              </div>
+              <div class="modal-page comparison-page">
+                 <p>The film adaptations excel at visually realizing the stark contrast between the impoverished districts and the opulent, technologically advanced Capitol, bringing the distinct aesthetics described in the books vividly to life on screen, including the elaborate costumes and arena designs. While generally very faithful to the plot, the movies streamline some secondary character arcs and relationships to maintain focus and pacing, potentially lessening the impact of figures like Madge or the full extent of Haymitch's backstory initially. The political machinations within the Capitol, particularly President Snow's perspective, are given slightly more screen time in the films, offering viewers insights that Katniss, as the narrator, wouldn't necessarily have in the books.</p>
+              </div>
+        </div>
+
+        <div id="content-item4">
+            <div class="modal-page comparison-page">
+                 <h3>Twilight: Book vs. Movie</h3>
+                 <p>Stephenie Meyer's novel is deeply rooted in Bella Swan's internal monologue, extensively detailing her insecurities, obsessive thoughts about Edward, and moment-by-moment sensory experiences, creating a very specific, sometimes polarizing, narrative voice that the film adaptation translates into Kristen Stewart's performance and visual storytelling. The book allows for lengthy internal debates and descriptions of Edward's perceived perfection, whereas the movie relies more on dialogue, atmosphere, and the actors' chemistry to convey the intensity of their initial connection and Bella's infatuation. Details about vampire lore, such as the specifics of their abilities or the nuances of their societal structure, are often explained more explicitly in the text than shown or briefly mentioned on screen.</p>
+              </div>
+              <div class="modal-page comparison-page">
+                 <p>The film adaptation, directed by Catherine Hardwicke, established a distinct visual style with its blue color palette and atmospheric Pacific Northwest setting, effectively capturing the moody tone described in the book, even if deviating from some specific visual details like the infamous vampire sparkle effect. While the core plot remains largely intact, the pacing is necessarily faster in the movie, condensing conversations, relationship development, and certain events like the baseball scene or the confrontation with James to fit the cinematic format. Edward's perspective and internal conflict, later explored in Meyer's companion novel "Midnight Sun," are only hinted at through dialogue and Robert Pattinson's portrayal in the first film, leaving much of his character motivations less directly accessible than Bella's in the original book.</p>
+              </div>
+        </div>
+    </div> <div id="main-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-container" role="document">
+             <button class="close-button" aria-label="Close modal">&times;</button>
+             <div class="modal-body">
+                 </div>
+             </div>
+    </div>
+
 
     <script src="js/atomic_nav.js"></script>
     <script src="js/atomic_bookmovie.js"></script> </body>
