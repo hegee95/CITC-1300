@@ -89,9 +89,9 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 /* --- Page Specific Styles --- */
 
 /* Home Page */
-.page-home .hero { text-align: center; padding: 40px 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: var(--radius-med); margin-bottom: 40px; color: var(--clr-text); }
+.page-home .hero { text-align: center; padding: 40px 20px; background-color: #11474c(255, 255, 255, 0.8); border-radius: var(--radius-med); margin-bottom: 40px; color: var(--clr-text); }
 .page-home .hero .main-title { text-shadow: var(--shadow-neon-pink); color: var(--clr-primary); }
-.page-home .hero .subtitle { color: var(--clr-text); }
+.page-home .hero .subtitle { color: #f0f2f5(--clr-text); }
 .features { margin-bottom: 40px; }
 .feature-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
 .feature-card { background-color: var(--clr-dark-teal); color: var(--clr-bg); padding: 25px; border-radius: var(--radius-med); box-shadow: var(--shadow-light); text-align: center; border: 3px solid var(--clr-primary); border-style: dashed; }
