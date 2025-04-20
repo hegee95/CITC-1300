@@ -1,6 +1,6 @@
 /* --- Atomic Age Redesign Styles --- */
 
-/* --- Google Font Import (Example - Ensure linked in HTML too) --- */
+/* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Roboto+Mono&family=VT323&display=swap'); */
 
 /* --- CSS Variables --- */
@@ -9,28 +9,34 @@
     --font-secondary-title: 'Bungee', cursive;
     --font-body: 'Poppins', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
-    --font-screen: 'VT323', monospace; /* Added VT323 variable */
+    --font-screen: 'VT323', monospace;
 
     --clr-bg: #F0F2F5; /* Light greyish background */
     --clr-text: #2c3e50; /* Dark blue-grey text */
     --clr-primary: #40E0D0; /* Turquoise */
     --clr-secondary: #FF9966; /* Atomic Tangerine */
     --clr-accent: #2C75FF; /* Star Command Blue */
+    --clr-dark-bg: #1e1e2f; /* Darker background for neon */
 
     --clr-neon-pink: #FF69B4;
     --clr-neon-lime: #32CD32; /* Green for screen text */
     --clr-neon-cyan: #00FFFF;
     --clr-screen-bg: #1a1a1a; /* Dark screen background */
 
+    --radius-sm: 8px;
     --radius-med: 15px;
     --radius-lg: 30px;
     --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
     --shadow-strong: 0 6px 15px rgba(0, 0, 0, 0.2);
 
-    /* Neon Shadow Example (adjust color and spread) */
-    --shadow-neon-cyan: 0 0 5px var(--clr-neon-cyan), 0 0 10px var(--clr-neon-cyan), 0 0 15px var(--clr-neon-cyan);
-    --shadow-neon-pink: 0 0 5px var(--clr-neon-pink), 0 0 10px var(--clr-neon-pink), 0 0 15px var(--clr-neon-pink);
-    --shadow-neon-lime: 0 0 3px var(--clr-neon-lime), 0 0 6px var(--clr-neon-lime);
+    /* Neon Shadow Examples */
+    --shadow-neon-cyan-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-cyan), 0 0 8px var(--clr-neon-cyan);
+    --shadow-neon-pink-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-pink), 0 0 8px var(--clr-neon-pink);
+    --shadow-neon-lime-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-lime), 0 0 8px var(--clr-neon-lime);
+
+    --shadow-neon-cyan-box: 0 0 5px var(--clr-neon-cyan), 0 0 10px var(--clr-neon-cyan), 0 0 15px var(--clr-neon-cyan);
+    --shadow-neon-pink-box: 0 0 5px var(--clr-neon-pink), 0 0 10px var(--clr-neon-pink), 0 0 15px var(--clr-neon-pink);
+    --shadow-neon-lime-box: 0 0 5px var(--clr-neon-lime), 0 0 10px var(--clr-neon-lime);
 }
 
 /* --- Global Resets and Base Styles --- */
@@ -47,11 +53,11 @@ body {
   line-height: 1.7;
   color: var(--clr-text);
   background-color: var(--clr-bg);
-  background-image: url(../Images/atomicagelibrary.png); /* New background */
+  background-image: url(../Images/atomicagelibrary.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Keep background fixed */
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -71,14 +77,14 @@ a {
 
 a:hover, a:focus {
   color: var(--clr-secondary);
-  text-decoration: underline;
+  /* text-decoration: underline; */ /* Optional: remove underline globally */
 }
 
 /* --- Typography --- */
 h1, .main-title {
     font-family: var(--font-main-title);
     color: var(--clr-primary);
-    font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
+    font-size: clamp(2.5rem, 6vw, 4rem);
     line-height: 1.1;
     margin-bottom: 0.5em;
     text-align: center;
@@ -101,7 +107,7 @@ h3, .tertiary-title {
     margin-bottom: 0.5em;
 }
 
-.item-title { /* Titles on grid items */
+.item-title {
      font-family: var(--font-secondary-title);
      font-size: 1rem;
      margin-top: 0.5em;
@@ -128,7 +134,7 @@ h3, .tertiary-title {
   max-width: 1200px;
   margin: 30px auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque background */
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: var(--radius-med);
   box-shadow: var(--shadow-light);
   flex-grow: 1;
@@ -146,10 +152,10 @@ h3, .tertiary-title {
 /* --- Header and Navigation --- */
 .site-header {
     padding: 15px 0;
-    background-color: var(--clr-text); /* Dark header */
+    background-color: var(--clr-text);
     color: var(--clr-bg);
     box-shadow: var(--shadow-light);
-    position: sticky; /* Sticky header */
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -159,11 +165,11 @@ h3, .tertiary-title {
     font-size: 1.8rem;
     color: var(--clr-primary);
     text-decoration: none;
-    text-shadow: 0 0 5px var(--clr-primary); /* Neon glow */
+    text-shadow: 0 0 5px var(--clr-primary);
 }
 
 .main-nav ul {
-    display: none; /* Hidden on mobile by default */
+    display: none;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -182,7 +188,7 @@ h3, .tertiary-title {
     transition: color 0.3s ease;
 }
 
-.main-nav a::after { /* Underline effect */
+.main-nav a::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -197,7 +203,7 @@ h3, .tertiary-title {
 
 .main-nav a:hover,
 .main-nav a:focus,
-.main-nav a.active { /* Add .active class via JS if needed */
+.main-nav a.active {
     color: var(--clr-primary);
 }
 
@@ -210,12 +216,12 @@ h3, .tertiary-title {
 
 /* Hamburger Menu Button */
 .nav-toggle {
-    display: block; /* Show on mobile */
+    display: block;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    z-index: 101; /* Above nav */
+    z-index: 101;
 }
 
 .hamburger-bar {
@@ -239,15 +245,15 @@ h3, .tertiary-title {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Menu (Shown when .nav-open added to body or .main-nav) */
+/* Mobile Menu */
 .main-nav.nav-open ul {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 100%; /* Position below header */
+    top: 100%;
     left: 0;
     width: 100%;
-    background-color: var(--clr-text); /* Same as header */
+    background-color: var(--clr-text);
     padding: 15px;
     box-shadow: var(--shadow-light);
 }
@@ -263,12 +269,12 @@ h3, .tertiary-title {
     background-color: var(--clr-secondary);
     color: var(--clr-text);
     padding: 10px 25px;
-    border-radius: var(--radius-lg); /* Very rounded */
+    border-radius: var(--radius-lg);
     font-family: var(--font-secondary-title);
     font-weight: bold;
     text-decoration: none;
     border: 2px solid var(--clr-text);
-    box-shadow: 2px 2px 0px var(--clr-text); /* Hard shadow */
+    box-shadow: 2px 2px 0px var(--clr-text);
     transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
 }
 
@@ -290,7 +296,7 @@ h3, .tertiary-title {
   padding: 20px;
   background-color: var(--clr-text);
   color: var(--clr-bg);
-  margin-top: auto; /* Pushes footer to bottom */
+  margin-top: auto;
   font-size: 0.9rem;
 }
 
@@ -300,98 +306,67 @@ h3, .tertiary-title {
 .page-home .hero {
     text-align: center;
     padding: 40px 20px;
-    background-color: rgba(0,0,0, 0.1); /* Slight overlay */
+    background-color: rgba(0,0,0, 0.1);
     border-radius: var(--radius-med);
     margin-bottom: 40px;
 }
 .page-home .hero .main-title {
-    text-shadow: var(--shadow-neon-pink); /* Neon effect */
+    text-shadow: var(--shadow-neon-pink);
 }
 
-.features {
-    margin-bottom: 40px;
-}
+.features { margin-bottom: 40px; }
+.feature-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+.feature-card { background-color: #fff; padding: 25px; border-radius: var(--radius-med); box-shadow: var(--shadow-light); text-align: center; border: 3px solid var(--clr-primary); border-style: dashed; }
+.feature-card .tertiary-title { color: var(--clr-accent); }
+.feature-card a { display: inline-block; margin-top: 15px; font-weight: bold; }
 
-.feature-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Mobile: 1 column */
-    gap: 25px;
-}
-
-.feature-card {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: var(--radius-med);
-    box-shadow: var(--shadow-light);
-    text-align: center;
-    border: 3px solid var(--clr-primary);
-    border-style: dashed;
-}
-.feature-card .tertiary-title {
-    color: var(--clr-accent);
-}
-.feature-card a {
-    display: inline-block;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-.external-links-section {
-    background-color: rgba(0,0,0, 0.1);
-    padding: 20px;
-    border-radius: var(--radius-med);
-}
-.external-links {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-.external-links li {
-    margin-bottom: 10px;
-}
+.external-links-section { background-color: rgba(0,0,0, 0.1); padding: 20px; border-radius: var(--radius-med); }
+.external-links { list-style: none; padding: 0; text-align: center; }
+.external-links li { margin-bottom: 10px; }
 
 
-/* Quotes Page */
+/* --- Quotes Page (Neon Sign Style) --- */
 .quotes-list {
     display: grid;
-    gap: 25px;
+    gap: 30px; /* More gap for neon effect */
+    grid-template-columns: 1fr; /* Mobile default */
 }
 .quote-card {
-    background-color: var(--clr-bg); /* Match body bg */
-    padding: 25px;
+    background-color: var(--clr-dark-bg); /* Dark background */
+    padding: 30px;
     border-radius: var(--radius-med);
-    border-left: 10px solid;
-    border-image: linear-gradient(to bottom, var(--clr-primary), var(--clr-secondary)) 1;
-    box-shadow: var(--shadow-light);
+    border: 3px solid var(--clr-neon-pink); /* Neon border */
+    box-shadow: var(--shadow-neon-pink-box), inset 0 0 10px rgba(0,0,0,0.5); /* Neon glow + inset */
     position: relative;
+    color: #fff; /* Light base text for dark bg */
 }
-.quote-card::before { /* Starburst effect */
-    content: '*';
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
-    color: var(--clr-secondary);
-    opacity: 0.5;
-}
+/* Removed starburst ::before */
 
 .quote-text {
-    font-size: 1.3rem;
-    font-style: italic;
+    font-size: 1.4rem; /* Slightly larger */
+    font-style: normal; /* Neon often not italic */
     margin-bottom: 1em;
-    color: var(--clr-text);
+    color: var(--clr-neon-pink); /* Neon text color */
+    text-shadow: var(--shadow-neon-pink-text); /* Neon glow */
+    font-family: var(--font-body); /* Readable font */
+    line-height: 1.5;
 }
 .quote-author {
     font-style: normal;
     font-weight: bold;
-    color: var(--clr-accent);
+    color: var(--clr-neon-cyan); /* Contrasting neon */
+    text-shadow: var(--shadow-neon-cyan-text);
+    display: block; /* Ensure on new line */
+    text-align: right;
+    margin-top: 10px;
+    font-size: 1rem;
 }
 
 
 /* Library & Book-Movie Pages Grid */
 .item-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* 1 column mobile */
+  grid-template-columns: repeat(1, 1fr);
   gap: 25px;
   padding: 20px 0;
 }
@@ -413,28 +388,25 @@ h3, .tertiary-title {
 }
 
 .item-image img {
-  /* --- UPDATED SPINE IMAGE SIZE --- */
-  width: 100px; /* Explicit width - Increased */
+  width: 100px;
   height: auto;
-  margin: 0 auto 10px auto; /* Center image, space below */
+  margin: 0 auto 10px auto;
   display: block;
   cursor: pointer;
-  pointer-events: auto; /* Image is clickable */
-  border-radius: 5px; /* Slight rounding */
+  pointer-events: auto;
+  border-radius: 5px;
   border: 3px solid var(--clr-text);
 }
 .item-image img:hover {
-    transform: scale(1.05); /* Keep hover effect */
+    transform: scale(1.05);
 }
 
 
 /* Modal Pop-up Styles */
 .modal-popup {
-  /* --- Ensure robust hiding --- */
   display: none;
   visibility: hidden;
   opacity: 0;
-  /* --- Positioning & Overlay --- */
   position: fixed;
   top: 0;
   left: 0;
@@ -445,21 +417,19 @@ h3, .tertiary-title {
   padding: 20px;
   overflow-y: auto;
   backdrop-filter: blur(3px);
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Delay visibility change */
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
 }
 
-/* Add .open class via JS to show */
 .grid-item.open .modal-popup {
   display: flex;
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.3s ease, visibility 0s linear 0s; /* Show immediately */
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
   align-items: center;
   justify-content: center;
 }
 
-.modal-content { /* Common style for inner content area */
-  color: var(--clr-text);
+.modal-content {
   max-width: 700px;
   width: 90%;
   padding: 50px 30px 60px 30px;
@@ -469,40 +439,139 @@ h3, .tertiary-title {
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  z-index: 1001; /* Ensure content is above overlay */
+  z-index: 1001;
 }
 
-/* Book pop-up specific */
+/* --- Library Pop-up: Microfiche Reader Style --- */
 .book-popup .modal-content {
-   background-color: #fffaf0; /* Creamy paper */
+   background-color: #222; /* Dark frame */
+   border: 10px solid #777; /* Grey border */
+   color: #222; /* Text color for inside */
+   padding: 10px; /* Padding inside frame */
+   border-radius: var(--radius-sm); /* Less rounded */
 }
-.book-popup h3 {
-    font-family: var(--font-main-title);
-    color: var(--clr-accent);
-    font-size: 1.8rem;
+.book-popup .synopsis { /* The "screen" area */
+    background-color: #e0f2e9; /* Light greenish screen */
+    padding: 20px;
+    border-radius: 3px; /* Sharp inner screen */
+    height: 100%; /* Fill modal content height */
+    font-family: var(--font-mono); /* Monospace font */
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.book-popup h3 { /* Title inside screen */
+    font-family: var(--font-secondary-title); /* Bungee */
+    color: #1a4d2e; /* Dark green */
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 1em;
+    text-shadow: none;
+}
+.book-popup p {
+    color: #1a4d2e; /* Dark green text */
+}
+/* Microfiche pagination buttons */
+.book-popup .pagination-button {
+    background-color: #555;
+    color: #eee;
+    border: 2px solid #eee;
+    border-radius: 3px; /* Square buttons */
+    width: 45px;
+    height: 30px;
+    font-size: 1rem;
+    box-shadow: 1px 1px 0 #333;
+}
+.book-popup .pagination-button:disabled { background-color: #888; border-color: #aaa; color: #bbb; box-shadow: none;}
+.book-popup .pagination-button:not(:disabled):hover { background-color: #777; transform: scale(1.05); }
+.book-popup .pagination-button.prev { left: 20px; }
+.book-popup .pagination-button.next { right: 20px; }
+/* Microfiche close button */
+.book-popup .modal-content .close-button {
+     background: #777;
+     color: #222;
+     border: 3px solid #222;
+     top: -18px; /* Adjust for frame */
+     right: -18px;
+}
+.book-popup .modal-content .close-button:hover {
+     background: #999;
 }
 
-/* TV pop-up specific */
+
+/* --- BookVsMovie Pop-up: Control Panel Screen Style --- */
 .tv-popup .modal-content {
-    background-color: #2d2d2d; /* Dark grey */
-    color: #e0e0e0;
-    border: 15px solid #5a5a5a; /* Thick frame */
-    border-radius: var(--radius-lg); /* Rounded TV */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.6);
+    background-color: var(--clr-screen-bg); /* Dark screen */
+    color: var(--clr-neon-lime); /* Green text */
+    border: 10px solid #666; /* Control panel border */
+    border-radius: var(--radius-med); /* Rounded panel */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.6);
+    font-family: var(--font-mono); /* Monospace base */
 }
-.tv-popup h3 {
-    font-family: var(--font-secondary-title);
+/* Add scanlines */
+.tv-popup .modal-content::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(50, 205, 50, 0.08) 0px, /* Faint green line */
+      rgba(50, 205, 50, 0.08) 1px,
+      transparent 1px,
+      transparent 4px /* Adjust line spacing */
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+.tv-popup .comparison-content {
+    position: relative; /* Ensure content above scanlines */
+    z-index: 2;
+}
+.tv-popup h3 { /* Title inside screen */
+    font-family: var(--font-secondary-title); /* Bungee */
     font-size: 1.3rem;
-    color: var(--clr-neon-cyan);
-    text-shadow: var(--shadow-neon-cyan);
+    color: var(--clr-neon-lime);
+    text-shadow: var(--shadow-neon-lime);
     text-align: center;
     margin-bottom: 1em;
+    letter-spacing: 1px;
+}
+.tv-popup p {
+    color: var(--clr-neon-lime); /* Green text */
+    font-size: 1rem;
+}
+/* Control panel pagination buttons */
+.tv-popup .pagination-button {
+    background-color: transparent;
+    color: var(--clr-neon-cyan);
+    border: 2px solid var(--clr-neon-cyan);
+    border-radius: 3px; /* Square */
+    width: 45px;
+    height: 30px;
+    font-size: 1rem;
+    box-shadow: var(--shadow-neon-cyan);
+    font-family: var(--font-mono);
+}
+.tv-popup .pagination-button:disabled { background-color: rgba(85,85,85,0.5); border-color: #555; color: #888; box-shadow: none;}
+.tv-popup .pagination-button:not(:disabled):hover { background-color: var(--clr-neon-cyan); color: var(--clr-screen-bg); text-shadow: none; }
+.tv-popup .pagination-button.prev { left: 20px; }
+.tv-popup .pagination-button.next { right: 20px; }
+/* Control panel close button */
+.tv-popup .modal-content .close-button {
+     background: #ff4d4d; /* Red button */
+     color: white;
+     border: 3px solid white;
+     top: -18px; /* Adjust for frame */
+     right: -18px;
+     box-shadow: 0 0 10px #ff4d4d;
+}
+.tv-popup .modal-content .close-button:hover {
+     background: #cc0000;
+     transform: scale(1.1); /* Remove rotate */
 }
 
 
-/* Pagination Styles (Common inside modal) */
+/* Pagination Styles (Common inside modal - Base) */
 .synopsis,
 .comparison-content {
   flex-grow: 1;
@@ -520,75 +589,35 @@ h3, .tertiary-title {
   display: block;
 }
 
-.pagination-button {
+.pagination-button { /* Base styles, specific overrides above */
   position: absolute;
   bottom: 15px;
-  background-color: var(--clr-secondary);
-  color: var(--clr-text);
-  border: 2px solid var(--clr-text);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
   z-index: 25;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
-  box-shadow: 2px 2px 0px var(--clr-text);
+  cursor: pointer;
   transition: all 0.2s ease;
   pointer-events: auto;
 }
-.pagination-button:disabled {
-  background-color: #aaa;
-  color: #777;
-  cursor: not-allowed;
-  opacity: 0.7;
-  box-shadow: none;
-  border-color: #777;
-}
-.pagination-button:not(:disabled):hover {
-  background-color: var(--clr-primary);
-  transform: scale(1.1);
-}
 
-.pagination-button.prev {
-  left: 30px;
-}
-.pagination-button.next {
-  right: 30px;
-}
-
-/* Close Button (Common inside modal) */
+/* Close Button (Common inside modal - Base) */
 .modal-content .close-button {
   position: absolute;
-  top: -15px;
-  right: -15px;
-  background: var(--clr-secondary);
-  color: var(--clr-text);
-  border: 3px solid var(--clr-text);
-  font-size: 1.5rem;
   font-weight: bold;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   cursor: pointer;
-  z-index: 1010; /* Ensure above modal content */
+  z-index: 1010;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
   padding: 0;
-  box-shadow: 2px 2px 0px var(--clr-text);
-  /* --- Updated Transition --- */
-  transition: background-color 0.2s ease, transform 0.2s ease; /* Separate transitions */
+  transition: background-color 0.2s ease, transform 0.2s ease;
   pointer-events: auto;
-}
-.modal-content .close-button:hover {
-    background: var(--clr-primary);
-    transform: scale(1.1); /* Simpler hover effect - remove rotate */
 }
 
 
@@ -615,7 +644,6 @@ h3, .tertiary-title {
     box-shadow: inset 0 0 15px rgba(0,0,0,0.6), var(--shadow-light);
     position: relative;
     overflow: hidden;
-    /* outline: 3px solid red; */ /* Debugging */
 }
 
 /* Optional Scanlines */
@@ -646,8 +674,8 @@ h3, .tertiary-title {
     font-weight: normal;
     color: var(--clr-neon-lime);
     text-align: left;
-    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
-    font-size: 1.2rem /*!important*/; /* Adjust size - REMOVED !important */
+    font-family: var(--font-screen); /* Use VT323 */
+    font-size: 1.2rem;
     letter-spacing: 1px;
     text-shadow: var(--shadow-neon-lime);
 }
@@ -660,8 +688,8 @@ h3, .tertiary-title {
     border: none;
     border-bottom: 1px solid var(--clr-neon-lime);
     border-radius: 0;
-    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
-    font-size: 1.1rem /*!important*/; /* Adjust size - REMOVED !important */
+    font-family: var(--font-screen); /* Use VT323 */
+    font-size: 1.1rem;
     background-color: transparent;
     color: var(--clr-neon-lime);
     box-shadow: none;
@@ -690,7 +718,7 @@ h3, .tertiary-title {
     min-height: 120px;
 }
 
-.vintage-screen-effect .submit-button {
+.vintage-screen-effect .submit-button { /* Inherits .cta-button styles, override here */
     display: inline-block;
     width: auto;
     padding: 8px 20px;
@@ -698,19 +726,21 @@ h3, .tertiary-title {
     color: var(--clr-neon-lime);
     border: 2px solid var(--clr-neon-lime);
     border-radius: var(--radius-lg);
-    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
-    font-size: 1.1rem /*!important*/; /* Adjust size - REMOVED !important */
+    font-family: var(--font-screen); /* Use VT323 */
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 10px;
     text-shadow: var(--shadow-neon-lime);
     text-transform: uppercase;
+    box-shadow: none; /* Override cta-button shadow */
 }
 .vintage-screen-effect .submit-button:hover {
     background-color: var(--clr-neon-lime);
     color: var(--clr-screen-bg);
     text-shadow: none;
     box-shadow: var(--shadow-neon-lime);
+    transform: translate(0,0); /* Override cta-button hover */
 }
 .vintage-screen-effect .submit-button:active {
     transform: scale(0.95);
@@ -722,8 +752,8 @@ h3, .tertiary-title {
     font-weight: normal;
     min-height: 1.5em;
     color: var(--clr-neon-lime);
-    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
-    font-size: 1.1rem /*!important*/; /* Adjust size - REMOVED !important */
+    font-family: var(--font-screen);
+    font-size: 1.1rem;
 }
 /* --- End Contact Page Styles --- */
 
@@ -736,6 +766,9 @@ h3, .tertiary-title {
   .feature-grid {
      grid-template-columns: repeat(2, 1fr);
   }
+   .quotes-list {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for quotes */
+   }
 }
 
 @media (min-width: 768px) {
@@ -801,6 +834,10 @@ h3, .tertiary-title {
     grid-template-columns: repeat(4, 1fr);
     gap: 35px;
   }
+
+   .quotes-list {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns for quotes */
+   }
 
   .modal-content {
       width: 70%;
