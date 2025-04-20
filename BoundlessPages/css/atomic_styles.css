@@ -1,15 +1,16 @@
 /* --- Atomic Age Redesign Styles --- */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
-/* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Roboto+Mono&family=VT323&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
 
 /* --- CSS Variables --- */
 :root {
     --font-main-title: 'Lobster', cursive;
     --font-secondary-title: 'Bungee', cursive;
     --font-body: 'Poppins', sans-serif;
-    --font-mono: 'Roboto Mono', monospace;
-    --font-screen: 'VT323', monospace;
+    --font-neon: 'Tilt Neon', sans-serif; /* Use Tilt Neon */
+    /* --font-mono: 'Roboto Mono', monospace; */ /* Removed if not needed */
+    /* --font-screen: 'VT323', monospace; */ /* Removed */
 
     --clr-bg: #F0F2F5; /* Light greyish background */
     --clr-text: #2c3e50; /* Dark blue-grey text */
@@ -21,7 +22,7 @@
     --clr-neon-pink: #FF69B4;
     --clr-neon-lime: #32CD32; /* Green for screen text */
     --clr-neon-cyan: #00FFFF;
-    --clr-screen-bg: #1a1a1a; /* Dark screen background */
+    /* --clr-screen-bg: #1a1a1a; */ /* Replaced by dark-bg */
 
     --radius-sm: 8px;
     --radius-med: 15px;
@@ -29,7 +30,7 @@
     --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
     --shadow-strong: 0 6px 15px rgba(0, 0, 0, 0.2);
 
-    /* --- UPDATED: Toned down neon shadows --- */
+    /* Toned down neon shadows */
     --shadow-neon-cyan-text-subtle: 0 0 5px var(--clr-neon-cyan);
     --shadow-neon-pink-text-subtle: 0 0 5px var(--clr-neon-pink);
     --shadow-neon-lime-text-subtle: 0 0 5px var(--clr-neon-lime);
@@ -37,15 +38,6 @@
     --shadow-neon-cyan-box-subtle: 0 0 8px var(--clr-neon-cyan);
     --shadow-neon-pink-box-subtle: 0 0 8px var(--clr-neon-pink);
     --shadow-neon-lime-box-subtle: 0 0 8px var(--clr-neon-lime);
-
-     /* Original Neon Shadow Examples (can be used elsewhere) */
-    --shadow-neon-cyan-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-cyan), 0 0 8px var(--clr-neon-cyan);
-    --shadow-neon-pink-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-pink), 0 0 8px var(--clr-neon-pink);
-    --shadow-neon-lime-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-lime), 0 0 8px var(--clr-neon-lime);
-
-    --shadow-neon-cyan-box: 0 0 5px var(--clr-neon-cyan), 0 0 10px var(--clr-neon-cyan), 0 0 15px var(--clr-neon-cyan);
-    --shadow-neon-pink-box: 0 0 5px var(--clr-neon-pink), 0 0 10px var(--clr-neon-pink), 0 0 15px var(--clr-neon-pink);
-    --shadow-neon-lime-box: 0 0 5px var(--clr-neon-lime), 0 0 10px var(--clr-neon-lime);
 }
 
 /* --- Global Resets and Base Styles --- */
@@ -345,32 +337,30 @@ h3, .tertiary-title {
     padding: 30px;
     border-radius: var(--radius-med);
     border: 3px solid var(--clr-neon-pink); /* Neon border */
-    /* --- UPDATED: Toned down neon shadow --- */
-    box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4); /* Toned down glow + inset */
     position: relative;
     color: #fff; /* Light base text for dark bg */
 }
 
 .quote-text {
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* Keep size */
     font-style: normal;
     margin-bottom: 1em;
     color: var(--clr-neon-pink); /* Neon text color */
-    /* --- UPDATED: Toned down neon shadow --- */
-    text-shadow: var(--shadow-neon-pink-text-subtle);
-    font-family: var(--font-body);
+    text-shadow: var(--shadow-neon-pink-text-subtle); /* Toned down glow */
+    font-family: var(--font-neon); /* Use Tilt Neon */
     line-height: 1.5;
 }
 .quote-author {
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal; /* Neon fonts often look better normal weight */
     color: var(--clr-neon-cyan); /* Contrasting neon */
-     /* --- UPDATED: Toned down neon shadow --- */
-    text-shadow: var(--shadow-neon-cyan-text-subtle);
+    text-shadow: var(--shadow-neon-cyan-text-subtle); /* Toned down glow */
     display: block;
     text-align: right;
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Slightly larger */
+    font-family: var(--font-neon); /* Use Tilt Neon */
 }
 
 
@@ -413,7 +403,7 @@ h3, .tertiary-title {
 }
 
 
-/* Modal Pop-up Styles */
+/* --- Modal Pop-up Styles (Unified Neon Sign Look) --- */
 .modal-popup {
   display: none;
   visibility: hidden;
@@ -440,12 +430,16 @@ h3, .tertiary-title {
   justify-content: center;
 }
 
+/* Unified modal content style */
 .modal-content {
+  background-color: var(--clr-dark-bg); /* Dark background */
+  color: #eee; /* Light base text */
   max-width: 700px;
   width: 90%;
-  padding: 50px 30px 60px 30px;
+  padding: 50px 30px 60px 30px; /* Padding: Top, RL, Bottom */
+  border: 3px solid var(--clr-neon-cyan); /* Neon border - Cyan */
   border-radius: var(--radius-med);
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); /* Neon glow + inset */
   position: relative;
   max-height: 85vh;
   display: flex;
@@ -453,136 +447,31 @@ h3, .tertiary-title {
   z-index: 1001;
 }
 
-/* --- Library Pop-up: Microfiche Reader Style --- */
-.book-popup .modal-content {
-   background-color: #222; /* Dark frame */
-   border: 10px solid #777; /* Grey border */
-   color: #222; /* Text color for inside */
-   padding: 10px; /* Padding inside frame */
-   border-radius: var(--radius-sm); /* Less rounded */
-}
-.book-popup .synopsis { /* The "screen" area */
-    background-color: #e0f2e9; /* Light greenish screen */
-    padding: 20px;
-    border-radius: 3px; /* Sharp inner screen */
-    height: 100%; /* Fill modal content height */
-    font-family: var(--font-mono); /* Monospace font */
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-.book-popup h3 { /* Title inside screen */
-    font-family: var(--font-secondary-title); /* Bungee */
-    color: #1a4d2e; /* Dark green */
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 1em;
-    text-shadow: none;
-}
-.book-popup p {
-    color: #1a4d2e; /* Dark green text */
-}
-/* Microfiche pagination buttons */
-.book-popup .pagination-button {
-    background-color: #555;
-    color: #eee;
-    border: 2px solid #eee;
-    border-radius: 3px; /* Square buttons */
-    width: 45px;
-    height: 30px;
-    font-size: 1rem;
-    box-shadow: 1px 1px 0 #333;
-}
-.book-popup .pagination-button:disabled { background-color: #888; border-color: #aaa; color: #bbb; box-shadow: none;}
-.book-popup .pagination-button:not(:disabled):hover { background-color: #777; transform: scale(1.05); }
-.book-popup .pagination-button.prev { left: 20px; }
-.book-popup .pagination-button.next { right: 20px; }
-/* Microfiche close button */
-.book-popup .modal-content .close-button {
-     background: #777;
-     color: #222;
-     border: 3px solid #222;
-     top: -18px; /* Adjust for frame */
-     right: -18px;
-}
-.book-popup .modal-content .close-button:hover {
-     background: #999;
-}
+/* Remove specific styles for .book-popup and .tv-popup modal content */
+/* .book-popup .modal-content { ... } */
+/* .tv-popup .modal-content { ... } */
 
-
-/* --- BookVsMovie Pop-up: Control Panel Screen Style --- */
-.tv-popup .modal-content {
-    background-color: var(--clr-screen-bg); /* Dark screen */
-    color: var(--clr-neon-lime); /* Green text */
-    border: 10px solid #666; /* Control panel border */
-    border-radius: var(--radius-med); /* Rounded panel */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.6);
-    font-family: var(--font-mono); /* Monospace base */
-}
-/* Add scanlines */
-.tv-popup .modal-content::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(50, 205, 50, 0.08) 0px, /* Faint green line */
-      rgba(50, 205, 50, 0.08) 1px,
-      transparent 1px,
-      transparent 4px /* Adjust line spacing */
-    );
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.4;
-}
-.tv-popup .comparison-content {
-    position: relative; /* Ensure content above scanlines */
-    z-index: 2;
-}
-.tv-popup h3 { /* Title inside screen */
-    font-family: var(--font-secondary-title); /* Bungee */
-    font-size: 1.3rem;
-    color: var(--clr-neon-lime);
-    text-shadow: var(--shadow-neon-lime-text-subtle); /* Toned down */
+/* Style headings inside the unified modal */
+.modal-content h3 {
+    font-family: var(--font-neon); /* Use Tilt Neon */
+    font-size: 1.6rem; /* Adjust size */
+    color: var(--clr-neon-cyan); /* Match border */
+    text-shadow: var(--shadow-neon-cyan-text-subtle);
     text-align: center;
     margin-bottom: 1em;
     letter-spacing: 1px;
 }
-.tv-popup p {
-    color: var(--clr-neon-lime); /* Green text */
+
+/* Style paragraphs inside the unified modal */
+.modal-content p {
+    font-family: var(--font-body); /* Poppins for readability */
+    color: #e0e0e0; /* Light grey text */
     font-size: 1rem;
-}
-/* Control panel pagination buttons */
-.tv-popup .pagination-button {
-    background-color: transparent;
-    color: var(--clr-neon-cyan);
-    border: 2px solid var(--clr-neon-cyan);
-    border-radius: 3px; /* Square */
-    width: 45px;
-    height: 30px;
-    font-size: 1rem;
-    box-shadow: var(--shadow-neon-cyan-box-subtle); /* Toned down */
-    font-family: var(--font-mono);
-}
-.tv-popup .pagination-button:disabled { background-color: rgba(85,85,85,0.5); border-color: #555; color: #888; box-shadow: none;}
-.tv-popup .pagination-button:not(:disabled):hover { background-color: var(--clr-neon-cyan); color: var(--clr-screen-bg); text-shadow: none; }
-.tv-popup .pagination-button.prev { left: 20px; }
-.tv-popup .pagination-button.next { right: 20px; }
-/* Control panel close button */
-.tv-popup .modal-content .close-button {
-     background: #ff4d4d; /* Red button */
-     color: white;
-     border: 3px solid white;
-     top: -18px; /* Adjust for frame */
-     right: -18px;
-     box-shadow: 0 0 10px #ff4d4d;
-}
-.tv-popup .modal-content .close-button:hover {
-     background: #cc0000;
-     transform: scale(1.1); /* Remove rotate */
+    line-height: 1.7;
+    margin-bottom: 1em;
 }
 
-
-/* Pagination Styles (Common inside modal - Base) */
+/* Pagination Styles (Common inside modal - Neon Theme) */
 .synopsis,
 .comparison-content {
   flex-grow: 1;
@@ -600,22 +489,57 @@ h3, .tertiary-title {
   display: block;
 }
 
-.pagination-button { /* Base styles, specific overrides above */
+.pagination-button {
   position: absolute;
   bottom: 15px;
+  background-color: transparent;
+  color: var(--clr-neon-pink); /* Pink neon */
+  border: 2px solid var(--clr-neon-pink);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
   z-index: 25;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
-  cursor: pointer;
+  box-shadow: var(--shadow-neon-pink-box-subtle); /* Pink glow */
   transition: all 0.2s ease;
   pointer-events: auto;
 }
+.pagination-button:disabled {
+  color: #777;
+  border-color: #555;
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+.pagination-button:not(:disabled):hover {
+  background-color: var(--clr-neon-pink);
+  color: var(--clr-dark-bg);
+  transform: scale(1.1);
+  text-shadow: none;
+}
 
-/* Close Button (Common inside modal - Base) */
+.pagination-button.prev {
+  left: 30px;
+}
+.pagination-button.next {
+  right: 30px;
+}
+
+/* Close Button (Common inside modal - Neon Theme) */
 .modal-content .close-button {
   position: absolute;
+  top: -18px; /* Position outside */
+  right: -18px;
+  background: var(--clr-neon-pink); /* Match pagination */
+  color: var(--clr-dark-bg);
+  border: 3px solid var(--clr-dark-bg);
+  font-size: 1.5rem;
   font-weight: bold;
   border-radius: 50%;
   width: 40px;
@@ -627,8 +551,16 @@ h3, .tertiary-title {
   justify-content: center;
   line-height: 1;
   padding: 0;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-neon-pink-box-subtle);
+  transition: all 0.2s ease;
   pointer-events: auto;
+}
+.modal-content .close-button:hover {
+    background: var(--clr-neon-cyan); /* Contrasting hover */
+    border-color: var(--clr-dark-bg);
+    color: var(--clr-dark-bg);
+    transform: scale(1.1); /* Simpler hover */
+    box-shadow: var(--shadow-neon-cyan-box-subtle);
 }
 
 
@@ -645,92 +577,18 @@ h3, .tertiary-title {
     margin-bottom: 15px;
 }
 
-/* --- Option 1: Control Panel Form Styles --- */
-.control-panel-form {
-    background-color: #e0e4e7; /* Light panel background */
-    border: 3px solid var(--clr-text);
-    border-radius: var(--radius-med);
-    padding: 25px;
-    margin-top: 20px;
-    box-shadow: var(--shadow-light);
-}
-.control-panel-form .form-group label {
-    display: inline-block; /* Make it like a plate */
-    margin-bottom: 8px;
-    font-weight: normal;
-    color: var(--clr-text);
-    text-align: left;
-    font-family: var(--font-secondary-title); /* Bungee */
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    background-color: #bdbdbd; /* Grey plate */
-    padding: 3px 8px;
-    border-radius: var(--radius-sm);
-    box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
-}
-.control-panel-form .form-group input[type="text"],
-.control-panel-form .form-group input[type="email"],
-.control-panel-form .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #aaa; /* Input border */
-    border-radius: var(--radius-lg); /* Rounded input */
-    font-family: var(--font-body); /* Use body font */
-    background-color: #fff; /* White input background */
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    color: var(--clr-text); /* Ensure text color is standard */
-    caret-color: var(--clr-accent); /* Accent cursor */
-}
-.control-panel-form .form-group input[type="text"]::placeholder,
-.control-panel-form .form-group input[type="email"]::placeholder,
-.control-panel-form .form-group textarea::placeholder {
-    color: #888;
-    opacity: 1;
-}
-.control-panel-form .form-group input[type="text"]:focus,
-.control-panel-form .form-group input[type="email"]:focus,
-.control-panel-form .form-group textarea:focus {
-    border-color: var(--clr-accent); /* Blue focus */
-    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1), 0 0 8px rgba(44, 117, 255, 0.5); /* Blue glow */
-    outline: none;
-}
-.control-panel-form .form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-.control-panel-form .submit-button { /* Style like CTA button */
-    display: block; /* Make block for centering */
-    width: auto; /* Size to content */
-    padding: 10px 30px;
-    margin: 15px auto 0 auto; /* Center */
-    /* Inherits .cta-button styles, just override if needed */
-    background-color: var(--clr-accent); /* Blue button */
-    color: #fff;
-    border-color: #fff;
-    box-shadow: 2px 2px 0px #fff;
-}
-.control-panel-form .submit-button:hover,
-.control-panel-form .submit-button:focus {
-     background-color: var(--clr-secondary); /* Tangerine hover */
-     color: var(--clr-text);
-     border-color: var(--clr-text);
-     box-shadow: 3px 3px 0px var(--clr-text);
-}
-.control-panel-form #form-status {
-    color: var(--clr-accent); /* Match theme */
-    font-family: var(--font-body);
-    font-size: 1rem;
-    margin-top: 20px;
-}
+/* Remove unused styles */
+/* .vintage-screen-effect { ... } */
+/* .control-panel-form { ... } */
 
-/* --- Option 2: Simple Neon Form Styles --- */
+/* --- Option 2: Simple Neon Form Styles (Chosen) --- */
 .simple-neon-form {
     background-color: rgba(255, 255, 255, 0.8); /* Simple light background */
     border-radius: var(--radius-med);
     padding: 25px;
     margin-top: 20px;
     border: 1px solid #ddd;
+    box-shadow: var(--shadow-neon-cyan-box-subtle); /* Add subtle container glow */
 }
 .simple-neon-form .form-group label {
     display: block;
@@ -738,8 +596,8 @@ h3, .tertiary-title {
     font-weight: normal;
     color: var(--clr-accent); /* Use accent color */
     text-align: left;
-    font-family: var(--font-secondary-title); /* Bungee */
-    font-size: 1rem;
+    font-family: var(--font-neon); /* Use Tilt Neon */
+    font-size: 1.1rem; /* Adjust size */
     letter-spacing: 1px;
     text-shadow: var(--shadow-neon-pink-text-subtle); /* Neon glow */
 }
@@ -750,7 +608,7 @@ h3, .tertiary-title {
     padding: 12px;
     border: 1px solid #ccc; /* Simple border */
     border-radius: var(--radius-sm); /* Less rounded */
-    font-family: var(--font-body);
+    font-family: var(--font-body); /* Poppins for input */
     background-color: #fff;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -780,6 +638,8 @@ h3, .tertiary-title {
     padding: 10px 30px;
     margin: 15px auto 0 auto;
     /* Inherits .cta-button styles, just override if needed */
+    font-family: var(--font-neon); /* Use Tilt Neon */
+    font-size: 1rem;
     background-color: var(--clr-primary); /* Turquoise button */
     color: var(--clr-text);
     border-color: var(--clr-text);
@@ -852,11 +712,11 @@ h3, .tertiary-title {
   .contact-info {
       padding-right: 20px;
   }
-  .control-panel-form, .simple-neon-form { /* Apply to both options */
+  .control-panel-form, .simple-neon-form { /* Apply to chosen style */
        margin-top: 0; /* Remove top margin when in columns */
   }
   .control-panel-form .submit-button,
-  .simple-neon-form .submit-button { /* Apply to both options */
+  .simple-neon-form .submit-button { /* Apply to chosen style */
       width: auto;
       padding: 10px 30px;
       margin: 10px auto 0 auto;
