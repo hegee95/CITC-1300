@@ -9,8 +9,6 @@
     --font-secondary-title: 'Bungee', cursive;
     --font-body: 'Poppins', sans-serif;
     --font-neon: 'Tilt Neon', sans-serif; /* Use Tilt Neon */
-    /* --font-mono: 'Roboto Mono', monospace; */ /* Removed if not needed */
-    /* --font-screen: 'VT323', monospace; */ /* Removed */
 
     --clr-bg: #F0F2F5; /* Light greyish background */
     --clr-text: #2c3e50; /* Dark blue-grey text */
@@ -22,7 +20,6 @@
     --clr-neon-pink: #FF69B4;
     --clr-neon-lime: #32CD32; /* Green for screen text */
     --clr-neon-cyan: #00FFFF;
-    /* --clr-screen-bg: #1a1a1a; */ /* Replaced by dark-bg */
 
     --radius-sm: 8px;
     --radius-med: 15px;
@@ -52,7 +49,7 @@
 body {
   font-family: var(--font-body);
   line-height: 1.7;
-  color: var(--clr-text);
+  color: var(--clr-text); /* Default text color */
   background-color: var(--clr-bg);
   background-image: url(../Images/atomicagelibrary.png);
   background-repeat: no-repeat;
@@ -71,14 +68,13 @@ img {
 }
 
 a {
-  color: var(--clr-accent);
+  color: var(--clr-accent); /* Default link color */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover, a:focus {
   color: var(--clr-secondary);
-  /* text-decoration: underline; */
 }
 
 /* --- Typography --- */
@@ -112,7 +108,7 @@ h3, .tertiary-title {
      font-family: var(--font-secondary-title);
      font-size: 1rem;
      margin-top: 0.5em;
-     color: var(--clr-text);
+     color: var(--clr-text); /* Keep dark on light grid item bg */
 }
 
 .page-title {
@@ -121,7 +117,7 @@ h3, .tertiary-title {
 .page-intro {
     text-align: center;
     font-size: 1.1rem;
-    color: var(--clr-text);
+    /* Color will be inherited from .content-container */
     opacity: 0.9;
     margin-bottom: 2em;
     max-width: 600px;
@@ -135,11 +131,22 @@ h3, .tertiary-title {
   max-width: 1200px;
   margin: 30px auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
+  /* --- UPDATED: Darker Background --- */
+  background-color: rgba(44, 62, 80, 0.85); /* Dark blue-grey from --clr-text, semi-transparent */
+  color: var(--clr-bg); /* Default light text color for dark background */
   border-radius: var(--radius-med);
   box-shadow: var(--shadow-light);
   flex-grow: 1;
 }
+/* Update link colors within the dark container */
+.content-container a {
+    color: var(--clr-primary); /* Light teal */
+}
+.content-container a:hover,
+.content-container a:focus {
+    color: var(--clr-secondary); /* Tangerine */
+}
+
 
 .header-container {
     width: 90%;
@@ -307,23 +314,61 @@ h3, .tertiary-title {
 .page-home .hero {
     text-align: center;
     padding: 40px 20px;
-    background-color: rgba(0,0,0, 0.1);
+    /* Keep hero light or make it dark too? Let's keep light for now */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: var(--radius-med);
     margin-bottom: 40px;
+    color: var(--clr-text); /* Ensure text is dark on light hero */
 }
 .page-home .hero .main-title {
     text-shadow: var(--shadow-neon-pink);
+    color: var(--clr-primary); /* Keep title color */
 }
+.page-home .hero .subtitle {
+    color: var(--clr-text); /* Ensure subtitle is dark */
+}
+.page-home .hero .cta-button {
+     /* Styles fine as is */
+}
+
 
 .features { margin-bottom: 40px; }
 .feature-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
-.feature-card { background-color: #fff; padding: 25px; border-radius: var(--radius-med); box-shadow: var(--shadow-light); text-align: center; border: 3px solid var(--clr-primary); border-style: dashed; }
+.feature-card {
+    background-color: #fff; /* Keep card light */
+    padding: 25px;
+    border-radius: var(--radius-med);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    border: 3px solid var(--clr-primary);
+    border-style: dashed;
+    color: var(--clr-text); /* Ensure text inside is dark */
+}
 .feature-card .tertiary-title { color: var(--clr-accent); }
-.feature-card a { display: inline-block; margin-top: 15px; font-weight: bold; }
+.feature-card p { color: var(--clr-text); } /* Explicitly set p color */
+.feature-card a {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--clr-accent); /* Standard link color */
+}
+.feature-card a:hover {
+    color: var(--clr-secondary);
+}
 
-.external-links-section { background-color: rgba(0,0,0, 0.1); padding: 20px; border-radius: var(--radius-med); }
+.external-links-section {
+    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    padding: 20px;
+    border-radius: var(--radius-med);
+    color: var(--clr-text); /* Ensure text is dark */
+}
+.external-links-section .secondary-title {
+     color: var(--clr-accent); /* Keep heading color */
+}
 .external-links { list-style: none; padding: 0; text-align: center; }
 .external-links li { margin-bottom: 10px; }
+.external-links a { color: var(--clr-accent); } /* Standard link color */
+.external-links a:hover { color: var(--clr-secondary); }
 
 
 /* --- Quotes Page (Neon Sign Style - Toned Down) --- */
@@ -343,7 +388,7 @@ h3, .tertiary-title {
 }
 
 .quote-text {
-    font-size: 1.4rem; /* Keep size */
+    font-size: 1.4rem;
     font-style: normal;
     margin-bottom: 1em;
     color: var(--clr-neon-pink); /* Neon text color */
@@ -376,13 +421,18 @@ h3, .tertiary-title {
   position: relative;
   text-align: center;
   pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.7); /* Light bg for item */
   padding: 15px;
   border-radius: var(--radius-med);
   box-shadow: var(--shadow-light);
   border: 2px solid var(--clr-secondary);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+/* Ensure text inside grid item is dark */
+.grid-item .item-title {
+    color: var(--clr-text);
+}
+
 .grid-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-strong);
@@ -446,10 +496,6 @@ h3, .tertiary-title {
   flex-direction: column;
   z-index: 1001;
 }
-
-/* Remove specific styles for .book-popup and .tv-popup modal content */
-/* .book-popup .modal-content { ... } */
-/* .tv-popup .modal-content { ... } */
 
 /* Style headings inside the unified modal */
 .modal-content h3 {
@@ -565,21 +611,13 @@ h3, .tertiary-title {
 
 
 /* --- Contact Page Styles --- */
+/* Ensure headings/text in info column are light on dark container */
 .page-contact .contact-info h2 {
-    text-align: left;
-    margin-bottom: 20px;
-    font-family: var(--font-secondary-title);
-    font-size: 1.8rem;
-    color: var(--clr-accent);
+    color: var(--clr-primary); /* Light teal */
 }
 .page-contact .contact-info p {
-    text-align: left;
-    margin-bottom: 15px;
+     color: var(--clr-bg); /* Light text */
 }
-
-/* Remove unused styles */
-/* .vintage-screen-effect { ... } */
-/* .control-panel-form { ... } */
 
 /* --- Option 2: Simple Neon Form Styles (Chosen) --- */
 .simple-neon-form {
@@ -589,6 +627,7 @@ h3, .tertiary-title {
     margin-top: 20px;
     border: 1px solid #ddd;
     box-shadow: var(--shadow-neon-cyan-box-subtle); /* Add subtle container glow */
+    color: var(--clr-text); /* Reset text color to dark for light bg */
 }
 .simple-neon-form .form-group label {
     display: block;
@@ -612,7 +651,7 @@ h3, .tertiary-title {
     background-color: #fff;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    color: var(--clr-text);
+    color: var(--clr-text); /* Dark text for input */
     caret-color: var(--clr-primary);
 }
 .simple-neon-form .form-group input[type="text"]::placeholder,
@@ -637,7 +676,6 @@ h3, .tertiary-title {
     width: auto;
     padding: 10px 30px;
     margin: 15px auto 0 auto;
-    /* Inherits .cta-button styles, just override if needed */
     font-family: var(--font-neon); /* Use Tilt Neon */
     font-size: 1rem;
     background-color: var(--clr-primary); /* Turquoise button */
@@ -651,10 +689,10 @@ h3, .tertiary-title {
      box-shadow: var(--shadow-neon-pink-box-subtle), 3px 3px 0px var(--clr-text); /* Pink glow */
 }
 .simple-neon-form #form-status {
-    color: var(--clr-accent);
+    color: var(--clr-accent); /* Form status text color */
     font-family: var(--font-body);
     font-size: 1rem;
-     margin-top: 20px;
+    margin-top: 20px;
 }
 /* --- End Contact Page Styles --- */
 
