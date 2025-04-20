@@ -1,6 +1,6 @@
 /* --- Atomic Age Redesign Styles v2 --- */
 /* Includes structural modal changes & flicker fix */
-/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix */
+/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -52,7 +52,21 @@
 
 /* --- Global Resets and Base Styles --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-body); line-height: 1.7; color: var(--clr-text); background-color: var(--clr-bg); background-image: url(../Images/atomicagelibrary.png); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed; display: flex; flex-direction: column; min-height: 100vh; }
+body {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--clr-text); /* Default text color (for elements outside containers) */
+  /* --- UPDATED Background Color --- */
+  background-color: var(--clr-dark-teal); /* Fallback color */
+  background-image: url(../Images/atomicagelibrary.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--clr-accent); text-decoration: none; transition: color 0.3s ease; }
 a:hover, a:focus { color: var(--clr-secondary); }
@@ -88,17 +102,16 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .nav-toggle.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav-toggle.active .hamburger-bar:nth-child(2) { opacity: 0; }
 .nav-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-.main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); z-index: 101; /* Ensure above content */ }
+.main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; width: 100%; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); z-index: 999; }
 .main-nav.nav-open li { margin: 10px 0; text-align: center; }
 
 /* --- Audio Player Styles --- */
 .audio-player { display: flex; align-items: center; gap: 5px; margin-left: auto; position: relative; z-index: 2; }
-.audio-button { background-color: var(--clr-primary); color: var(--clr-text); border: 1px solid var(--clr-text); font-family: var(--font-secondary-title); font-size: 0.6rem; /* Smaller */ padding: 2px 6px; border-radius: var(--radius-sm); cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; box-shadow: 1px 1px 0px var(--clr-text); line-height: 1; }
+.audio-button { background-color: var(--clr-primary); color: var(--clr-text); border: 1px solid var(--clr-text); font-family: var(--font-secondary-title); font-size: 0.6rem; padding: 2px 6px; border-radius: var(--radius-sm); cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; box-shadow: 1px 1px 0px var(--clr-text); line-height: 1; }
 .audio-button:hover { background-color: var(--clr-secondary); }
 .audio-button:active { transform: translate(1px, 1px); box-shadow: none; }
-#equalizer-bars { display: flex; align-items: flex-end; /* Align bars to bottom */ height: 16px; /* Adjust height */ gap: 2px; margin-left: 8px; }
-.eq-bar { width: 3px; /* Bar width */ background-color: var(--clr-neon-lime); /* Neon color */ animation: equalizer 0.8s ease-in-out infinite alternate; }
-/* Stagger animation delays */
+#equalizer-bars { display: flex; align-items: flex-end; height: 16px; gap: 2px; margin-left: 8px; }
+.eq-bar { width: 3px; background-color: var(--clr-neon-lime); animation: equalizer 0.8s ease-in-out infinite alternate; }
 .eq-bar:nth-child(1) { height: 60%; animation-delay: 0s; }
 .eq-bar:nth-child(2) { height: 100%; animation-delay: -0.2s; }
 .eq-bar:nth-child(3) { height: 80%; animation-delay: -0.4s; }
