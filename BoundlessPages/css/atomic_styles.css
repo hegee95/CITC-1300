@@ -1,13 +1,15 @@
 /* --- Atomic Age Redesign Styles --- */
 
 /* --- Google Font Import (Example - Ensure linked in HTML too) --- */
-/* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Roboto+Mono&family=VT323&display=swap'); */
 
 /* --- CSS Variables --- */
 :root {
     --font-main-title: 'Lobster', cursive;
     --font-secondary-title: 'Bungee', cursive;
     --font-body: 'Poppins', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+    --font-screen: 'VT323', monospace; /* Added VT323 variable */
 
     --clr-bg: #F0F2F5; /* Light greyish background */
     --clr-text: #2c3e50; /* Dark blue-grey text */
@@ -16,8 +18,9 @@
     --clr-accent: #2C75FF; /* Star Command Blue */
 
     --clr-neon-pink: #FF69B4;
-    --clr-neon-lime: #32CD32;
+    --clr-neon-lime: #32CD32; /* Green for screen text */
     --clr-neon-cyan: #00FFFF;
+    --clr-screen-bg: #1a1a1a; /* Dark screen background */
 
     --radius-med: 15px;
     --radius-lg: 30px;
@@ -27,6 +30,7 @@
     /* Neon Shadow Example (adjust color and spread) */
     --shadow-neon-cyan: 0 0 5px var(--clr-neon-cyan), 0 0 10px var(--clr-neon-cyan), 0 0 15px var(--clr-neon-cyan);
     --shadow-neon-pink: 0 0 5px var(--clr-neon-pink), 0 0 10px var(--clr-neon-pink), 0 0 15px var(--clr-neon-pink);
+    --shadow-neon-lime: 0 0 3px var(--clr-neon-lime), 0 0 6px var(--clr-neon-lime);
 }
 
 /* --- Global Resets and Base Styles --- */
@@ -43,7 +47,6 @@ body {
   line-height: 1.7;
   color: var(--clr-text);
   background-color: var(--clr-bg);
-  /* --- UPDATED BACKGROUND IMAGE --- */
   background-image: url(../Images/atomicagelibrary.png); /* New background */
   background-repeat: no-repeat;
   background-size: cover;
@@ -410,8 +413,8 @@ h3, .tertiary-title {
 }
 
 .item-image img {
-  width: 100%; /* Fill container width */
-  max-width: 200px; /* Max size */
+  /* --- UPDATED SPINE IMAGE SIZE --- */
+  width: 100px; /* Explicit width - Increased */
   height: auto;
   margin: 0 auto 10px auto; /* Center image, space below */
   display: block;
@@ -420,24 +423,37 @@ h3, .tertiary-title {
   border-radius: 5px; /* Slight rounding */
   border: 3px solid var(--clr-text);
 }
+.item-image img:hover {
+    transform: scale(1.05); /* Keep hover effect */
+}
+
 
 /* Modal Pop-up Styles */
 .modal-popup {
+  /* --- Ensure robust hiding --- */
   display: none;
+  visibility: hidden;
+  opacity: 0;
+  /* --- Positioning & Overlay --- */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   padding: 20px;
   overflow-y: auto;
-  backdrop-filter: blur(3px); /* Blur background */
+  backdrop-filter: blur(3px);
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Delay visibility change */
 }
 
+/* Add .open class via JS to show */
 .grid-item.open .modal-popup {
-  display: flex; /* Use flex to center content */
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease, visibility 0s linear 0s; /* Show immediately */
   align-items: center;
   justify-content: center;
 }
@@ -446,13 +462,14 @@ h3, .tertiary-title {
   color: var(--clr-text);
   max-width: 700px;
   width: 90%;
-  padding: 50px 30px 60px 30px; /* More padding, space for buttons */
+  padding: 50px 30px 60px 30px;
   border-radius: var(--radius-med);
   box-shadow: var(--shadow-strong);
   position: relative;
-  max-height: 85vh; /* Limit height */
-  display: flex; /* Use flex for inner content */
+  max-height: 85vh;
+  display: flex;
   flex-direction: column;
+  z-index: 1001; /* Ensure content is above overlay */
 }
 
 /* Book pop-up specific */
@@ -488,16 +505,16 @@ h3, .tertiary-title {
 /* Pagination Styles (Common inside modal) */
 .synopsis,
 .comparison-content {
-  flex-grow: 1; /* Allow content to take available space */
-  overflow: hidden; /* Hide non-active pages */
-  position: relative; /* Context for pages */
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
 }
 
-.modal-page { /* Common page style */
+.modal-page {
   display: none;
   height: 100%;
-  overflow-y: auto; /* Scroll within page */
-  padding-right: 15px; /* Scrollbar space */
+  overflow-y: auto;
+  padding-right: 15px;
 }
 .modal-page.active {
   display: block;
@@ -547,7 +564,7 @@ h3, .tertiary-title {
 /* Close Button (Common inside modal) */
 .modal-content .close-button {
   position: absolute;
-  top: -15px; /* Position outside */
+  top: -15px;
   right: -15px;
   background: var(--clr-secondary);
   color: var(--clr-text);
@@ -558,101 +575,161 @@ h3, .tertiary-title {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  z-index: 1010;
+  z-index: 1010; /* Ensure above modal content */
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
   padding: 0;
   box-shadow: 2px 2px 0px var(--clr-text);
-  transition: all 0.2s ease;
+  /* --- Updated Transition --- */
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Separate transitions */
   pointer-events: auto;
 }
 .modal-content .close-button:hover {
     background: var(--clr-primary);
-    transform: rotate(90deg) scale(1.1);
+    transform: scale(1.1); /* Simpler hover effect - remove rotate */
 }
 
 
-/* Contact Page Styles */
-.page-contact .contact-layout {
-    background-color: #f5eecf; /* Parchment color */
-    background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
-    background-size: 4px 4px;
-    border: 1px solid #d2b48c;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
-    border-radius: var(--radius-med);
-    padding: 30px;
-    margin-top: 30px;
-}
-
-.contact-info h2 {
-    font-family: var(--font-secondary-title);
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    color: #8B4513; /* Saddle brown */
+/* --- Contact Page Styles --- */
+.page-contact .contact-info h2 {
     text-align: left;
-}
-.contact-info p {
-    margin-bottom: 15px;
-    line-height: 1.7;
-    color: #4a4a4a;
-    text-align: left;
-}
-
-.contact-form-container { }
-.contact-form { }
-
-.form-group {
     margin-bottom: 20px;
+    font-family: var(--font-secondary-title);
+    font-size: 1.8rem;
+    color: var(--clr-accent);
 }
-.form-group label {
+.page-contact .contact-info p {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+/* Vintage Screen Effect Container */
+.vintage-screen-effect {
+    background-color: var(--clr-screen-bg);
+    border: 10px solid #777;
+    border-radius: var(--radius-med);
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.6), var(--shadow-light);
+    position: relative;
+    overflow: hidden;
+    /* outline: 3px solid red; */ /* Debugging */
+}
+
+/* Optional Scanlines */
+.vintage-screen-effect::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 255, 0, 0.06) 0px,
+      rgba(0, 255, 0, 0.06) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.vintage-screen-effect .contact-form {
+    position: relative;
+    z-index: 2;
+}
+
+.vintage-screen-effect .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: bold;
-    color: #6a5a4a; /* Darker parchment text */
+    font-weight: normal;
+    color: var(--clr-neon-lime);
     text-align: left;
-    font-family: var(--font-secondary-title);
-    font-size: 0.9rem;
+    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
+    font-size: 1.2rem /*!important*/; /* Adjust size - REMOVED !important */
     letter-spacing: 1px;
+    text-shadow: var(--shadow-neon-lime);
 }
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group textarea {
+
+.vintage-screen-effect .form-group input[type="text"],
+.vintage-screen-effect .form-group input[type="email"],
+.vintage-screen-effect .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #d2b48c; /* Tan border */
-    border-radius: var(--radius-lg); /* Rounded */
-    font-family: var(--font-body);
-    background-color: rgba(255, 255, 255, 0.5); /* Slightly transparent */
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid var(--clr-neon-lime);
+    border-radius: 0;
+    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
+    font-size: 1.1rem /*!important*/; /* Adjust size - REMOVED !important */
+    background-color: transparent;
+    color: var(--clr-neon-lime);
+    box-shadow: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group textarea:focus {
-    border-color: var(--clr-secondary);
-    box-shadow: 0 0 8px rgba(255, 153, 102, 0.5); /* Tangerine glow */
+    caret-color: var(--clr-neon-lime);
     outline: none;
 }
-.form-group textarea {
-    resize: vertical;
-    min-height: 140px;
+.vintage-screen-effect .form-group input[type="text"]::placeholder,
+.vintage-screen-effect .form-group input[type="email"]::placeholder,
+.vintage-screen-effect .form-group textarea::placeholder {
+    color: rgba(50, 205, 50, 0.5);
+    opacity: 1;
+    font-family: var(--font-screen);
 }
-.contact-form .cta-button { /* Style submit like other CTAs */
-    width: 100%;
+
+
+.vintage-screen-effect .form-group input[type="text"]:focus,
+.vintage-screen-effect .form-group input[type="email"]:focus,
+.vintage-screen-effect .form-group textarea:focus {
+    border-color: var(--clr-neon-cyan);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.vintage-screen-effect .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.vintage-screen-effect .submit-button {
+    display: inline-block;
+    width: auto;
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--clr-neon-lime);
+    border: 2px solid var(--clr-neon-lime);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
+    font-size: 1.1rem /*!important*/; /* Adjust size - REMOVED !important */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-shadow: var(--shadow-neon-lime);
+    text-transform: uppercase;
+}
+.vintage-screen-effect .submit-button:hover {
+    background-color: var(--clr-neon-lime);
+    color: var(--clr-screen-bg);
+    text-shadow: none;
+    box-shadow: var(--shadow-neon-lime);
+}
+.vintage-screen-effect .submit-button:active {
+    transform: scale(0.95);
 }
 
 #form-status {
     text-align: center;
     margin-top: 20px;
-    font-weight: bold;
-    min-height: 1.5em; /* Reserve space */
+    font-weight: normal;
+    min-height: 1.5em;
+    color: var(--clr-neon-lime);
+    font-family: var(--font-screen) /*!important*/; /* Use VT323 - REMOVED !important */
+    font-size: 1.1rem /*!important*/; /* Adjust size - REMOVED !important */
 }
+/* --- End Contact Page Styles --- */
 
 
 /* --- Tablet Styles --- */
-@media (min-width: 600px) { /* Earlier breakpoint for grid */
+@media (min-width: 600px) {
   .item-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -668,11 +745,11 @@ h3, .tertiary-title {
   }
 
   /* Desktop Navigation */
-  .nav-toggle { display: none; } /* Hide hamburger */
+  .nav-toggle { display: none; }
   .main-nav ul {
-      display: flex; /* Show links */
+      display: flex;
       flex-direction: row;
-      position: static; /* Override mobile absolute */
+      position: static;
       width: auto;
       background: none;
       padding: 0;
@@ -694,14 +771,20 @@ h3, .tertiary-title {
   /* Contact Page Tablet Layout */
   .contact-layout {
       display: grid;
-      grid-template-columns: 1fr 1.5fr; /* Info | Form */
-      gap: 40px; /* Space between columns */
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
       align-items: start;
   }
-  .contact-form .cta-button {
+  .contact-info {
+      padding-right: 20px;
+  }
+  .vintage-screen-effect {
+       margin-top: 0;
+  }
+  .vintage-screen-effect .submit-button {
       width: auto;
-      padding: 10px 30px;
-      margin: 0 auto;
+      padding: 8px 30px;
+      margin: 10px auto 0 auto;
       display: table;
   }
 }
@@ -721,19 +804,19 @@ h3, .tertiary-title {
 
   .modal-content {
       width: 70%;
-      max-width: 900px; /* Increase max width */
+      max-width: 900px;
   }
 
    /* Contact Page Desktop Layout */
    .contact-layout {
-        gap: 50px; /* Increase gap */
-        grid-template-columns: 1fr 2fr; /* More space for form */
+        gap: 50px;
+        grid-template-columns: 1fr 2fr;
    }
 }
 
 /* --- Desktop Styles - Larger Screens --- */
 @media (min-width: 1200px) {
     .item-grid {
-        grid-template-columns: repeat(5, 1fr); /* 5 columns on very wide screens */
+        grid-template-columns: repeat(5, 1fr);
     }
 }
