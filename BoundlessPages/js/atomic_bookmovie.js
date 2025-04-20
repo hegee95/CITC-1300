@@ -1,7 +1,8 @@
 /**
  * atomic_bookmovie.js (Atomic Age Redesign)
  * Handles interactions for the comparison grid in BookToMovie.html
- * Uses event delegation and a single decoupled modal.
+ * Uses event delegation and a single decoupled modal. (Very similar to atomic_library.js)
+ * Includes refined "click outside" logic.
  */
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Atomic Book vs Movie script loaded"); // Log 1: Script start
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log("Main modal elements found."); // Log 3: Modal elements found
 
+
     let currentlyOpenTrigger = null; // Track which item opened the modal
 
     // --- Helper Function for Pagination ---
@@ -60,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Create Buttons ---
         const prevButton = document.createElement('button');
         prevButton.classList.add('pagination-button', 'prev');
-        prevButton.innerHTML = '&lt;';
+        prevButton.innerHTML = '&lt;'; // Or use SVG/Icon font
         prevButton.disabled = true;
         modalContainer.appendChild(prevButton); // Append to modal container
 
         const nextButton = document.createElement('button');
         nextButton.classList.add('pagination-button', 'next');
-        nextButton.innerHTML = '&gt;';
+        nextButton.innerHTML = '&gt;'; // Or use SVG/Icon font
         modalContainer.appendChild(nextButton);
         console.log("Pagination buttons created."); // Log P4
 
@@ -85,8 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage(currentPageIndex); // Show first page
 
         // Use event delegation for pagination buttons as well, attached to modal container
-        // This avoids issues if buttons are removed/re-added frequently
-        // We store the handler function to remove it later if needed
         const paginationClickHandler = (e) => {
              if (e.target === prevButton) {
                  e.stopPropagation();
@@ -108,8 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
              console.log("Removing pagination elements and listener."); // Log P9
              prevButton.remove();
              nextButton.remove();
-             modalContainer.removeEventListener('click', paginationClickHandler);
-             delete modalContainer._paginationHandler; // Clean up reference
+             // Check if handler exists before trying to remove
+             if (modalContainer._paginationHandler) {
+                 modalContainer.removeEventListener('click', modalContainer._paginationHandler);
+                 delete modalContainer._paginationHandler; // Clean up reference
+             }
          }
 
     } // --- End setupPagination ---
@@ -136,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Clone content pages and append to modal body
         // Wrap content in appropriate container (.synopsis or .comparison-content)
-        let contentWrapperClass = themeClass === 'neon-sign-modal' ? 'comparison-content' : 'synopsis'; // Choose based on theme
+        let contentWrapperClass = themeClass === 'neon-sign-modal' ? 'comparison-content' : 'comparison-content'; // Defaulting to comparison for book-movie
         const contentWrapper = document.createElement('div');
         contentWrapper.className = contentWrapperClass;
         Array.from(contentSource.children).forEach(page => {
@@ -194,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 300); // Match CSS opacity transition duration
 
-        currentlyOpenItem = null; // Reset tracker (using different var name below)
         currentlyOpenTrigger = null; // Reset trigger tracker
     }
 
@@ -212,13 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if an image inside the item was the primary target (or the item itself if no image)
         const clickedImage = event.target.closest('.item-image img');
         // Allow click on item itself if image isn't hit directly
-        if (clickedImage || event.target === gridItem || gridItem.contains(event.target)) {
-
-             // Prevent closing if click is on pagination inside an already open modal triggered by this item
-             if (event.target.closest('.pagination-button')) {
-                 console.log("Ignoring click on pagination button inside grid listener.");
-                 return;
-             }
+        // Also check that the click wasn't on a pagination button inside the modal triggered by THIS item
+        if ((clickedImage || event.target === gridItem || gridItem.contains(event.target)) && !event.target.closest('.pagination-button')) {
 
             console.log("Grid item clicked:", gridItem.id); // Log C2
 
@@ -230,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Close if already open, otherwise open
+            // Close if already open (clicking the trigger again), otherwise open
             if (currentlyOpenTrigger === gridItem) {
                  closeModal();
             } else {
@@ -254,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Listener for Click Outside Modal ---
     mainModal.addEventListener('click', (event) => {
-        // Check if the click target is the overlay itself (and not the container/content)
+        // Check if the click target is the overlay itself (and not the container/content or buttons)
         if (event.target === mainModal) {
              console.log("Click detected on modal overlay."); // Log CL4
              closeModal();

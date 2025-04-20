@@ -1,6 +1,6 @@
 /* --- Atomic Age Redesign Styles v2 --- */
 /* Includes structural modal changes & flicker fix */
-/* CORRECTED COMPLETE VERSION */
+/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -36,9 +36,16 @@
     --shadow-neon-lime-text-subtle: 0 0 5px var(--clr-neon-lime);
 
     /* Slightly stronger modal glow */
-    --shadow-neon-cyan-box-subtle: 0 0 12px var(--clr-neon-cyan); /* Increased from 8px */
+    --shadow-neon-cyan-box-subtle: 0 0 12px var(--clr-neon-cyan);
     --shadow-neon-pink-box-subtle: 0 0 8px var(--clr-neon-pink);
     --shadow-neon-lime-box-subtle: 0 0 8px var(--clr-neon-lime);
+
+    /* Stronger Glow for Animation */
+    --shadow-neon-cyan-box-pulse: 0 0 15px var(--clr-neon-cyan);
+    --shadow-neon-pink-box-pulse: 0 0 12px var(--clr-neon-pink);
+    --shadow-neon-cyan-text-pulse: 0 0 8px var(--clr-neon-cyan);
+    --shadow-neon-pink-text-pulse: 0 0 8px var(--clr-neon-pink);
+
 }
 
 /* --- Global Resets and Base Styles --- */
@@ -60,53 +67,16 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .content-container { width: 90%; max-width: 1200px; margin: 30px auto; padding: 20px; background-color: var(--clr-dark-bg); color: var(--clr-bg); border-radius: var(--radius-med); box-shadow: var(--shadow-light); flex-grow: 1; }
 .content-container a { color: var(--clr-primary); }
 .content-container a:hover, .content-container a:focus { color: var(--clr-secondary); }
-.header-container { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.header-container { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; /* Allow wrap */ gap: 10px; }
 
 /* --- Header and Navigation --- */
-.site-header {
-    padding: 15px 0;
-    background-color: var(--clr-text);
-    color: var(--clr-bg);
-    box-shadow: var(--shadow-light);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    /* --- Added for neon line --- */
-    position: relative; /* Needed for pseudo-element positioning */
-    overflow: hidden; /* Prevent glow spilling */
-}
+.site-header { padding: 15px 0; background-color: var(--clr-text); color: var(--clr-bg); box-shadow: var(--shadow-light); position: sticky; top: 0; z-index: 100; position: relative; overflow: hidden; }
 
-/* --- NEW: Animated Neon Line --- */
-@keyframes moveNeonLine {
-  0% { background-position: -200% 0; } /* Start gradient off-screen left */
-  100% { background-position: 200% 0; } /* End gradient off-screen right */
-}
+/* --- Animated Neon Line --- */
+@keyframes moveNeonLine { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.site-header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient( 90deg, transparent 0%, var(--clr-neon-cyan) 50%, transparent 100% ); background-size: 40% 100%; background-repeat: no-repeat; box-shadow: var(--shadow-neon-cyan-box-subtle); animation: moveNeonLine 6s linear infinite; }
 
-.site-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px; /* Line thickness */
-    /* Gradient: transparent -> neon cyan -> transparent */
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--clr-neon-cyan) 50%,
-        transparent 100%
-    );
-    background-size: 40% 100%; /* Width of the colored band */
-    background-repeat: no-repeat;
-    /* Neon glow effect */
-    box-shadow: var(--shadow-neon-cyan-box-subtle);
-    /* Animation */
-    animation: moveNeonLine 6s linear infinite; /* Adjust 6s for speed */
-}
-/* --- End Animated Neon Line --- */
-
-
-.logo a { font-family: var(--font-main-title); font-size: 1.8rem; color: var(--clr-primary); text-decoration: none; text-shadow: 0 0 5px var(--clr-primary); }
+.logo a { font-family: var(--font-main-title); font-size: 1.8rem; color: var(--clr-primary); text-decoration: none; text-shadow: 0 0 5px var(--clr-primary); animation: pulseNeonCyanText 5s ease-in-out infinite alternate; /* Added pulse */ }
 .main-nav ul { display: none; list-style: none; padding: 0; margin: 0; }
 .main-nav li { margin-left: 20px; }
 .main-nav a { color: var(--clr-bg); text-decoration: none; font-weight: bold; padding: 5px 0; position: relative; transition: color 0.3s ease; }
@@ -121,6 +91,33 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); }
 .main-nav.nav-open li { margin: 10px 0; text-align: center; }
 
+/* --- NEW: Audio Player Styles --- */
+.audio-player {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto; /* Push to right side */
+}
+.audio-button {
+    background-color: var(--clr-primary);
+    color: var(--clr-text);
+    border: 1px solid var(--clr-text);
+    font-family: var(--font-secondary-title); /* Bungee */
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 1px 1px 0px var(--clr-text);
+}
+.audio-button:hover {
+    background-color: var(--clr-secondary);
+}
+.audio-button:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
 /* --- Buttons (General CTA) --- */
 .cta-button { display: inline-block; background-color: var(--clr-secondary); color: #000000; padding: 10px 25px; border-radius: var(--radius-lg); font-family: var(--font-secondary-title); font-weight: bold; text-decoration: none; border: 2px solid #000000; box-shadow: 2px 2px 0px #000000; transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease; }
 .cta-button:hover, .cta-button:focus { background-color: var(--clr-primary); color: #000000; transform: translate(-1px, -1px); box-shadow: 3px 3px 0px #000000; text-decoration: none; }
@@ -133,7 +130,7 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 
 /* Home Page */
 .page-home .hero { text-align: center; padding: 40px 20px; background-color: var(--clr-dark-teal); color: var(--clr-bg); border-radius: var(--radius-med); margin-bottom: 40px; }
-.page-home .hero .main-title { text-shadow: var(--shadow-neon-pink); color: var(--clr-primary); }
+.page-home .hero .main-title { text-shadow: var(--shadow-neon-pink); color: var(--clr-primary); animation: pulseNeonPinkText 4s ease-in-out infinite alternate; /* Added pulse */ }
 .page-home .hero .subtitle { color: var(--clr-bg); }
 .features { margin-bottom: 40px; }
 .feature-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
@@ -149,7 +146,7 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 
 /* --- Quotes Page (Neon Sign Style - Toned Down) --- */
 .quotes-list { display: grid; gap: 30px; grid-template-columns: 1fr; }
-.quote-card { background-color: var(--clr-dark-bg); padding: 30px; border-radius: var(--radius-med); border: 3px solid var(--clr-neon-pink); box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4); position: relative; color: #fff; }
+.quote-card { background-color: var(--clr-dark-bg); padding: 30px; border-radius: var(--radius-med); border: 3px solid var(--clr-neon-pink); box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4); position: relative; color: #fff; animation: pulseNeonPinkBox 5s ease-in-out infinite alternate; /* Added pulse */ }
 .quote-text { font-size: 1.4rem; font-style: normal; margin-bottom: 1em; color: var(--clr-neon-pink); text-shadow: var(--shadow-neon-pink-text-subtle); font-family: var(--font-neon); line-height: 1.5; }
 .quote-author { font-style: normal; font-weight: normal; color: var(--clr-neon-cyan); text-shadow: var(--shadow-neon-cyan-text-subtle); display: block; text-align: right; margin-top: 10px; font-size: 1.1rem; font-family: var(--font-neon); }
 
@@ -166,7 +163,7 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .modal-container { background-color: var(--clr-dark-bg); color: #eee; max-width: 700px; width: 90%; padding: 50px 30px 60px 30px; border-radius: var(--radius-med); box-shadow: var(--shadow-strong); position: relative; max-height: 85vh; display: flex; flex-direction: column; z-index: 1001; border: 3px solid var(--clr-accent); /* Base border */ }
 
 /* --- NEW: Neon Sign Modal Theme --- */
-.modal-container.neon-sign-modal { border-color: var(--clr-neon-cyan); box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); }
+.modal-container.neon-sign-modal { border-color: var(--clr-neon-cyan); box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); animation: pulseNeonCyanBox 4s ease-in-out infinite alternate; /* Added pulse */ }
 .modal-container.neon-sign-modal h3 { font-family: var(--font-neon); font-size: 1.6rem; color: var(--clr-neon-cyan); text-shadow: var(--shadow-neon-cyan-text-subtle); text-align: center; margin-bottom: 1em; letter-spacing: 1px; }
 .modal-container.neon-sign-modal p { font-family: var(--font-body); color: #e0e0e0; font-size: 1rem; line-height: 1.7; margin-bottom: 1em; }
 .modal-container.neon-sign-modal .pagination-button { background-color: transparent; color: var(--clr-neon-pink); border: 2px solid var(--clr-neon-pink); box-shadow: var(--shadow-neon-pink-box-subtle); }
@@ -195,7 +192,7 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .page-contact .contact-info p { text-align: left; margin-bottom: 15px; /* Inherits light color */ }
 
 /* Simple Neon Form Styles (Chosen) */
-.simple-neon-form { background-color: var(--clr-dark-teal); color: var(--clr-bg); border-radius: var(--radius-med); padding: 25px; margin-top: 20px; border: 1px solid var(--clr-primary); box-shadow: var(--shadow-neon-cyan-box-subtle); }
+.simple-neon-form { background-color: var(--clr-dark-teal); color: var(--clr-bg); border-radius: var(--radius-med); padding: 25px; margin-top: 20px; border: 1px solid var(--clr-primary); box-shadow: var(--shadow-neon-cyan-box-subtle); animation: pulseNeonCyanBox 5s ease-in-out infinite alternate; /* Added pulse */ }
 .simple-neon-form .form-group label { display: block; margin-bottom: 8px; font-weight: normal; color: var(--clr-primary); text-align: left; font-family: var(--font-neon); font-size: 1.1rem; letter-spacing: 1px; text-shadow: var(--shadow-neon-cyan-text-subtle); }
 .simple-neon-form .form-group input[type="text"], .simple-neon-form .form-group input[type="email"], .simple-neon-form .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--clr-primary); border-radius: var(--radius-sm); font-family: var(--font-body); background-color: rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); transition: border-color 0.3s ease, box-shadow 0.3s ease; color: var(--clr-bg); caret-color: var(--clr-primary); }
 .simple-neon-form .form-group input[type="text"]::placeholder, .simple-neon-form .form-group input[type="email"]::placeholder, .simple-neon-form .form-group textarea::placeholder { color: rgba(240, 242, 245, 0.6); opacity: 1; }
@@ -204,6 +201,13 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .simple-neon-form .submit-button { display: block; width: auto; padding: 10px 30px; margin: 15px auto 0 auto; font-family: var(--font-neon); font-size: 1rem; background-color: var(--clr-primary); color: var(--clr-text); border: 2px solid var(--clr-text); box-shadow: var(--shadow-neon-cyan-box-subtle), 2px 2px 0px var(--clr-text); }
 .simple-neon-form .submit-button:hover, .simple-neon-form .submit-button:focus { background-color: var(--clr-secondary); box-shadow: var(--shadow-neon-pink-box-subtle), 3px 3px 0px var(--clr-text); }
 .simple-neon-form #form-status { color: var(--clr-primary); font-family: var(--font-body); font-size: 1rem; margin-top: 20px; }
+
+/* --- NEW: Neon Pulse Animations --- */
+@keyframes pulseNeonPinkText { 0%, 100% { text-shadow: var(--shadow-neon-pink-text-subtle); } 50% { text-shadow: 0 0 8px var(--clr-neon-pink); } }
+@keyframes pulseNeonCyanText { 0%, 100% { text-shadow: var(--shadow-neon-cyan-text-subtle); } 50% { text-shadow: 0 0 8px var(--clr-neon-cyan); } }
+@keyframes pulseNeonPinkBox { 0%, 100% { border-color: var(--clr-neon-pink); box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4); } 50% { border-color: #ff8acb; box-shadow: 0 0 15px var(--clr-neon-pink), inset 0 0 8px rgba(0,0,0,0.4); } }
+@keyframes pulseNeonCyanBox { 0%, 100% { border-color: var(--clr-neon-cyan); box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); } 50% { border-color: #7fffff; box-shadow: 0 0 18px var(--clr-neon-cyan), inset 0 0 10px rgba(0,0,0,0.5); } }
+
 
 /* --- Tablet Styles --- */
 @media (min-width: 600px) {
