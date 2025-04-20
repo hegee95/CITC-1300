@@ -29,7 +29,16 @@
     --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
     --shadow-strong: 0 6px 15px rgba(0, 0, 0, 0.2);
 
-    /* Neon Shadow Examples */
+    /* --- UPDATED: Toned down neon shadows --- */
+    --shadow-neon-cyan-text-subtle: 0 0 5px var(--clr-neon-cyan);
+    --shadow-neon-pink-text-subtle: 0 0 5px var(--clr-neon-pink);
+    --shadow-neon-lime-text-subtle: 0 0 5px var(--clr-neon-lime);
+
+    --shadow-neon-cyan-box-subtle: 0 0 8px var(--clr-neon-cyan);
+    --shadow-neon-pink-box-subtle: 0 0 8px var(--clr-neon-pink);
+    --shadow-neon-lime-box-subtle: 0 0 8px var(--clr-neon-lime);
+
+     /* Original Neon Shadow Examples (can be used elsewhere) */
     --shadow-neon-cyan-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-cyan), 0 0 8px var(--clr-neon-cyan);
     --shadow-neon-pink-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-pink), 0 0 8px var(--clr-neon-pink);
     --shadow-neon-lime-text: 0 0 3px #fff, 0 0 5px var(--clr-neon-lime), 0 0 8px var(--clr-neon-lime);
@@ -77,7 +86,7 @@ a {
 
 a:hover, a:focus {
   color: var(--clr-secondary);
-  /* text-decoration: underline; */ /* Optional: remove underline globally */
+  /* text-decoration: underline; */
 }
 
 /* --- Typography --- */
@@ -325,10 +334,10 @@ h3, .tertiary-title {
 .external-links li { margin-bottom: 10px; }
 
 
-/* --- Quotes Page (Neon Sign Style) --- */
+/* --- Quotes Page (Neon Sign Style - Toned Down) --- */
 .quotes-list {
     display: grid;
-    gap: 30px; /* More gap for neon effect */
+    gap: 30px;
     grid-template-columns: 1fr; /* Mobile default */
 }
 .quote-card {
@@ -336,27 +345,29 @@ h3, .tertiary-title {
     padding: 30px;
     border-radius: var(--radius-med);
     border: 3px solid var(--clr-neon-pink); /* Neon border */
-    box-shadow: var(--shadow-neon-pink-box), inset 0 0 10px rgba(0,0,0,0.5); /* Neon glow + inset */
+    /* --- UPDATED: Toned down neon shadow --- */
+    box-shadow: var(--shadow-neon-pink-box-subtle), inset 0 0 8px rgba(0,0,0,0.4);
     position: relative;
     color: #fff; /* Light base text for dark bg */
 }
-/* Removed starburst ::before */
 
 .quote-text {
-    font-size: 1.4rem; /* Slightly larger */
-    font-style: normal; /* Neon often not italic */
+    font-size: 1.4rem;
+    font-style: normal;
     margin-bottom: 1em;
     color: var(--clr-neon-pink); /* Neon text color */
-    text-shadow: var(--shadow-neon-pink-text); /* Neon glow */
-    font-family: var(--font-body); /* Readable font */
+    /* --- UPDATED: Toned down neon shadow --- */
+    text-shadow: var(--shadow-neon-pink-text-subtle);
+    font-family: var(--font-body);
     line-height: 1.5;
 }
 .quote-author {
     font-style: normal;
     font-weight: bold;
     color: var(--clr-neon-cyan); /* Contrasting neon */
-    text-shadow: var(--shadow-neon-cyan-text);
-    display: block; /* Ensure on new line */
+     /* --- UPDATED: Toned down neon shadow --- */
+    text-shadow: var(--shadow-neon-cyan-text-subtle);
+    display: block;
     text-align: right;
     margin-top: 10px;
     font-size: 1rem;
@@ -531,7 +542,7 @@ h3, .tertiary-title {
     font-family: var(--font-secondary-title); /* Bungee */
     font-size: 1.3rem;
     color: var(--clr-neon-lime);
-    text-shadow: var(--shadow-neon-lime);
+    text-shadow: var(--shadow-neon-lime-text-subtle); /* Toned down */
     text-align: center;
     margin-bottom: 1em;
     letter-spacing: 1px;
@@ -549,7 +560,7 @@ h3, .tertiary-title {
     width: 45px;
     height: 30px;
     font-size: 1rem;
-    box-shadow: var(--shadow-neon-cyan);
+    box-shadow: var(--shadow-neon-cyan-box-subtle); /* Toned down */
     font-family: var(--font-mono);
 }
 .tv-popup .pagination-button:disabled { background-color: rgba(85,85,85,0.5); border-color: #555; color: #888; box-shadow: none;}
@@ -634,126 +645,156 @@ h3, .tertiary-title {
     margin-bottom: 15px;
 }
 
-/* Vintage Screen Effect Container */
-.vintage-screen-effect {
-    background-color: var(--clr-screen-bg);
-    border: 10px solid #777;
+/* --- Option 1: Control Panel Form Styles --- */
+.control-panel-form {
+    background-color: #e0e4e7; /* Light panel background */
+    border: 3px solid var(--clr-text);
     border-radius: var(--radius-med);
     padding: 25px;
     margin-top: 20px;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.6), var(--shadow-light);
-    position: relative;
-    overflow: hidden;
+    box-shadow: var(--shadow-light);
 }
-
-/* Optional Scanlines */
-.vintage-screen-effect::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(0, 255, 0, 0.06) 0px,
-      rgba(0, 255, 0, 0.06) 1px,
-      transparent 1px,
-      transparent 3px
-    );
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.6;
-}
-
-.vintage-screen-effect .contact-form {
-    position: relative;
-    z-index: 2;
-}
-
-.vintage-screen-effect .form-group label {
-    display: block;
+.control-panel-form .form-group label {
+    display: inline-block; /* Make it like a plate */
     margin-bottom: 8px;
     font-weight: normal;
-    color: var(--clr-neon-lime);
+    color: var(--clr-text);
     text-align: left;
-    font-family: var(--font-screen); /* Use VT323 */
-    font-size: 1.2rem;
+    font-family: var(--font-secondary-title); /* Bungee */
+    font-size: 0.9rem;
     letter-spacing: 1px;
-    text-shadow: var(--shadow-neon-lime);
+    background-color: #bdbdbd; /* Grey plate */
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
 }
-
-.vintage-screen-effect .form-group input[type="text"],
-.vintage-screen-effect .form-group input[type="email"],
-.vintage-screen-effect .form-group textarea {
+.control-panel-form .form-group input[type="text"],
+.control-panel-form .form-group input[type="email"],
+.control-panel-form .form-group textarea {
     width: 100%;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid var(--clr-neon-lime);
-    border-radius: 0;
-    font-family: var(--font-screen); /* Use VT323 */
-    font-size: 1.1rem;
-    background-color: transparent;
-    color: var(--clr-neon-lime);
-    box-shadow: none;
+    padding: 12px;
+    border: 2px solid #aaa; /* Input border */
+    border-radius: var(--radius-lg); /* Rounded input */
+    font-family: var(--font-body); /* Use body font */
+    background-color: #fff; /* White input background */
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    caret-color: var(--clr-neon-lime);
+    color: var(--clr-text); /* Ensure text color is standard */
+    caret-color: var(--clr-accent); /* Accent cursor */
+}
+.control-panel-form .form-group input[type="text"]::placeholder,
+.control-panel-form .form-group input[type="email"]::placeholder,
+.control-panel-form .form-group textarea::placeholder {
+    color: #888;
+    opacity: 1;
+}
+.control-panel-form .form-group input[type="text"]:focus,
+.control-panel-form .form-group input[type="email"]:focus,
+.control-panel-form .form-group textarea:focus {
+    border-color: var(--clr-accent); /* Blue focus */
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1), 0 0 8px rgba(44, 117, 255, 0.5); /* Blue glow */
     outline: none;
 }
-.vintage-screen-effect .form-group input[type="text"]::placeholder,
-.vintage-screen-effect .form-group input[type="email"]::placeholder,
-.vintage-screen-effect .form-group textarea::placeholder {
-    color: rgba(50, 205, 50, 0.5);
-    opacity: 1;
-    font-family: var(--font-screen);
-}
-
-
-.vintage-screen-effect .form-group input[type="text"]:focus,
-.vintage-screen-effect .form-group input[type="email"]:focus,
-.vintage-screen-effect .form-group textarea:focus {
-    border-color: var(--clr-neon-cyan);
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-}
-
-.vintage-screen-effect .form-group textarea {
+.control-panel-form .form-group textarea {
     resize: vertical;
     min-height: 120px;
 }
-
-.vintage-screen-effect .submit-button { /* Inherits .cta-button styles, override here */
-    display: inline-block;
-    width: auto;
-    padding: 8px 20px;
-    background-color: transparent;
-    color: var(--clr-neon-lime);
-    border: 2px solid var(--clr-neon-lime);
-    border-radius: var(--radius-lg);
-    font-family: var(--font-screen); /* Use VT323 */
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-    text-shadow: var(--shadow-neon-lime);
-    text-transform: uppercase;
-    box-shadow: none; /* Override cta-button shadow */
+.control-panel-form .submit-button { /* Style like CTA button */
+    display: block; /* Make block for centering */
+    width: auto; /* Size to content */
+    padding: 10px 30px;
+    margin: 15px auto 0 auto; /* Center */
+    /* Inherits .cta-button styles, just override if needed */
+    background-color: var(--clr-accent); /* Blue button */
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 2px 2px 0px #fff;
 }
-.vintage-screen-effect .submit-button:hover {
-    background-color: var(--clr-neon-lime);
-    color: var(--clr-screen-bg);
-    text-shadow: none;
-    box-shadow: var(--shadow-neon-lime);
-    transform: translate(0,0); /* Override cta-button hover */
+.control-panel-form .submit-button:hover,
+.control-panel-form .submit-button:focus {
+     background-color: var(--clr-secondary); /* Tangerine hover */
+     color: var(--clr-text);
+     border-color: var(--clr-text);
+     box-shadow: 3px 3px 0px var(--clr-text);
 }
-.vintage-screen-effect .submit-button:active {
-    transform: scale(0.95);
-}
-
-#form-status {
-    text-align: center;
+.control-panel-form #form-status {
+    color: var(--clr-accent); /* Match theme */
+    font-family: var(--font-body);
+    font-size: 1rem;
     margin-top: 20px;
+}
+
+/* --- Option 2: Simple Neon Form Styles --- */
+.simple-neon-form {
+    background-color: rgba(255, 255, 255, 0.8); /* Simple light background */
+    border-radius: var(--radius-med);
+    padding: 25px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+.simple-neon-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
     font-weight: normal;
-    min-height: 1.5em;
-    color: var(--clr-neon-lime);
-    font-family: var(--font-screen);
-    font-size: 1.1rem;
+    color: var(--clr-accent); /* Use accent color */
+    text-align: left;
+    font-family: var(--font-secondary-title); /* Bungee */
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-shadow: var(--shadow-neon-pink-text-subtle); /* Neon glow */
+}
+.simple-neon-form .form-group input[type="text"],
+.simple-neon-form .form-group input[type="email"],
+.simple-neon-form .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc; /* Simple border */
+    border-radius: var(--radius-sm); /* Less rounded */
+    font-family: var(--font-body);
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--clr-text);
+    caret-color: var(--clr-primary);
+}
+.simple-neon-form .form-group input[type="text"]::placeholder,
+.simple-neon-form .form-group input[type="email"]::placeholder,
+.simple-neon-form .form-group textarea::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+.simple-neon-form .form-group input[type="text"]:focus,
+.simple-neon-form .form-group input[type="email"]:focus,
+.simple-neon-form .form-group textarea:focus {
+    border-color: var(--clr-primary); /* Turquoise focus */
+    box-shadow: 0 0 8px var(--shadow-neon-cyan-box-subtle); /* Cyan glow */
+    outline: none;
+}
+.simple-neon-form .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+.simple-neon-form .submit-button { /* Style like CTA button */
+    display: block;
+    width: auto;
+    padding: 10px 30px;
+    margin: 15px auto 0 auto;
+    /* Inherits .cta-button styles, just override if needed */
+    background-color: var(--clr-primary); /* Turquoise button */
+    color: var(--clr-text);
+    border-color: var(--clr-text);
+    box-shadow: var(--shadow-neon-cyan-box-subtle), 2px 2px 0px var(--clr-text); /* Neon glow + hard shadow */
+}
+.simple-neon-form .submit-button:hover,
+.simple-neon-form .submit-button:focus {
+     background-color: var(--clr-secondary); /* Tangerine hover */
+     box-shadow: var(--shadow-neon-pink-box-subtle), 3px 3px 0px var(--clr-text); /* Pink glow */
+}
+.simple-neon-form #form-status {
+    color: var(--clr-accent);
+    font-family: var(--font-body);
+    font-size: 1rem;
+     margin-top: 20px;
 }
 /* --- End Contact Page Styles --- */
 
@@ -811,12 +852,13 @@ h3, .tertiary-title {
   .contact-info {
       padding-right: 20px;
   }
-  .vintage-screen-effect {
-       margin-top: 0;
+  .control-panel-form, .simple-neon-form { /* Apply to both options */
+       margin-top: 0; /* Remove top margin when in columns */
   }
-  .vintage-screen-effect .submit-button {
+  .control-panel-form .submit-button,
+  .simple-neon-form .submit-button { /* Apply to both options */
       width: auto;
-      padding: 8px 30px;
+      padding: 10px 30px;
       margin: 10px auto 0 auto;
       display: table;
   }
