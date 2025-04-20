@@ -1,4 +1,6 @@
-/* --- Atomic Age Redesign Styles --- */
+/* --- Atomic Age Redesign Styles v2 --- */
+/* Includes structural modal changes & flicker fix */
+/* CORRECTED COMPLETE VERSION */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -8,18 +10,18 @@
     --font-main-title: 'Lobster', cursive;
     --font-secondary-title: 'Bungee', cursive;
     --font-body: 'Poppins', sans-serif;
-    --font-neon: 'Tilt Neon', sans-serif; /* Use Tilt Neon */
+    --font-neon: 'Tilt Neon', sans-serif;
 
-    --clr-bg: #F0F2F5; /* Light greyish background */
-    --clr-text: #2c3e50; /* Dark blue-grey text */
+    --clr-bg: #F0F2F5;
+    --clr-text: #2c3e50;
     --clr-primary: #40E0D0; /* Turquoise */
     --clr-secondary: #FF9966; /* Atomic Tangerine */
     --clr-accent: #2C75FF; /* Star Command Blue */
-    --clr-dark-bg: #1e1e2f; /* Darker background for neon/main content */
+    --clr-dark-bg: #1e1e2f;
     --clr-dark-teal: #11474c; /* User requested dark teal */
 
     --clr-neon-pink: #FF69B4;
-    --clr-neon-lime: #32CD32; /* Green for screen text */
+    --clr-neon-lime: #32CD32;
     --clr-neon-cyan: #00FFFF;
 
     --radius-sm: 8px;
@@ -39,145 +41,29 @@
 }
 
 /* --- Global Resets and Base Styles --- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-body);
-  line-height: 1.7;
-  color: var(--clr-text); /* Default text color (for elements outside containers) */
-  background-color: var(--clr-bg);
-  background-image: url(../Images/atomicagelibrary.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-a {
-  color: var(--clr-accent); /* Default link color */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover, a:focus {
-  color: var(--clr-secondary);
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); line-height: 1.7; color: var(--clr-text); background-color: var(--clr-bg); background-image: url(../Images/atomicagelibrary.png); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed; display: flex; flex-direction: column; min-height: 100vh; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--clr-accent); text-decoration: none; transition: color 0.3s ease; }
+a:hover, a:focus { color: var(--clr-secondary); }
 
 /* --- Typography --- */
-h1, .main-title {
-    font-family: var(--font-main-title);
-    color: var(--clr-primary);
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    line-height: 1.1;
-    margin-bottom: 0.5em;
-    text-align: center;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-}
-
-h2, .secondary-title {
-    font-family: var(--font-secondary-title);
-    color: var(--clr-accent);
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    margin-bottom: 0.75em;
-    text-align: center;
-    letter-spacing: 1px;
-}
-
-h3, .tertiary-title {
-    font-family: var(--font-secondary-title);
-    color: var(--clr-secondary);
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-    margin-bottom: 0.5em;
-}
-
-.item-title {
-     font-family: var(--font-secondary-title);
-     font-size: 1rem;
-     margin-top: 0.5em;
-     /* Color set in .grid-item now */
-}
-
-.page-title {
-    margin-bottom: 0.2em;
-    /* Color inherited from .content-container */
-}
-.page-intro {
-    text-align: center;
-    font-size: 1.1rem;
-    /* Color inherited from .content-container */
-    opacity: 0.9;
-    margin-bottom: 2em;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
+h1, .main-title { font-family: var(--font-main-title); color: var(--clr-primary); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 0.5em; text-align: center; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
+h2, .secondary-title { font-family: var(--font-secondary-title); color: var(--clr-accent); font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 0.75em; text-align: center; letter-spacing: 1px; }
+h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr-secondary); font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 0.5em; }
+.item-title { font-family: var(--font-secondary-title); font-size: 1rem; margin-top: 0.5em; /* Color set in .grid-item */ }
+.page-title { margin-bottom: 0.2em; /* Color inherited */ }
+.page-intro { text-align: center; font-size: 1.1rem; opacity: 0.9; margin-bottom: 2em; max-width: 600px; margin-left: auto; margin-right: auto; /* Color inherited */ }
 
 /* --- Layout Containers --- */
-.content-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 20px;
-  /* --- UPDATED: Main Content Box Background --- */
-  background-color: var(--clr-dark-bg); /* Dark blue/purple */
-  color: var(--clr-bg); /* Default light text color */
-  border-radius: var(--radius-med);
-  box-shadow: var(--shadow-light);
-  flex-grow: 1;
-}
-/* Update link colors within the dark container */
-.content-container a {
-    color: var(--clr-primary); /* Light teal */
-}
-.content-container a:hover,
-.content-container a:focus {
-    color: var(--clr-secondary); /* Tangerine */
-}
-
-
-.header-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.content-container { width: 90%; max-width: 1200px; margin: 30px auto; padding: 20px; background-color: var(--clr-dark-bg); color: var(--clr-bg); border-radius: var(--radius-med); box-shadow: var(--shadow-light); flex-grow: 1; }
+.content-container a { color: var(--clr-primary); }
+.content-container a:hover, .content-container a:focus { color: var(--clr-secondary); }
+.header-container { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
 
 /* --- Header and Navigation --- */
-.site-header {
-    padding: 15px 0;
-    background-color: var(--clr-text);
-    color: var(--clr-bg);
-    box-shadow: var(--shadow-light);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo a {
-    font-family: var(--font-main-title);
-    font-size: 1.8rem;
-    color: var(--clr-primary);
-    text-decoration: none;
-    text-shadow: 0 0 5px var(--clr-primary);
-}
-
+.site-header { padding: 15px 0; background-color: var(--clr-text); color: var(--clr-bg); box-shadow: var(--shadow-light); position: sticky; top: 0; z-index: 100; }
+.logo a { font-family: var(--font-main-title); font-size: 1.8rem; color: var(--clr-primary); text-decoration: none; text-shadow: 0 0 5px var(--clr-primary); }
 .main-nav ul { display: none; list-style: none; padding: 0; margin: 0; }
 .main-nav li { margin-left: 20px; }
 .main-nav a { color: var(--clr-bg); text-decoration: none; font-weight: bold; padding: 5px 0; position: relative; transition: color 0.3s ease; }
@@ -192,9 +78,8 @@ h3, .tertiary-title {
 .main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); }
 .main-nav.nav-open li { margin: 10px 0; text-align: center; }
 
-
 /* --- Buttons (General CTA) --- */
-.cta-button { display: inline-block; background-color: #1e1e2f; color: var(--clr-text); padding: 10px 25px; border-radius: var(--radius-lg); font-family: var(--font-secondary-title); font-weight: bold; text-decoration: none; border: 2px solid var(--clr-text); box-shadow: 2px 2px 0px var(--clr-text); transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease; }
+.cta-button { display: inline-block; background-color: var(--clr-secondary); color: var(--clr-text); padding: 10px 25px; border-radius: var(--radius-lg); font-family: var(--font-secondary-title); font-weight: bold; text-decoration: none; border: 2px solid var(--clr-text); box-shadow: 2px 2px 0px var(--clr-text); transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease; }
 .cta-button:hover, .cta-button:focus { background-color: var(--clr-primary); color: var(--clr-text); transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--clr-text); text-decoration: none; }
 .cta-button:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px var(--clr-text); }
 
@@ -204,47 +89,20 @@ h3, .tertiary-title {
 /* --- Page Specific Styles --- */
 
 /* Home Page */
-.page-home .hero { text-align: center; padding: 40px 20px; background-color: #11474c (255, 255, 255, 0.8); border-radius: var(--radius-med); margin-bottom: 40px; color: var(--clr-text); }
+.page-home .hero { text-align: center; padding: 40px 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: var(--radius-med); margin-bottom: 40px; color: var(--clr-text); }
 .page-home .hero .main-title { text-shadow: var(--shadow-neon-pink); color: var(--clr-primary); }
 .page-home .hero .subtitle { color: var(--clr-text); }
-
 .features { margin-bottom: 40px; }
 .feature-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
-.feature-card {
-    /* --- UPDATED Background --- */
-    background-color: var(--clr-dark-teal);
-    color: var(--clr-bg); /* Light text */
-    padding: 25px;
-    border-radius: var(--radius-med);
-    box-shadow: var(--shadow-light);
-    text-align: center;
-    border: 3px solid var(--clr-primary);
-    border-style: dashed;
-}
-.feature-card .tertiary-title { color: var(--clr-secondary); } /* Tangerine title */
-.feature-card p { color: var(--clr-bg); } /* Light text */
-.feature-card a {
-    display: inline-block;
-    margin-top: 15px;
-    font-weight: bold;
-    color: var(--clr-primary); /* Light teal link */
-}
+.feature-card { background-color: var(--clr-dark-teal); color: var(--clr-bg); padding: 25px; border-radius: var(--radius-med); box-shadow: var(--shadow-light); text-align: center; border: 3px solid var(--clr-primary); border-style: dashed; }
+.feature-card .tertiary-title { color: var(--clr-secondary); }
+.feature-card p { color: var(--clr-bg); }
+.feature-card a { display: inline-block; margin-top: 15px; font-weight: bold; color: var(--clr-primary); }
 .feature-card a:hover { color: var(--clr-secondary); }
-
-.external-links-section {
-    /* --- UPDATED Background --- */
-    background-color: var(--clr-dark-teal);
-    color: var(--clr-bg); /* Light text */
-    padding: 20px;
-    border-radius: var(--radius-med);
-}
-.external-links-section .secondary-title {
-     color: var(--clr-primary); /* Light teal heading */
-}
+.external-links-section { background-color: var(--clr-dark-teal); color: var(--clr-bg); padding: 20px; border-radius: var(--radius-med); }
+.external-links-section .secondary-title { color: var(--clr-primary); }
 .external-links { list-style: none; padding: 0; text-align: center; }
 .external-links li { margin-bottom: 10px; }
-/* Links inside inherit from .content-container a */
-
 
 /* --- Quotes Page (Neon Sign Style - Toned Down) --- */
 .quotes-list { display: grid; gap: 30px; grid-template-columns: 1fr; }
@@ -252,47 +110,42 @@ h3, .tertiary-title {
 .quote-text { font-size: 1.4rem; font-style: normal; margin-bottom: 1em; color: var(--clr-neon-pink); text-shadow: var(--shadow-neon-pink-text-subtle); font-family: var(--font-neon); line-height: 1.5; }
 .quote-author { font-style: normal; font-weight: normal; color: var(--clr-neon-cyan); text-shadow: var(--shadow-neon-cyan-text-subtle); display: block; text-align: right; margin-top: 10px; font-size: 1.1rem; font-family: var(--font-neon); }
 
-
 /* --- Library & Book-Movie Pages Grid --- */
 .item-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 25px; padding: 20px 0; }
-.grid-item {
-  position: relative;
-  text-align: center;
-  pointer-events: none;
-  /* --- UPDATED Background --- */
-  background-color: var(--clr-dark-teal);
-  color: var(--clr-bg); /* Light text */
-  padding: 15px;
-  border-radius: var(--radius-med);
-  box-shadow: var(--shadow-light);
-  border: 2px solid var(--clr-secondary);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.grid-item .item-title {
-    color: var(--clr-bg); /* Light text */
-}
+.grid-item { position: relative; text-align: center; /* pointer-events: none; REMOVED */ background-color: var(--clr-dark-teal); color: var(--clr-bg); padding: 15px; border-radius: var(--radius-med); box-shadow: var(--shadow-light); border: 2px solid var(--clr-secondary); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+.grid-item .item-title { color: var(--clr-bg); }
 .grid-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); }
+.item-image img { width: 100px; height: auto; margin: 0 auto 10px auto; display: block; /* cursor: pointer; Already on parent */ pointer-events: auto; border-radius: 5px; border: 3px solid var(--clr-text); }
+/* .item-image img:hover { transform: scale(1.05); } REMOVED */
 
-.item-image img { width: 100px; height: auto; margin: 0 auto 10px auto; display: block; cursor: pointer; pointer-events: auto; border-radius: 5px; border: 3px solid var(--clr-text); }
-.item-image img:hover { transform: scale(1.05); }
+/* --- NEW: Generic Modal Styles (Decoupled) --- */
+.modal-overlay { display: none; visibility: hidden; opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 1000; padding: 20px; overflow-y: auto; /* backdrop-filter: blur(3px); REMOVED */ transition: opacity 0.3s ease, visibility 0s linear 0.3s; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; visibility: visible; opacity: 1; transition: opacity 0.3s ease, visibility 0s linear 0s; }
+.modal-container { background-color: var(--clr-dark-bg); color: #eee; max-width: 700px; width: 90%; padding: 50px 30px 60px 30px; border-radius: var(--radius-med); box-shadow: var(--shadow-strong); position: relative; max-height: 85vh; display: flex; flex-direction: column; z-index: 1001; border: 3px solid var(--clr-accent); /* Base border */ }
 
+/* --- NEW: Neon Sign Modal Theme --- */
+.modal-container.neon-sign-modal { border-color: var(--clr-neon-cyan); box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); }
+.modal-container.neon-sign-modal h3 { font-family: var(--font-neon); font-size: 1.6rem; color: var(--clr-neon-cyan); text-shadow: var(--shadow-neon-cyan-text-subtle); text-align: center; margin-bottom: 1em; letter-spacing: 1px; }
+.modal-container.neon-sign-modal p { font-family: var(--font-body); color: #e0e0e0; font-size: 1rem; line-height: 1.7; margin-bottom: 1em; }
+.modal-container.neon-sign-modal .pagination-button { background-color: transparent; color: var(--clr-neon-pink); border: 2px solid var(--clr-neon-pink); box-shadow: var(--shadow-neon-pink-box-subtle); }
+.modal-container.neon-sign-modal .pagination-button:disabled { color: #777; border-color: #555; opacity: 0.5; box-shadow: none; }
+.modal-container.neon-sign-modal .pagination-button:not(:disabled):hover { background-color: var(--clr-neon-pink); color: var(--clr-dark-bg); text-shadow: none; }
+.modal-container.neon-sign-modal .close-button { background: var(--clr-neon-pink); color: var(--clr-dark-bg); border: 3px solid var(--clr-dark-bg); box-shadow: var(--shadow-neon-pink-box-subtle); }
+.modal-container.neon-sign-modal .close-button:hover { background: var(--clr-neon-cyan); border-color: var(--clr-dark-bg); color: var(--clr-dark-bg); box-shadow: var(--shadow-neon-cyan-box-subtle); }
 
-/* --- Modal Pop-up Styles (Unified Neon Sign Look) --- */
-.modal-popup { display: none; visibility: hidden; opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000; padding: 20px; overflow-y: auto; backdrop-filter: blur(3px); transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
-.grid-item.open .modal-popup { display: flex; visibility: visible; opacity: 1; transition: opacity 0.3s ease, visibility 0s linear 0s; align-items: center; justify-content: center; }
-.modal-content { background-color: var(--clr-dark-bg); color: #eee; max-width: 700px; width: 90%; padding: 50px 30px 60px 30px; border: 3px solid var(--clr-neon-cyan); border-radius: var(--radius-med); box-shadow: var(--shadow-neon-cyan-box-subtle), inset 0 0 10px rgba(0,0,0,0.5); position: relative; max-height: 85vh; display: flex; flex-direction: column; z-index: 1001; }
-.modal-content h3 { font-family: var(--font-neon); font-size: 1.6rem; color: var(--clr-neon-cyan); text-shadow: var(--shadow-neon-cyan-text-subtle); text-align: center; margin-bottom: 1em; letter-spacing: 1px; }
-.modal-content p { font-family: var(--font-body); color: #e0e0e0; font-size: 1rem; line-height: 1.7; margin-bottom: 1em; }
-.synopsis, .comparison-content { flex-grow: 1; overflow: hidden; position: relative; }
+/* Modal Body for Content */
+.modal-body { flex-grow: 1; overflow: hidden; position: relative; }
+
+/* Pagination Styles (Common inside modal) */
 .modal-page { display: none; height: 100%; overflow-y: auto; padding-right: 15px; }
 .modal-page.active { display: block; }
-.pagination-button { position: absolute; bottom: 15px; background-color: transparent; color: var(--clr-neon-pink); border: 2px solid var(--clr-neon-pink); border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; font-weight: bold; cursor: pointer; z-index: 25; display: flex; align-items: center; justify-content: center; line-height: 1; box-shadow: var(--shadow-neon-pink-box-subtle); transition: all 0.2s ease; pointer-events: auto; }
-.pagination-button:disabled { color: #777; border-color: #555; cursor: not-allowed; opacity: 0.5; box-shadow: none; }
-.pagination-button:not(:disabled):hover { background-color: var(--clr-neon-pink); color: var(--clr-dark-bg); transform: scale(1.1); text-shadow: none; }
+.pagination-button { position: absolute; bottom: 15px; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; font-weight: bold; cursor: pointer; z-index: 25; display: flex; align-items: center; justify-content: center; line-height: 1; transition: all 0.2s ease; pointer-events: auto; }
 .pagination-button.prev { left: 30px; }
 .pagination-button.next { right: 30px; }
-.modal-content .close-button { position: absolute; top: -18px; right: -18px; background: var(--clr-neon-pink); color: var(--clr-dark-bg); border: 3px solid var(--clr-dark-bg); font-size: 1.5rem; font-weight: bold; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; z-index: 1010; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; box-shadow: var(--shadow-neon-pink-box-subtle); transition: all 0.2s ease; pointer-events: auto; }
-.modal-content .close-button:hover { background: var(--clr-neon-cyan); border-color: var(--clr-dark-bg); color: var(--clr-dark-bg); transform: scale(1.1); box-shadow: var(--shadow-neon-cyan-box-subtle); }
+
+/* Close Button (Common inside modal) */
+.modal-container .close-button { position: absolute; top: -18px; right: -18px; font-size: 1.5rem; font-weight: bold; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; z-index: 1010; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; transition: all 0.2s ease; pointer-events: auto; }
+.modal-container .close-button:hover { transform: scale(1.1); } /* Simpler hover */
 
 
 /* --- Contact Page Styles --- */
@@ -300,81 +153,15 @@ h3, .tertiary-title {
 .page-contact .contact-info p { text-align: left; margin-bottom: 15px; /* Inherits light color */ }
 
 /* Simple Neon Form Styles (Chosen) */
-.simple-neon-form {
-    /* --- UPDATED Background --- */
-    background-color: var(--clr-dark-teal);
-    color: var(--clr-bg); /* Light base text */
-    border-radius: var(--radius-med);
-    padding: 25px;
-    margin-top: 20px;
-    border: 1px solid var(--clr-primary); /* Teal border */
-    box-shadow: var(--shadow-neon-cyan-box-subtle);
-}
-.simple-neon-form .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: normal;
-    color: var(--clr-primary); /* Teal labels */
-    text-align: left;
-    font-family: var(--font-neon);
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    text-shadow: var(--shadow-neon-cyan-text-subtle); /* Cyan glow */
-}
-.simple-neon-form .form-group input[type="text"],
-.simple-neon-form .form-group input[type="email"],
-.simple-neon-form .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--clr-primary); /* Teal border */
-    border-radius: var(--radius-sm);
-    font-family: var(--font-body);
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent light */
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    color: var(--clr-bg); /* Light text input */
-    caret-color: var(--clr-primary);
-}
-.simple-neon-form .form-group input[type="text"]::placeholder,
-.simple-neon-form .form-group input[type="email"]::placeholder,
-.simple-neon-form .form-group textarea::placeholder {
-    color: rgba(240, 242, 245, 0.6); /* Dimmer light placeholder */
-    opacity: 1;
-}
-.simple-neon-form .form-group input[type="text"]:focus,
-.simple-neon-form .form-group input[type="email"]:focus,
-.simple-neon-form .form-group textarea:focus {
-    border-color: var(--clr-secondary); /* Tangerine focus */
-    box-shadow: 0 0 8px var(--shadow-neon-pink-box-subtle); /* Pink glow */
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.2);
-}
+.simple-neon-form { background-color: var(--clr-dark-teal); color: var(--clr-bg); border-radius: var(--radius-med); padding: 25px; margin-top: 20px; border: 1px solid var(--clr-primary); box-shadow: var(--shadow-neon-cyan-box-subtle); }
+.simple-neon-form .form-group label { display: block; margin-bottom: 8px; font-weight: normal; color: var(--clr-primary); text-align: left; font-family: var(--font-neon); font-size: 1.1rem; letter-spacing: 1px; text-shadow: var(--shadow-neon-cyan-text-subtle); }
+.simple-neon-form .form-group input[type="text"], .simple-neon-form .form-group input[type="email"], .simple-neon-form .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--clr-primary); border-radius: var(--radius-sm); font-family: var(--font-body); background-color: rgba(255, 255, 255, 0.1); box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); transition: border-color 0.3s ease, box-shadow 0.3s ease; color: var(--clr-bg); caret-color: var(--clr-primary); }
+.simple-neon-form .form-group input[type="text"]::placeholder, .simple-neon-form .form-group input[type="email"]::placeholder, .simple-neon-form .form-group textarea::placeholder { color: rgba(240, 242, 245, 0.6); opacity: 1; }
+.simple-neon-form .form-group input[type="text"]:focus, .simple-neon-form .form-group input[type="email"]:focus, .simple-neon-form .form-group textarea:focus { border-color: var(--clr-secondary); box-shadow: 0 0 8px var(--shadow-neon-pink-box-subtle); outline: none; background-color: rgba(255, 255, 255, 0.2); }
 .simple-neon-form .form-group textarea { resize: vertical; min-height: 120px; }
-.simple-neon-form .submit-button {
-    display: block;
-    width: auto;
-    padding: 10px 30px;
-    margin: 15px auto 0 auto;
-    font-family: var(--font-neon);
-    font-size: 1rem;
-    background-color: var(--clr-primary); /* Teal button */
-    color: var(--clr-text); /* Dark text */
-    border: 2px solid var(--clr-text);
-    box-shadow: var(--shadow-neon-cyan-box-subtle), 2px 2px 0px var(--clr-text);
-}
-.simple-neon-form .submit-button:hover,
-.simple-neon-form .submit-button:focus {
-     background-color: var(--clr-secondary); /* Tangerine hover */
-     box-shadow: var(--shadow-neon-pink-box-subtle), 3px 3px 0px var(--clr-text);
-}
-.simple-neon-form #form-status {
-    color: var(--clr-primary); /* Teal status */
-    font-family: var(--font-body);
-    font-size: 1rem;
-    margin-top: 20px;
-}
-/* --- End Contact Page Styles --- */
-
+.simple-neon-form .submit-button { display: block; width: auto; padding: 10px 30px; margin: 15px auto 0 auto; font-family: var(--font-neon); font-size: 1rem; background-color: var(--clr-primary); color: var(--clr-text); border: 2px solid var(--clr-text); box-shadow: var(--shadow-neon-cyan-box-subtle), 2px 2px 0px var(--clr-text); }
+.simple-neon-form .submit-button:hover, .simple-neon-form .submit-button:focus { background-color: var(--clr-secondary); box-shadow: var(--shadow-neon-pink-box-subtle), 3px 3px 0px var(--clr-text); }
+.simple-neon-form #form-status { color: var(--clr-primary); font-family: var(--font-body); font-size: 1rem; margin-top: 20px; }
 
 /* --- Tablet Styles --- */
 @media (min-width: 600px) {
@@ -399,7 +186,6 @@ h3, .tertiary-title {
   .simple-neon-form { margin-top: 0; }
   .simple-neon-form .submit-button { width: auto; padding: 10px 30px; margin: 10px auto 0 auto; display: table; }
 }
-
 
 /* --- Desktop Styles --- */
 @media (min-width: 1024px) {
