@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/atomic_styles.css"> <link rel="icon" type="image/png" href="Images/my_icon.png"> </head>
+    <link rel="stylesheet" href="css/atomic_styles.css">
+
+    <link rel="icon" type="image/png" href="Images/favicon.png"> </head>
 <body>
     <header class="site-header">
         <div class="header-container">
@@ -22,8 +24,16 @@
                     <source src="sounds/ambient_space.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
+                <button id="prev-button" class="audio-button" aria-label="Previous Track">&lt;&lt;</button>
                 <button id="play-button" class="audio-button" aria-label="Play Ambient Sound">Play</button>
                 <button id="pause-button" class="audio-button" style="display: none;" aria-label="Pause Ambient Sound">Pause</button>
+                <button id="next-button" class="audio-button" aria-label="Next Track">&gt;&gt;</button>
+                <div id="equalizer-bars">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
             </div>
 
             <nav class="main-nav" id="main-nav">

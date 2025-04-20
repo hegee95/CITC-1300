@@ -1,6 +1,6 @@
 /* --- Atomic Age Redesign Styles v2 --- */
 /* Includes structural modal changes & flicker fix */
-/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow */
+/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -39,9 +39,15 @@
   --shadow-neon-cyan-box-subtle: 0 0 12px var(--clr-neon-cyan); /* Increased from 8px */
   --shadow-neon-pink-box-subtle: 0 0 8px var(--clr-neon-pink);
   --shadow-neon-lime-box-subtle: 0 0 8px var(--clr-neon-lime);
-  /* --- NEW: Orange Neon Glow Variable --- */
+  /* Orange Neon Glow Variable */
   --shadow-neon-orange-box-subtle: 0 0 8px var(--clr-secondary);
   --shadow-neon-orange-box-pulse: 0 0 12px var(--clr-secondary); /* For hover */
+
+   /* Stronger Glow for Animation */
+  --shadow-neon-cyan-text-pulse: 0 0 8px var(--clr-neon-cyan);
+  --shadow-neon-pink-text-pulse: 0 0 8px var(--clr-neon-pink);
+  --shadow-neon-cyan-box-pulse: 0 0 18px var(--clr-neon-cyan);
+  --shadow-neon-pink-box-pulse: 0 0 15px var(--clr-neon-pink);
 }
 
 /* --- Global Resets and Base Styles --- */
@@ -66,24 +72,11 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .header-container { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 
 /* --- Header and Navigation --- */
-.site-header {
-  padding: 15px 0;
-  background-color: var(--clr-text);
-  color: var(--clr-bg);
-  box-shadow: var(--shadow-light);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  position: relative; /* Needed for pseudo-element positioning */
-  /* overflow: hidden; */ /* REMOVED this to allow mobile menu to show */
-}
-
-/* --- Animated Neon Line --- */
+.site-header { padding: 15px 0; background-color: var(--clr-text); color: var(--clr-bg); box-shadow: var(--shadow-light); position: sticky; top: 0; z-index: 100; position: relative; /* overflow: hidden; */ /* REMOVED */ }
 @keyframes moveNeonLine { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-.site-header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient( 90deg, transparent 0%, var(--clr-neon-cyan) 50%, transparent 100% ); background-size: 40% 100%; background-repeat: no-repeat; box-shadow: var(--shadow-neon-cyan-box-subtle); animation: moveNeonLine 6s linear infinite; z-index: 1; /* Ensure line is below nav content */ }
-
+.site-header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient( 90deg, transparent 0%, var(--clr-neon-cyan) 50%, transparent 100% ); background-size: 40% 100%; background-repeat: no-repeat; box-shadow: var(--shadow-neon-cyan-box-subtle); animation: moveNeonLine 6s linear infinite; z-index: 1; }
 .logo a { font-family: var(--font-main-title); font-size: 1.8rem; color: var(--clr-primary); text-decoration: none; text-shadow: 0 0 5px var(--clr-primary); animation: pulseNeonCyanText 5s ease-in-out infinite alternate; }
-.main-nav { position: relative; z-index: 2; } /* Ensure nav is above neon line */
+.main-nav { position: relative; z-index: 2; }
 .main-nav ul { display: none; list-style: none; padding: 0; margin: 0; }
 .main-nav li { margin-left: 20px; }
 .main-nav a { color: var(--clr-bg); text-decoration: none; font-weight: bold; padding: 5px 0; position: relative; transition: color 0.3s ease; }
@@ -95,14 +88,22 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .nav-toggle.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav-toggle.active .hamburger-bar:nth-child(2) { opacity: 0; }
 .nav-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-.main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; /* Position below header */ left: 0; width: 100%; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); z-index: 100; /* Ensure menu is above content */ }
+.main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); z-index: 101; /* Ensure above content */ }
 .main-nav.nav-open li { margin: 10px 0; text-align: center; }
 
 /* --- Audio Player Styles --- */
-.audio-player { display: flex; align-items: center; gap: 8px; margin-left: auto; position: relative; z-index: 2; /* Ensure above neon line */ }
-.audio-button { background-color: var(--clr-primary); color: var(--clr-text); border: 1px solid var(--clr-text); font-family: var(--font-secondary-title); font-size: 0.7rem; padding: 3px 8px; border-radius: var(--radius-sm); cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; box-shadow: 1px 1px 0px var(--clr-text); }
+.audio-player { display: flex; align-items: center; gap: 5px; margin-left: auto; position: relative; z-index: 2; }
+.audio-button { background-color: var(--clr-primary); color: var(--clr-text); border: 1px solid var(--clr-text); font-family: var(--font-secondary-title); font-size: 0.6rem; /* Smaller */ padding: 2px 6px; border-radius: var(--radius-sm); cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; box-shadow: 1px 1px 0px var(--clr-text); line-height: 1; }
 .audio-button:hover { background-color: var(--clr-secondary); }
 .audio-button:active { transform: translate(1px, 1px); box-shadow: none; }
+#equalizer-bars { display: flex; align-items: flex-end; /* Align bars to bottom */ height: 16px; /* Adjust height */ gap: 2px; margin-left: 8px; }
+.eq-bar { width: 3px; /* Bar width */ background-color: var(--clr-neon-lime); /* Neon color */ animation: equalizer 0.8s ease-in-out infinite alternate; }
+/* Stagger animation delays */
+.eq-bar:nth-child(1) { height: 60%; animation-delay: 0s; }
+.eq-bar:nth-child(2) { height: 100%; animation-delay: -0.2s; }
+.eq-bar:nth-child(3) { height: 80%; animation-delay: -0.4s; }
+.eq-bar:nth-child(4) { height: 50%; animation-delay: -0.6s; }
+@keyframes equalizer { 0% { height: 10%; } 100% { height: 100%; } }
 
 /* --- Buttons (General CTA) --- */
 .cta-button { display: inline-block; background-color: var(--clr-secondary); color: #000000; padding: 10px 25px; border-radius: var(--radius-lg); font-family: var(--font-secondary-title); font-weight: bold; text-decoration: none; border: 2px solid #000000; box-shadow: 2px 2px 0px #000000; transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease; }
