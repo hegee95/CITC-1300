@@ -1,6 +1,6 @@
 /* --- Atomic Age Redesign Styles v2 --- */
 /* Includes structural modal changes & flicker fix */
-/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color + Nav Width Fix + Modal Scroll Fix + Nav Width Fix v3 + EQ Color/Glow + Nav Max Width Fix */
+/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color + Nav Width Fix + Modal Scroll Fix + Nav Width Fix v3 + EQ Color/Glow + Nav Max Width Fix + Nav Top Adjust */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -94,13 +94,13 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 100%;
+  /* --- UPDATED top positioning --- */
+  top: calc(100% + 2px); /* Push down slightly below header edge */
   left: 0;
-  /* right: 0; */ /* REMOVED */
-  width: 100%; /* Keep 100% */
-  max-width: 100%; /* ADDED max-width constraint */
+  width: 100%;
+  max-width: 100%;
   background-color: var(--clr-text);
-  padding: 0; /* Keep padding off ul */
+  padding: 0;
   box-shadow: var(--shadow-light);
   z-index: 999;
   box-sizing: border-box;
