@@ -1,6 +1,6 @@
 /* --- Atomic Age Redesign Styles v2 --- */
 /* Includes structural modal changes & flicker fix */
-/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color + Nav Width Fix + Modal Scroll Fix + Nav Width Fix v3 + EQ Color/Glow + Nav Max Width Fix + Nav Top Adjust */
+/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color + Nav Width Fix + Modal Scroll Fix v2 + Nav Position Fixed */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -76,7 +76,7 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 @keyframes moveNeonLine { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 .site-header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: linear-gradient( 90deg, transparent 0%, var(--clr-neon-cyan) 50%, transparent 100% ); background-size: 40% 100%; background-repeat: no-repeat; box-shadow: var(--shadow-neon-cyan-box-subtle); animation: moveNeonLine 6s linear infinite; z-index: 1; }
 .logo a { font-family: var(--font-main-title); font-size: 1.8rem; color: var(--clr-primary); text-decoration: none; text-shadow: 0 0 5px var(--clr-primary); animation: pulseNeonCyanText 5s ease-in-out infinite alternate; }
-.main-nav { position: relative; z-index: 2; }
+.main-nav { position: relative; z-index: 2; } /* Keep relative for potential absolute children if needed, but ul is now fixed */
 .main-nav ul { display: none; list-style: none; padding: 0; margin: 0; }
 .main-nav li { margin-left: 0; }
 .main-nav a { color: var(--clr-bg); text-decoration: none; font-weight: bold; padding: 5px 0; position: relative; transition: color 0.3s ease; }
@@ -90,44 +90,12 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .nav-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* Mobile Menu */
-.main-nav.nav-open ul {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  /* --- UPDATED top positioning --- */
-  top: calc(100% + 2px); /* Push down slightly below header edge */
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-  background-color: var(--clr-text);
-  padding: 0;
-  box-shadow: var(--shadow-light);
-  z-index: 999;
-  box-sizing: border-box;
-}
-.main-nav.nav-open li {
-  margin: 0;
-  text-align: center;
-  border-bottom: 1px solid rgba(240, 242, 245, 0.1);
-}
-.main-nav.nav-open li:last-child {
-  border-bottom: none;
-}
-.main-nav.nav-open li a {
-  display: block;
-  padding: 12px 15px; /* Padding on links */
-  color: var(--clr-bg);
-}
-.main-nav.nav-open li a:hover,
-.main-nav.nav-open li a:focus,
-.main-nav.nav-open li a.active {
-   background-color: rgba(255, 255, 255, 0.1);
-   color: var(--clr-primary);
-}
-.main-nav.nav-open li a::after {
-  display: none;
-}
-
+.main-nav.nav-open ul { display: flex; flex-direction: column; position: fixed; top: 65px; left: 0; bottom: 0; width: 100%; max-width: 100%; background-color: var(--clr-text); padding: 0; box-shadow: var(--shadow-light); z-index: 999; box-sizing: border-box; overflow-y: auto; }
+.main-nav.nav-open li { margin: 0; text-align: center; border-bottom: 1px solid rgba(240, 242, 245, 0.1); }
+.main-nav.nav-open li:last-child { border-bottom: none; }
+.main-nav.nav-open li a { display: block; padding: 15px 15px; color: var(--clr-bg); }
+.main-nav.nav-open li a:hover, .main-nav.nav-open li a:focus, .main-nav.nav-open li a.active { background-color: rgba(255, 255, 255, 0.1); color: var(--clr-primary); }
+.main-nav.nav-open li a::after { display: none; }
 
 /* --- Audio Player Styles --- */
 .audio-player { display: flex; align-items: center; gap: 5px; margin-left: auto; position: relative; z-index: 2; }
@@ -202,10 +170,20 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .modal-container.neon-sign-modal .close-button:hover { background: var(--clr-neon-cyan); border-color: var(--clr-dark-bg); color: var(--clr-dark-bg); box-shadow: var(--shadow-neon-cyan-box-subtle); }
 
 /* Modal Body for Content */
-.modal-body { flex-grow: 1; /* overflow: hidden; */ position: relative; }
+.modal-body {
+  flex-grow: 1;
+  /* --- UPDATED: Add overflow scrolling here --- */
+  overflow-y: auto;
+  position: relative;
+}
 
 /* Pagination Styles (Common inside modal) */
-.modal-page { display: none; height: 100%; overflow-y: auto; padding-right: 15px; }
+.modal-page {
+  display: none;
+  /* height: 100%; */ /* REMOVED */
+  /* overflow-y: auto; */ /* REMOVED */
+  padding-right: 15px; /* Keep for scrollbar spacing */
+}
 .modal-page.active { display: block; }
 .pagination-button { position: absolute; bottom: 15px; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; font-weight: bold; cursor: pointer; z-index: 25; display: flex; align-items: center; justify-content: center; line-height: 1; transition: all 0.2s ease; pointer-events: auto; }
 .pagination-button.prev { left: 30px; }
