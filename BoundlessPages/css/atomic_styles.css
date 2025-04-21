@@ -1,7 +1,6 @@
 /* --- Atomic Age Redesign Styles v2 --- */
 /* Includes structural modal changes & flicker fix */
-/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color + Nav Width Fix */
-/* REMOVING overflow:hidden from modal-body again */
+/* CORRECTED COMPLETE VERSION + Player Styles + Neon Animation + Grid Item Glow + Nav Z-index Fix + Body BG Color + Nav Width Fix + Modal Scroll Fix + Nav Width Fix v2 */
 
 /* --- Google Font Import (Ensure linked in HTML too) --- */
 /* @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Lobster&family=Poppins:wght@400;700&family=Tilt+Neon&display=swap'); */
@@ -89,8 +88,26 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .nav-toggle.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav-toggle.active .hamburger-bar:nth-child(2) { opacity: 0; }
 .nav-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-.main-nav.nav-open ul { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--clr-text); padding: 15px; box-shadow: var(--shadow-light); z-index: 999; }
-.main-nav.nav-open li { margin: 10px 0; text-align: center; }
+
+/* Mobile Menu */
+.main-nav.nav-open ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  /* right: 0; */ /* REMOVED right */
+  width: 100vw; /* UPDATED to viewport width */
+  background-color: var(--clr-text);
+  padding: 15px;
+  box-shadow: var(--shadow-light);
+  z-index: 999;
+  box-sizing: border-box; /* ADDED explicit box-sizing */
+}
+.main-nav.nav-open li {
+  margin: 10px 0;
+  text-align: center;
+}
 
 /* --- Audio Player Styles --- */
 .audio-player { display: flex; align-items: center; gap: 5px; margin-left: auto; position: relative; z-index: 2; }
@@ -165,11 +182,7 @@ h3, .tertiary-title { font-family: var(--font-secondary-title); color: var(--clr
 .modal-container.neon-sign-modal .close-button:hover { background: var(--clr-neon-cyan); border-color: var(--clr-dark-bg); color: var(--clr-dark-bg); box-shadow: var(--shadow-neon-cyan-box-subtle); }
 
 /* Modal Body for Content */
-.modal-body {
-  flex-grow: 1;
-  /* --- REMOVED overflow: hidden; --- */
-  position: relative;
-}
+.modal-body { flex-grow: 1; /* overflow: hidden; */ /* REMOVED */ position: relative; }
 
 /* Pagination Styles (Common inside modal) */
 .modal-page { display: none; height: 100%; overflow-y: auto; padding-right: 15px; }
